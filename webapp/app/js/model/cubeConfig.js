@@ -145,8 +145,8 @@ KylinApp.constant('cubeConfig', {
           return '<table><tbody>'
           + '<tr><td align="right"><i class="fa fa-square" style="color: ' + obj.color + '; margin-right: 15px;" aria-hidden="true"></i><b>Name:</b></td><td class="key"><b>' + obj.data.name +'</b></td></tr>'
           + '<tr><td align="right"><b>ID:</b></td><td>' + obj.data.cuboid_id + '</td></tr>'
-          + '<tr><td align="right"><b>Query Count:</b></td><td>' + obj.data.query_count + '  [' + (obj.data.query_rate * 100).toFixed(2) + '%]</td></tr>'
-          + '<tr><td align="right"><b>Exactly Match Count:</b></td><td>' + obj.data.exactly_match_count + '</td></tr>'
+          + '<tr><td align="right"><b>查询数：</b></td><td>' + obj.data.query_count + '  [' + (obj.data.query_rate * 100).toFixed(2) + '%]</td></tr>'
+          + '<tr><td align="right"><b>完全匹配数：</b></td><td>' + obj.data.exactly_match_count + '</td></tr>'
           + rowCountRateStr
           + preCalculatedStr
           + '</tbody></table>';

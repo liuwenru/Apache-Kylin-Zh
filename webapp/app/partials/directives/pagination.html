@@ -18,10 +18,10 @@
 
 <div style="margin: 5px 0;width: 100%" ng-if="data">
     <button ng-if="hasMore" class="btn btn-primary btn-sm btn-block" ng-click="showMore()" ng-disabled="!loaded">
-        <i class="icon-plus icon-white"></i> <span>{{ loaded ? 'More' : 'Loading...' }}</span>
+        <i class="icon-plus icon-white"></i> <span>{{ loaded ? '更多' : '加载中...' }}</span>
     </button>
     <div class="clearfix" style="margin: 5px"></div>
     <div class="pull-left" style="padding-right: 3%" ng-if="!isHideTotal">
-        <span class="pull-left font-color-default" style="font-size: 15px"><strong>Total: {{getLength(data)}}</strong></span>
+        <span class="pull-left font-color-default" style="font-size: 15px"><strong>总计: {{getLength(data)}}</strong></span>
     </div>
 </div>

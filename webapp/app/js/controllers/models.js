@@ -97,11 +97,11 @@ KylinApp.controller('ModelsCtrl', function ($scope, $q, $routeParams, $location,
 
     SweetAlert.swal({
       title: '',
-      text: "Are you sure to drop this model?",
+      text: "你确定放弃这个模式?",
       type: '',
       showCancelButton: true,
       confirmButtonColor: '#DD6B55',
-      confirmButtonText: "Yes",
+      confirmButtonText: "是",
       closeOnConfirm: true
     }, function (isConfirm) {
       if (isConfirm) {
@@ -110,16 +110,16 @@ KylinApp.controller('ModelsCtrl', function ($scope, $q, $routeParams, $location,
         ModelService.drop({modelId: model.name}, {}, function (result) {
           loadingRequest.hide();
 //                    CubeList.removeCube(cube);
-          MessageBox.successNotify('Model drop is done successfully');
+          MessageBox.successNotify('模型删除成功完成');
           location.reload();
         }, function (e) {
           loadingRequest.hide();
           if (e.data && e.data.exception) {
             var message = e.data.exception;
-            var msg = !!(message) ? message : 'Failed to take action.';
-            SweetAlert.swal('Oops...', msg, 'error');
+            var msg = !!(message) ? message : '无法采取行动。';
+            SweetAlert.swal('糟糕...', msg, 'error');
           } else {
-            SweetAlert.swal('Oops...', "Failed to take action.", 'error');
+            SweetAlert.swal('糟糕...', "无法采取行动。", 'error');
           }
         });
       }
@@ -152,7 +152,7 @@ KylinApp.controller('ModelsCtrl', function ($scope, $q, $routeParams, $location,
     		  $location.path("/models/edit/" + model.name);
     	  }
       } else {
-        SweetAlert.swal('Sorry','This model is still used by '+ cubename.join(','));
+        SweetAlert.swal('抱歉','该模型仍由 '+ cubename.join(',') + '使用');
       }
     })
 
@@ -175,7 +175,7 @@ KylinApp.controller('ModelsCtrl', function ($scope, $q, $routeParams, $location,
     var defer = $q.defer();
     var queryParam = {modelName: model.name};
     if (!$scope.projectModel.isSelectedProjectValid() || !$scope.projectModel.projects.length) {
-      SweetAlert.swal('Oops...', "Please select target project.", 'info');
+      SweetAlert.swal('糟糕...', "请选择目标项目。", 'info');
       defer.resolve([]);
       return defer.promise;
     }
@@ -195,7 +195,7 @@ KylinApp.controller('ModelsCtrl', function ($scope, $q, $routeParams, $location,
     }, function(resp) {
       $scope.loading = false;
       defer.resolve([]);
-      SweetAlert.swal('Oops...', resp, 'error');
+      SweetAlert.swal('糟糕...', resp, 'error');
       return defer.promise;
     });
   }
@@ -257,7 +257,7 @@ KylinApp.controller('ModelsCtrl', function ($scope, $q, $routeParams, $location,
             model.owner = accessEntities[0].sid.principal;
           }
         } catch (error) {
-          $log.error("No acl info.");
+          $log.error("没有ACL信息。");
         }
       })
     }
@@ -290,7 +290,7 @@ var modelCloneCtrl = function ($scope, $modalInstance, CubeService, MessageServi
   $scope.cloneModel = function(){
 
     if(!$scope.targetObj.targetProject){
-      SweetAlert.swal('Oops...', "Please select target project.", 'info');
+      SweetAlert.swal('糟糕...', "请选择目标项目。", 'info');
       return;
     }
 
@@ -301,11 +301,11 @@ var modelCloneCtrl = function ($scope, $modalInstance, CubeService, MessageServi
 
     SweetAlert.swal({
       title: '',
-      text: 'Are you sure to clone the model? ',
+      text: '您确定要克隆模型吗? ',
       type: '',
       showCancelButton: true,
       confirmButtonColor: '#DD6B55',
-      confirmButtonText: "Yes",
+      confirmButtonText: "是",
       closeOnConfirm: true
     }, function (isConfirm) {
       if (isConfirm) {
@@ -313,16 +313,16 @@ var modelCloneCtrl = function ($scope, $modalInstance, CubeService, MessageServi
         loadingRequest.show();
         ModelService.clone({modelId: model.name}, $scope.modelRequest, function (result) {
           loadingRequest.hide();
-          MessageBox.successNotify('Clone model successfully');
+          MessageBox.successNotify('成功克隆模型');
           location.reload();
         }, function (e) {
           loadingRequest.hide();
           if (e.data && e.data.exception) {
             var message = e.data.exception;
-            var msg = !!(message) ? message : 'Failed to take action.';
-            SweetAlert.swal('Oops...', msg, 'error');
+            var msg = !!(message) ? message : '无法采取行动。';
+            SweetAlert.swal('糟糕...', msg, 'error');
           } else {
-            SweetAlert.swal('Oops...', "Failed to take action.", 'error');
+            SweetAlert.swal('糟糕...', "无法采取行动。", 'error');
           }
         });
       }

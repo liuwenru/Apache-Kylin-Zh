@@ -304,7 +304,7 @@ KylinApp.controller('CubeSchemaCtrl', function ($scope, QueryService, UserServic
   $scope.check_cube_info = function(){
 
     if(($scope.state.mode === "edit") &&$scope.cubeMode=="addNewCube"&&($scope.allCubes.indexOf($scope.cubeMetaFrame.name.toUpperCase()) >= 0)){
-      SweetAlert.swal('Oops...', "The cube named [" + $scope.cubeMetaFrame.name.toUpperCase() + "] already exists", 'warning');
+      SweetAlert.swal('糟糕...', "多维数据集名为 [" + $scope.cubeMetaFrame.name.toUpperCase() + "] 已存在", 'warning');
       return false;
     }
     return true;
@@ -313,7 +313,7 @@ KylinApp.controller('CubeSchemaCtrl', function ($scope, QueryService, UserServic
     $scope.check_cube_dimension = function(){
         var errors = [];
         if(!$scope.cubeMetaFrame.dimensions.length){
-            errors.push("Dimension can't be null");
+            errors.push("维度不能为空");
         }
         var errorInfo = "";
         angular.forEach(errors,function(item){
@@ -331,7 +331,7 @@ KylinApp.controller('CubeSchemaCtrl', function ($scope, QueryService, UserServic
         var _measures = $scope.cubeMetaFrame.measures;
         var errors = [];
         if(!_measures||!_measures.length){
-            errors.push("Please define your metrics.");
+            errors.push("请定义您的指标。");
         }
 
         var existCountExpression = false;
@@ -342,7 +342,7 @@ KylinApp.controller('CubeSchemaCtrl', function ($scope, QueryService, UserServic
             }
         }
         if(!existCountExpression){
-            errors.push("[COUNT] metric is required.");
+            errors.push("需要[COUNT]个指标。");
         }
 
         var errorInfo = "";
@@ -362,7 +362,7 @@ KylinApp.controller('CubeSchemaCtrl', function ($scope, QueryService, UserServic
 
         angular.forEach($scope.cubeMetaFrame.aggregation_groups,function(group){
             if(!group&&!group.includes){
-                errors.push("Each aggregation group can't be empty.");
+                errors.push("每个聚合组不能为空。");
             }
         })
 
@@ -372,14 +372,14 @@ KylinApp.controller('CubeSchemaCtrl', function ($scope, QueryService, UserServic
             shardRowkeyList.push(rowkey.column);
           }
           if(rowkey.encoding.substr(0,3)=='int' && (rowkey.encoding.substr(4)<1 || rowkey.encoding.substr(4)>8)){
-            errors.push("int encoding column length should between 1 and 8.");
+            errors.push("int编码列的长度应在1到8之间。");
           }
           if(rowkey.encoding.substr(0, 5) == 'fixed' && (!/^[1-9]\d*$/.test(rowkey.encoding.split(':')[1]))) {
-            errors.push("fixed encoding need a valid length.")
+            errors.push("固定编码需要有效的长度。")
           }
         })
         if(shardRowkeyList.length >1){
-          errors.push("At most one 'shard by' column is allowed.");
+          errors.push("最多允许有一个“分片”列。");
         }
 
         var cfMeasures = [];
@@ -391,7 +391,7 @@ KylinApp.controller('CubeSchemaCtrl', function ($scope, QueryService, UserServic
 
         var uniqCfMeasures = _.uniq(cfMeasures);
         if(uniqCfMeasures.length != $scope.cubeMetaFrame.measures.length) {
-          errors.push("All measures need to be assigned to column family");
+          errors.push("所有措施都必须分配给列族");
         }
 
         var isCFEmpty = _.some($scope.cubeMetaFrame.hbase_mapping.column_family, function(colFamily) {
@@ -399,7 +399,7 @@ KylinApp.controller('CubeSchemaCtrl', function ($scope, QueryService, UserServic
         });
 
         if (isCFEmpty == true) {
-          errors.push("Each column family can't not be empty");
+          errors.push("每个列族不能为空");
         }
 
 
@@ -417,7 +417,7 @@ KylinApp.controller('CubeSchemaCtrl', function ($scope, QueryService, UserServic
                 });
 
                 if (!isColumnExit) {
-                    errors.push("The non-Int type precise count distinct measure must set advanced cict: " + measureColumn);
+                    errors.push("非Int型精确计数的区别度量必须设置高级ctct: " + measureColumn);
                 }
             }
         });
@@ -440,10 +440,10 @@ KylinApp.controller('CubeSchemaCtrl', function ($scope, QueryService, UserServic
 
       for(var key in $scope.cubeMetaFrame.override_kylin_properties){
         if(key==''){
-          errors.push("Property name is required.");
+          errors.push("必须输入属性名称。");
         }
         if($scope.cubeMetaFrame.override_kylin_properties[key] == ''){
-          errors.push("Property value is required.");
+          errors.push("必须提供属性值。");
         }
       }
 

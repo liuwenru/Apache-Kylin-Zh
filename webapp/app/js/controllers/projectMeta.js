@@ -80,7 +80,7 @@ KylinApp
                         label:key,
                         data:tables,
                         onSelect:function(branch){
-                            $log.info("db "+key +"selected");
+                            $log.info("db "+key +"已选择");
                         }
                     }
 
@@ -103,7 +103,7 @@ KylinApp
                                     data:_column,
                                     onSelect:function(branch){
                                         // set selected model
-                                        $log.info("selected column info:"+_column.name);
+                                        $log.info("选定的列信息:"+_column.name);
                                     }
                                 });
                             });

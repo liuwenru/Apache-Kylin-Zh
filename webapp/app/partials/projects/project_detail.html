@@ -19,14 +19,14 @@
 <div class="nav-tabs-custom">
     <ul class="nav nav-tabs">
         <li class="{{project.visiblePage=='cubes'? 'active':''}}">
-            <a href="" ng-click="project.visiblePage='cubes';">Cubes</a>
+            <a href="" ng-click="project.visiblePage='cubes';">多维数据集</a>
         </li>
         <li class="{{project.visiblePage=='access'? 'active':''}}"
             ng-if="!kylinConfig.isExternalAclEnabled()">
-            <a href="" ng-click="project.visiblePage='access';listAccess(project, 'ProjectInstance');">Access</a>
+            <a href="" ng-click="project.visiblePage='access';listAccess(project, 'ProjectInstance');">访问</a>
         </li>
         <li class="{{project.visiblePage=='config'? 'active':''}}">
-            <a href="" ng-click="project.visiblePage='config';">Configuration Overwrites</a>
+            <a href="" ng-click="project.visiblePage='config';">配置覆盖</a>
         </li>
     </ul>
 
@@ -39,14 +39,14 @@
                 <table ng-if="project.realizations.length > 0" class="table table-striped table-hover" >
                     <thead>
                         <tr>
-                            <th>Cube Name</th>
-                            <th>Actions</th>
+                            <th>多维数据集名称</th>
+                            <th>操作</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="item in project.realizations" ng-if="item.type=='CUBE'">
                             <td>{{item.realization}}</td>
-                            <td><a href='models' style="color: #428BCA">Detail</a></td>
+                            <td><a href='models' style="color: #428BCA">细节</a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -65,8 +65,8 @@
                 <table ng-if="getMapLength(project.override_kylin_properties) > 0" class="table table-striped table-hover" >
                     <thead>
                         <tr>
-                            <th>Key</th>
-                            <th>Value</th>
+                            <th>键</th>
+                            <th>值</th>
                         </tr>
                     </thead>
                     <tbody>

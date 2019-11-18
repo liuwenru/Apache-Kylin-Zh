@@ -21,11 +21,11 @@
 KylinApp.controller('AccessCtrl', function ($scope, AccessService, MessageService, AuthenticationService, SweetAlert) {
 
   $scope.accessTooltip = "<div style='text-align: left'>" +
-  "<label>What does access mean to project?</label>" +
-  "<ul><li>QUERY: Access to query cube</li>" +
-  "<li>OPERATION: Access to rebuild, resume and cancel jobs. Also include access of CUBE QUERY.</li>" +
-  "<li>MANAGEMENT: Access to edit/delete cube. Also include access of CUBE OPERATION.</li>" +
-  "<li>ADMIN: Full access to cube and jobs, including access management.</li></ul></div>";
+  "<label>访问对项目意味着什么？</label>" +
+  "<ul><li>查询：访问查询多维数据集</li>" +
+  "<li>操作：可以重建，恢复和取消作业。 还包括对多维数据集查询的访问。</li>" +
+  "<li>管理：访问编辑/删除多维数据集。 还包括对多维数据集操作的访问。</li>" +
+  "<li>管理：完全访问多维数据集和作业，包括访问管理。</li></ul></div>";
 
   $scope.authorities = null;
   AuthenticationService.authorities({}, function (authorities) {
@@ -52,20 +52,20 @@ KylinApp.controller('AccessCtrl', function ($scope, AccessService, MessageServic
       entity.accessEntities = accessEntities;
       $scope.resetNewAcess();
 //            MessageService.sendMsg('Access granted!', 'success', {});
-      SweetAlert.swal('Success!', 'Access granted!', 'success');
+      SweetAlert.swal('成功!', '授予访问权限!', 'success');
     }, function (e) {
       grantRequst.uuid = uuid;
       if (e.status == 404) {
 //                MessageService.sendMsg('User not found!', 'error', {});
-        SweetAlert.swal('Oops...', 'User not found!!', 'error');
+        SweetAlert.swal('糟糕...', '找不到使用者!!', 'error');
       }
       else {
         if (e.data && e.data.exception) {
           var message = e.data.exception;
-          var msg = !!(message) ? message : 'Failed to take action.';
-          SweetAlert.swal('Oops...', msg, 'error');
+          var msg = !!(message) ? message : '无法采取行动。';
+          SweetAlert.swal('糟糕...', msg, 'error');
         } else {
-          SweetAlert.swal('Oops...', "Failed to take action.", 'error');
+          SweetAlert.swal('糟糕...', "无法采取行动。", 'error');
         }
 
       }
@@ -80,14 +80,14 @@ KylinApp.controller('AccessCtrl', function ($scope, AccessService, MessageServic
     AccessService.update({type: type, uuid: entity.uuid}, updateRequst, function (accessEntities) {
       entity.accessEntities = accessEntities;
 //            MessageService.sendMsg('Access granted!', 'success', {});
-      SweetAlert.swal('', 'Access granted!', 'success');
+      SweetAlert.swal('', '授予访问权限!', 'success');
     }, function (e) {
       if (e.data && e.data.exception) {
         var message = e.data.exception;
-        var msg = !!(message) ? message : 'Failed to take action.';
-        SweetAlert.swal('Oops...', msg, 'error');
+        var msg = !!(message) ? message : '无法采取行动。';
+        SweetAlert.swal('糟糕...', msg, 'error');
       } else {
-        SweetAlert.swal('Oops...', "Failed to take action.", 'error');
+        SweetAlert.swal('糟糕...', "无法采取行动。", 'error');
       }
     });
 
@@ -96,11 +96,11 @@ KylinApp.controller('AccessCtrl', function ($scope, AccessService, MessageServic
   $scope.revoke = function (type, access, entity) {
     SweetAlert.swal({
       title: '',
-      text: 'Are you sure to revoke the access?',
+      text: '您确定要撤消访问权限吗?',
       type: '',
       showCancelButton: true,
       confirmButtonColor: '#DD6B55',
-      confirmButtonText: "Yes",
+      confirmButtonText: "是",
       closeOnConfirm: true
     }, function (isConfirm) {
       if(isConfirm){
@@ -112,14 +112,14 @@ KylinApp.controller('AccessCtrl', function ($scope, AccessService, MessageServic
       };
       AccessService.revoke(revokeRequst, function (accessEntities) {
         entity.accessEntities = accessEntities.accessEntryResponseList;
-        SweetAlert.swal('Success!', 'The access has been revoked.', 'success');
+        SweetAlert.swal('成功!', '该访问权限已被撤消。', 'success');
       }, function (e) {
         if (e.data && e.data.exception) {
           var message = e.data.exception;
-          var msg = !!(message) ? message : 'Failed to take action.';
-          SweetAlert.swal('Oops...', msg, 'error');
+          var msg = !!(message) ? message : '无法采取行动。';
+          SweetAlert.swal('糟糕...', msg, 'error');
         } else {
-          SweetAlert.swal('Oops...', "Failed to take action.", 'error');
+          SweetAlert.swal('糟糕...', "无法采取行动。", 'error');
         }
       });
       }

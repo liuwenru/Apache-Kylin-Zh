@@ -253,7 +253,7 @@ KylinApp.controller('CubeAdvanceSettingCtrl', function ($scope, $modal,cubeConfi
           }
         })
     if(isColumnExit){
-      SweetAlert.swal('Oops...', "The column named [" + $scope.newDictionaries.column + "] already exists", 'warning');
+      SweetAlert.swal('糟糕...', "列名为 [" + $scope.newDictionaries.column + "] 已存在", 'warning');
       return false;
     }
     return true;
@@ -402,7 +402,7 @@ KylinApp.controller('CubeAdvanceSettingCtrl', function ($scope, $modal,cubeConfi
       };
       reader.readAsText(file);
     } else {
-      swal('Oops...', 'Please choose your file first.', 'warning');
+      swal('糟糕...', '请先选择您的文件。', 'warning');
     }
   };
 
@@ -433,10 +433,10 @@ KylinApp.controller('CubeAdvanceSettingCtrl', function ($scope, $modal,cubeConfi
         $scope.cubeMetaFrame.mandatory_dimension_set_list.push($scope.mandatoryDimensionSet.select);
         $scope.mandatoryDimensionSet.select = [];
       } else {
-        swal('Oops...', 'Dimension set already existed', 'warning');
+        swal('糟糕...', '维度集已存在', 'warning');
       }
     } else {
-      swal('Oops...', 'Dimension set should not be empty', 'warning');
+      swal('糟糕...', '维度集不能为空', 'warning');
     }
   };
 
@@ -459,12 +459,12 @@ KylinApp.controller('CubeAdvanceSettingCtrl', function ($scope, $modal,cubeConfi
        $scope.cubeMetaFrame.snapshot_table_desc_list = [];
     }
     if (!newSnapshot.table_name || !newSnapshot.storage_type) {
-      swal('Oops...', 'Snapshot table name or storage should not be empty', 'warning');
+      swal('糟糕...', '快照表名称或存储不应为空', 'warning');
       return;
     } else if ($scope.cubeMetaFrame.snapshot_table_desc_list.length && newSnapshot.editIndex == null){
       var existSnapshot = _.find($scope.cubeMetaFrame.snapshot_table_desc_list, function(snapshot){ return snapshot.table_name === newSnapshot.table_name;});
       if (!!existSnapshot) {
-        swal('Oops...', 'Snapshot table already existed', 'warning');
+        swal('糟糕...', '快照表已存在', 'warning');
         return;
       }
     }
@@ -489,7 +489,7 @@ KylinApp.controller('CubeAdvanceSettingCtrl', function ($scope, $modal,cubeConfi
     });
     if (!!existSnapshot) {
       changeSnapshot.table_name = beforeTableName;
-      swal('Oops...', 'Snapshot table already existed', 'warning');
+      swal('糟糕...', '快照表已存在', 'warning');
     }
   };
 

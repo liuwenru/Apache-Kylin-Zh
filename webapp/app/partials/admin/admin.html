@@ -19,7 +19,7 @@
 <div class="container" style="padding-top: 80px">
   <div class="col-md-5">
     <div>
-      <h3>Server Config <button class="btn btn-xs btn-success" ng-click="getConfig()"><i class="fa fa-refresh"></i></button></h3>
+      <h3>服务器配置 <button class="btn btn-xs btn-success" ng-click="getConfig()"><i class="fa fa-refresh"></i></button></h3>
     </div>
     <div style="padding-top: 10px">
       <pre>{{configStr}}</pre>
@@ -28,7 +28,7 @@
 
   <div class="col-md-5">
     <div>
-      <h3>Server Environment <button class="btn btn-xs btn-success" ng-click="getEnv()"><i class="fa fa-refresh"></i></button></h3>
+      <h3>服务器环境 <button class="btn btn-xs btn-success" ng-click="getEnv()"><i class="fa fa-refresh"></i></button></h3>
     </div>
     <div style="padding-top: 10px">
       <pre>{{envStr}}</pre>
@@ -37,31 +37,31 @@
 
   <div class="col-md-2">
     <div>
-      <h3>Actions</h3>
+      <h3>行动</h3>
     </div>
     <div style="padding-top: 10px;width: 260px;">
-      <a  class="btn btn-primary btn-lg btn-block" tooltip="Reload all metadata and clear cache" ng-click="reloadMeta()">Reload Metadata</a>
+      <a  class="btn btn-primary btn-lg btn-block" tooltip="重新加载元数据" ng-click="reloadMeta()">重新加载元数据</a>
     </div>
     <div style="padding-top: 10px;width: 260px;">
-      <a ng-click="calCardinality();" tooltip="Calculate cardinality of tables" class="btn btn-primary btn-lg btn-block">Calculate Cardinality</a>
+      <a ng-click="calCardinality();" tooltip="计算表的基数" class="btn btn-primary btn-lg btn-block">计算基数</a>
     </div>
     <div style="padding-top: 10px;width: 260px;" ng-if="false">
-      <a class="btn btn-success btn-lg btn-block" tooltip="Clean unused HDFS and HBASE space" ng-click="cleanStorage()">Clean Up Storage</a>
+      <a class="btn btn-success btn-lg btn-block" tooltip="清理未使用的HDFS和HBASE空间" ng-click="cleanStorage()">清理存储</a>
     </div>
     <div style="padding-top: 10px;width: 260px;" ng-if="isCacheEnabled()">
-      <a class="btn btn-primary btn-lg btn-block" ng-click="disableCache()">Disable Cache</a>
+      <a class="btn btn-primary btn-lg btn-block" ng-click="disableCache()">禁用缓存</a>
     </div>
     <div style="padding-top: 10px;width: 260px;" ng-if="!isCacheEnabled()">
-      <a  class="btn btn-primary btn-lg btn-block" tooltip="Enable Query Cache" ng-click="enableCache()">Enable Cache</a>
+      <a  class="btn btn-primary btn-lg btn-block" tooltip="启用查询缓存" ng-click="enableCache()">启用缓存</a>
     </div>
     <div style="padding-top: 10px;width: 260px;">
-      <a class="btn btn-primary btn-lg btn-block" tooltip="Update Server Config"  class="btn btn-primary btn-lg"  ng-click="toSetConfig()">Set Config</a>
+      <a class="btn btn-primary btn-lg btn-block" tooltip="更新服务器配置"  class="btn btn-primary btn-lg"  ng-click="toSetConfig()">设置配置</a>
     </div>
     <div style="padding-top: 10px;width: 260px;">
-      <a class="btn btn-primary btn-lg btn-block" tooltip="Reload Server Config"  class="btn btn-primary btn-lg"  ng-click="reloadConfig()">Reload Config</a>
+      <a class="btn btn-primary btn-lg btn-block" tooltip="重新加载服务器配置"  class="btn btn-primary btn-lg"  ng-click="reloadConfig()">重新加载配置</a>
     </div>
     <div style="padding-top: 10px;width: 260px;">
-      <a ng-click="downloadBadQueryFiles();" tooltip="Download Diagnosis Info For Current Project" class="btn btn-primary btn-lg btn-block"><i class="fa fa-ambulance"></i> Diagnosis</a>
+      <a ng-click="downloadBadQueryFiles();" tooltip="下载当前项目的诊断信息" class="btn btn-primary btn-lg btn-block"><i class="fa fa-ambulance"></i> 诊断</a>
     </div>
 
     <!--<div>-->
@@ -77,54 +77,54 @@
 
 <script type="text/ng-template" id="calCardinality.html">
   <div class="modal-header">
-    <h4>Load Hive Table Metadata</h4>
+    <h4>加载配置单元表元数据</h4>
   </div>
   <div class="modal-body load-hive-metawrapper">
-    <label for="table">Table Names: (Separate with comma)</label>
-    <input ng-model="$parent.tableName" class="form-control" id="table" placeholder="table1,table2  By default, system will choose 'Default' as the database, you can specify database like 'database.table'"/>
+    <label for="table">表名: (Separate with comma)</label>
+    <input ng-model="$parent.tableName" class="form-control" id="table" placeholder="表1，表2默认情况下，系统将选择‘Default’作为数据库，您可以指定‘ database.table’之类的数据库"/>
   </div>
   <div class="modal-footer">
-    <button class="btn btn-primary" ng-click="calculate()">Sync</button>
-    <button class="btn btn-primary" ng-click="cancel()">Cancel</button>
+    <button class="btn btn-primary" ng-click="calculate()">同步</button>
+    <button class="btn btn-primary" ng-click="cancel()">取消</button>
   </div>
 </script>
 
 <script type="text/ng-template" id="updateConfig.html">
   <ng-form name="config_update_form">
     <div class="modal-header">
-      <h4>Update Config</h4>
+      <h4>更新配置</h4>
     </div>
     <div class="modal-body">
       <div class="form-group">
-        <label><b>Key</b></label>
+        <label><b>键</b></label>
 
         <div class="clearfix">
-          <input name="key_input" type="text" class="form-control" placeholder="Config Key.."
+          <input name="key_input" type="text" class="form-control" placeholder="配置键.."
                  ng-model="state.key"
                  required/>
 
           <p class="text-warning"
-             ng-show="config_update_form.key_input.$invalid && !config_update_form.key_input.$pristine">&nbsp;&nbsp;Key
-            is required.</p>
+             ng-show="config_update_form.key_input.$invalid && !config_update_form.key_input.$pristine">&nbsp;&nbsp;键
+             是必须的。</p>
         </div>
       </div>
       <div class="form-group">
-        <label><b>Value</b></label>
+        <label><b>值</b></label>
 
         <div class="clearfix">
-          <input name="value_input" type="text" class="form-control" placeholder="Config Value.."
+          <input name="value_input" type="text" class="form-control" placeholder="配置值.."
                  ng-model="state.value"
                  required/>
 
           <p class="text-warning"
-             ng-show="config_update_form.value_input.$invalid && !config_update_form.value_input.$pristine">&nbsp;&nbsp;Value
-            is required.</p>
+             ng-show="config_update_form.value_input.$invalid && !config_update_form.value_input.$pristine">&nbsp;&nbsp;值
+             是必须的。</p>
         </div>
       </div>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-primary" ng-click="update()" ng-disabled="config_update_form.key_input.$invalid || config_update_form.value_input.$invalid">Update</button>
-      <button class="btn btn-primary" ng-click="cancel()">Cancel</button>
+      <button class="btn btn-primary" ng-click="update()" ng-disabled="config_update_form.key_input.$invalid || config_update_form.value_input.$invalid">更行</button>
+      <button class="btn btn-primary" ng-click="cancel()">取消</button>
     </div>
   </ng-form>
 </script>

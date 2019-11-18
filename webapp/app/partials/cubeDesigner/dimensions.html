@@ -24,12 +24,12 @@
             <div class="col-xs-6" ng-if="state.mode=='edit'">
                 <button type="button" class="btn btn-default" ng-disabled="!metaModel.model.fact_table.length||instance.status=='READY'"
                         ng-click="openAutoGenModal()" >
-                    <i class="fa fa-building-o"></i> Add Dimensions
+                    <i class="fa fa-building-o"></i> 添加尺寸
                 </button>
             </div>
             <div ng-class="(state.mode=='edit')?'col-xs-6':'col-xs-12'">
                 <span class="pull-right input-icon input-icon-right nav-search" style="margin-left: 22px;">
-                    <input type="text" placeholder="Filter ..." class="nav-search-input" ng-model="dimState.filter"/>
+                    <input type="text" placeholder="过滤 ..." class="nav-search-input" ng-model="dimState.filter"/>
                     <i class="ace-icon fa fa-search nav-search-icon"></i>
                 </span>
             </div>
@@ -38,11 +38,11 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Name</th>
-                    <th>Table Alias</th>
-                    <th>Type</th>
-                    <th>Column</th>
-                    <th ng-if="state.mode=='edit'">Actions</th>
+                    <th>名称</th>
+                    <th>表别名</th>
+                    <th>类型</th>
+                    <th>列</th>
+                    <th ng-if="state.mode=='edit'">操作</th>
                 </tr>
             </thead>
             <tbody class="cube-dimension">
@@ -93,7 +93,7 @@
 
     <div class="space-16"></div>
     <div class="callout callout-warning dimensions-conflict-area" ng-if="dimConflicts.length">
-        <h4>There are following columns defined in multiple dimensions. <small>This is not recommended!</small></h4>
+        <h4>以下是在多个维度中定义的列。<small>不建议这样做！</small></h4>
         <div class="row" ng-repeat="c in dimConflicts">
             <div class="col-xs-3">
                 <code>{{c.table}}.{{c.column}}</code>
@@ -109,7 +109,7 @@
     <!-- Edit Dimension Form -->
     <script type="text/ng-template" id="addEditDimension.html">
         <div class="modal-header">
-            <h4 class="box-title lighter">Edit Dimension
+            <h4 class="box-title lighter">编辑尺寸
                 <span class="label label-primary" ng-repeat="t in dimType">{{t}}</span>
             </h4>
         </div>
@@ -120,7 +120,7 @@
                     <!--Name-->
                     <div class="form-group">
                         <div class="row">
-                            <label class="col-xs-12 col-sm-3 control-label no-padding-right font-color-default"><b>Name</b></label>
+                            <label class="col-xs-12 col-sm-3 control-label no-padding-right font-color-default"><b>名称</b></label>
                             <div class="col-xs-12 col-sm-6">
                                 <input type="text" placeholder="Name.." class="form-control" name="dim_name"
                                        tooltip="dimension name.." tooltip-trigger="focus"
@@ -128,7 +128,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-3">
                                 <div class="text-warning" ng-if="edit_dim_form.dim_name.$error.required  && edit_dim_form.dim_name.$dirty">
-                                    The Dimension Name is required.
+                                   维度名称是必需的。
                                 </div>
                             </div>
                         </div>
@@ -137,13 +137,13 @@
                     <!--Table Name: derived dimension only allows lookup tables-->
                     <div class="form-group">
                         <div class="row">
-                            <label class="control-label col-xs-12 col-sm-3 no-padding-right font-color-default"><b>Table Name</b></label>
+                            <label class="control-label col-xs-12 col-sm-3 no-padding-right font-color-default"><b>表名</b></label>
                             <div class="col-xs-12 col-sm-6" >
                               <span>{{newDimension.table}}</span>
                             </div>
                             <div class="col-xs-12 col-sm-3">
                                 <div class="text-info" ng-if="dimType.indexOf('derived') >= 0">
-                                    Derived dimension only comes from lookup table.
+                                    派生维度仅来自查找表。
                                 </div>
                             </div>
                         </div>
@@ -153,7 +153,7 @@
                     <div class="form-group" ng-if="dimType.indexOf('normal') >= 0">
                         <div class="row">
                             <label class="control-label col-xs-12 col-sm-3 no-padding-right font-color-default">
-                              <b>Column Name</b>
+                              <b>列名</b>
                             </label>
                             <div class="col-xs-12 col-sm-6">
                               <span>{{newDimension.column}}</span>
@@ -165,7 +165,7 @@
                         <div class="form-group">
                             <div class="row">
                                 <label class="control-label col-xs-12 col-sm-3 no-padding-right font-color-default">
-                                    <b>Column Name</b>
+                                    <b>列名</b>
                                 </label>
                                 <div class="col-sm-6 ">
                                     <div ng-repeat="derived in newDimension.derived track by $index">
@@ -180,14 +180,14 @@
                     <div  ng-if="modelsManager.availableLookupTables.indexOf(newDimension.table)!=-1">
                         <div  class="row">
                             <label class="control-label col-xs-12 col-sm-3 no-padding-right font-color-default">
-                                <b>Type</b>
+                                <b>类型</b>
                             </label>
                             <div class="col-xs-12 col-sm-6">
                                 <label>
-                                    <input type="radio" ng-model="newDimension.normal" value="true" > Normal
+                                    <input type="radio" ng-model="newDimension.normal" value="true" > 正常
                                 </label>
                                 <label>
-                                    <input type="radio" ng-model="newDimension.normal" value="false" > Derived
+                                    <input type="radio" ng-model="newDimension.normal" value="false" > 派生
                                 </label>
                             </div>
                         </div>
@@ -205,9 +205,9 @@
 
     <script type="text/ng-template" id="autoGenDimension.html">
         <div class="modal-header large-popover">
-            <h4 class="box-title lighter">Auto Generate Dimensions <i kylinpopover placement="right" title="Auto Generate Rules" template="AutoDimensionsTip.html" class="fa fa-info-circle"></i> <small>This is a helper for you to batch generate dimensions.</small></h4>
+            <h4 class="box-title lighter">自动生成尺寸 <i kylinpopover placement="right" title="自动产生规则" template="AutoDimensionsTip.html" class="fa fa-info-circle"></i> <small>这是您批量生成尺寸的助手。</small></h4>
             <div class="col-xs-12">
-                Visit <a href="http://kylin.apache.org/docs/howto/howto_optimize_cubes.html" target="_blank">derived column</a> for more about derived column.
+                访问 <a href="http://kylin.apache.org/docs/howto/howto_optimize_cubes.html" target="_blank">派生列</a> 有关派生列的更多信息。
             </div>
         </div>
         <div class="modal-body">
@@ -221,9 +221,9 @@
                                 <h4>{{table}}&nbsp;[FactTable]</h4>
                                 <table class="table table-striped table-hover ng-scope">
                                   <tr >
-                                    <td class="col-xs-2"><label><input type="checkbox" ng-model="selectedColumns[table].all" ng-change="autoChangeAll(table)">&nbsp;Select All</label></td>
-                                    <td class="col-xs-4"><label>Name</label></td>
-                                    <td class="col-xs-3"><label>Columns</label></td>
+                                    <td class="col-xs-2"><label><input type="checkbox" ng-model="selectedColumns[table].all" ng-change="autoChangeAll(table)">&nbsp;选择所有</label></td>
+                                    <td class="col-xs-4"><label>名称</label></td>
+                                    <td class="col-xs-3"><label>列</label></td>
                                     <td colspan="2" class="col-xs-3"></td>
                                   </tr>
                                   <tr ng-repeat="col in availableColumns[table] track by col.table + '.' + col.name" >
@@ -247,9 +247,9 @@
                                 <h4>{{table}}&nbsp;[LookupTable]</h4>
                                 <table class="table table-striped table-hover ng-scope">
                                   <tr class="row" >
-                                    <td class="col-xs-2"><label><input type="checkbox" ng-model="selectedColumns[table].all" ng-change="autoChangeAll(table)">&nbsp;Select All</label></td>
-                                    <td class="col-xs-4"><label>Name</label></td>
-                                    <td class="col-xs-3"><label>Columns</label></td>
+                                    <td class="col-xs-2"><label><input type="checkbox" ng-model="selectedColumns[table].all" ng-change="autoChangeAll(table)">&nbsp;选择所有</label></td>
+                                    <td class="col-xs-4"><label>名称</label></td>
+                                    <td class="col-xs-3"><label>列</label></td>
                                     <td colspan="2" class="col-xs-3"></td>
                                   </tr>
                                   <tr ng-repeat="col in availableColumns[table] track by col.table + '.' + col.name" class="row">
@@ -265,10 +265,10 @@
                                       {{col.name}}
                                     </td>
                                     <td  >
-                                      <label> <input type="radio" ng-model="selectedColumns[table][col.name].normal" value="true" ng-disabled="!selectedColumns[table][col.name].selected"> Normal </label>
+                                      <label> <input type="radio" ng-model="selectedColumns[table][col.name].normal" value="true" ng-disabled="!selectedColumns[table][col.name].selected"> 正常的 </label>
                                     </td>
                                     <td >
-                                      <label> <input type="radio" ng-model="selectedColumns[table][col.name].normal" value="false" ng-disabled="!selectedColumns[table][col.name].selected"> Derived </label>
+                                      <label> <input type="radio" ng-model="selectedColumns[table][col.name].normal" value="false" ng-disabled="!selectedColumns[table][col.name].selected"> 派生 </label>
                                     </td>
                                   </tr>
                                 </table>
@@ -280,8 +280,8 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-            <button class="btn btn-primary" ng-disabled="" ng-click="checkAutoDimension()?ok():''">OK</button>
+            <button class="btn btn-warning" ng-click="cancel()">取消</button>
+            <button class="btn btn-primary" ng-disabled="" ng-click="checkAutoDimension()?ok():''">好的</button>
         </div>
     </script>
     </ng-form>
@@ -290,8 +290,8 @@
   <div class="row">
     <div class="col-xs-12">
       <ol class="text-info">
-        <li>In fact table: one normal dimension will be auto generated per column.</li>
-        <li>In lookup table: you can choose to generate a derived column or a normal column.</li>
+        <li>实际上表：每列将自动生成一个标准尺寸。</li>
+        <li>在查找表中：您可以选择生成派生列或普通列。</li>
       </ol>
     </div>
   </div>

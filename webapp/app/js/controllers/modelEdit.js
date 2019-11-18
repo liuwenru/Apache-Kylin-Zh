@@ -30,7 +30,7 @@ KylinApp.controller('ModelEditCtrl', function ($scope, $q, $routeParams, $locati
     $scope.modelMode = absUrl.indexOf("/models/add")!=-1?'addNewModel':absUrl.indexOf("/models/edit")!=-1?'editExistModel':'default';
 
     if($scope.modelMode=="addNewModel"&&ProjectModel.selectedProject==null){
-        SweetAlert.swal('Oops...', 'Please select your project first.', 'warning');
+        SweetAlert.swal('糟糕...', '请先选择您的项目。', 'warning');
         $location.path("/models");
     }
 
@@ -137,17 +137,17 @@ KylinApp.controller('ModelEditCtrl', function ($scope, $q, $routeParams, $locati
         try {
             angular.fromJson($scope.state.modelSchema);
         } catch (e) {
-            SweetAlert.swal('Oops...', 'Invalid model json format..', 'error');
+            SweetAlert.swal('糟糕...', '无效的模型json格式。', 'error');
             return;
         }
 
         SweetAlert.swal({
-            title: $scope.isEdit?'Are you sure to update the model?':"Are you sure to save the Model?",
-            text: $scope.isEdit?' Please note: if model schema is changed, all cubes of the model will be affected.':'',
+            title: $scope.isEdit?'您确定要更新模型吗?':"您确定要保存模型吗?",
+            text: $scope.isEdit?' 请注意：如果更改了模型架构，则该模型的所有多维数据集都会受到影响。':'',
             type: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#DD6B55',
-            confirmButtonText: "Yes",
+            confirmButtonText: "是",
             closeOnConfirm: true
         }, function(isConfirm) {
             if(isConfirm){
@@ -161,13 +161,13 @@ KylinApp.controller('ModelEditCtrl', function ($scope, $q, $routeParams, $locati
                     }, function (request) {
                         if (request.successful) {
                             $scope.state.modelSchema = request.modelSchema;
-                            MessageBox.successNotify('Updated the model successfully.');
+                            MessageBox.successNotify('成功更新模型。');
                             $location.path("/models");
                             //location.reload();
                         } else {
                                $scope.saveModelRollBack();
                                 var message =request.message;
-                                var msg = !!(message) ? message : 'Failed to take action.';
+                                var msg = !!(message) ? message : '无法采取行动。';
                                 MessageService.sendMsg($scope.modelResultTmpl({'text':msg,'schema':$scope.state.modelSchema}), 'error', {}, true, 'top_center');
                         }
                         //end loading
@@ -177,11 +177,11 @@ KylinApp.controller('ModelEditCtrl', function ($scope, $q, $routeParams, $locati
 
                         if(e.data&& e.data.exception){
                             var message =e.data.exception;
-                            var msg = !!(message) ? message : 'Failed to take action.';
+                            var msg = !!(message) ? message : '无法采取行动。';
                             $log.log($scope.modelResultTmpl({'text':msg,'schema':$scope.state.modelSchema}));
                             MessageService.sendMsg($scope.modelResultTmpl({'text':msg,'schema':$scope.state.modelSchema}), 'error', {}, true, 'top_center');
                         } else {
-                            MessageService.sendMsg($scope.modelResultTmpl({'text':'Failed to take action.','schema':$scope.state.modelSchema}), 'error', {}, true, 'top_center');
+                            MessageService.sendMsg($scope.modelResultTmpl({'text':'无法采取行动。','schema':$scope.state.modelSchema}), 'error', {}, true, 'top_center');
                         }
                         loadingRequest.hide();
                     });
@@ -193,13 +193,13 @@ KylinApp.controller('ModelEditCtrl', function ($scope, $q, $routeParams, $locati
                         if(request.successful) {
 
                           $scope.state.modelSchema = request.modelSchema;
-                          MessageBox.successNotify('Created the model successfully.');
+                          MessageBox.successNotify('成功创建模型。');
                           $location.path("/models");
                          // location.reload();
                         } else {
                             $scope.saveModelRollBack();
                             var message =request.message;
-                            var msg = !!(message) ? message : 'Failed to take action.';
+                            var msg = !!(message) ? message : '无法采取行动。';
                             MessageService.sendMsg($scope.modelResultTmpl({'text':msg,'schema':$scope.state.modelSchema}), 'error', {}, true, 'top_center');
                         }
 
@@ -210,10 +210,10 @@ KylinApp.controller('ModelEditCtrl', function ($scope, $q, $routeParams, $locati
 
                         if (e.data && e.data.exception) {
                             var message =e.data.exception;
-                            var msg = !!(message) ? message : 'Failed to take action.';
+                            var msg = !!(message) ? message : '无法采取行动。';
                             MessageService.sendMsg($scope.modelResultTmpl({'text':msg,'schema':$scope.state.modelSchema}), 'error', {}, true, 'top_center');
                         } else {
-                            MessageService.sendMsg($scope.modelResultTmpl({'text':"Failed to take action.",'schema':$scope.state.modelSchema}), 'error', {}, true, 'top_center');
+                            MessageService.sendMsg($scope.modelResultTmpl({'text':"无法采取行动。",'schema':$scope.state.modelSchema}), 'error', {}, true, 'top_center');
                         }
                         //end loading
                         loadingRequest.hide();

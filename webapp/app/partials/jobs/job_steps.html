@@ -23,25 +23,25 @@
             <div class="timeline-item">
                 <div class="timeline-header">
                     <i class="ace-icon fa fa-sort-amount-asc"></i>
-                    Detail Information
+                    详细信息
                     <i class="fa fa-minus-square fa-lg pull-right" ng-click="state.showSteps= false; refreshJobs()" tooltip="Collapse"></i>
                 </div>
                 <div class="timeline-body">
                     <table class="table table-striped table-bordered">
                         <tr>
-                            <td><b>Job Name</b></td>
+                            <td><b>任务名称</b></td>
                             <td style="max-width: 180px;word-wrap: break-word;word-break: normal;">
                                 {{state.selectedJob.name}}
                             </td>
                         </tr>
                         <tr>
-                            <td><b>Job ID</b></td>
+                            <td><b>任务编号</b></td>
                             <td style="max-width: 180px;word-wrap: break-word;word-break: normal;">
                                 {{state.selectedJob.uuid}}
                             </td>
                         </tr>
                         <tr>
-                            <td><b>Status</b></td>
+                            <td><b>状态</b></td>
                             <td>
                                 <span class="label"
                                         ng-class="{
@@ -54,15 +54,15 @@
                             </td>
                         </tr>
                         <tr>
-                          <td><b>Built By</b></td>
+                          <td><b>由__建造</b></td>
                           <td>{{state.selectedJob.build_instance}}</td>
                         </tr>
                         <tr>
-                            <td><b>Duration</b></td>
+                            <td><b>持续时间</b></td>
                             <td>{{(state.selectedJob.duration/60 | number:2) + ' mins'}}</td>
                         </tr>
                         <tr>
-                            <td><b>MapReduce Waiting</b></td>
+                            <td><b>MapReduce 正在等待</b></td>
                             <td>{{(state.selectedJob.mr_waiting/60 | number:2) + ' mins'}}</td>
                         </tr>
                     </table>
@@ -73,7 +73,7 @@
         <!--Start Label-->
         <li class="time-label">
             <span class="bg-blue">
-                <b>Start &nbsp;&nbsp;{{state.selectedJob.steps[0].exec_start_time !=0 ? (state.selectedJob.steps[0].exec_start_time | utcToConfigTimeZone) :''}}</b>
+                <b>开始 &nbsp;&nbsp;{{state.selectedJob.steps[0].exec_start_time !=0 ? (state.selectedJob.steps[0].exec_start_time | utcToConfigTimeZone) :''}}</b>
             </span>
         </li>
 
@@ -141,25 +141,25 @@
 
         <li class="time-label">
             <span class="bg-blue">
-                <b>End &nbsp;&nbsp; {{state.selectedJob.steps[state.selectedJob.steps.length-1].exec_end_time !=0 ? (state.selectedJob.steps[state.selectedJob.steps.length-1].exec_end_time | utcToConfigTimeZone):''}}</b>
+                <b>结束 &nbsp;&nbsp; {{state.selectedJob.steps[state.selectedJob.steps.length-1].exec_end_time !=0 ? (state.selectedJob.steps[state.selectedJob.steps.length-1].exec_end_time | utcToConfigTimeZone):''}}</b>
             </span>
         </li>
     </ul>
 </div>
 
 <div ng-if="!state.selectedJob">
-    <div no-result text="No Job Selected."></div>
+    <div no-result text="未选择任务。"></div>
 </div>
 
 <script type="text/ng-template" id="jobStepDetail.html">
     <div class="modal-header">
-        <h4>{{stepAttrToShow == 'cmd' ? 'Parameters' : 'Output'}}
+        <h4>{{stepAttrToShow == 'cmd' ? '参量' : '输出量'}}
             <i ng-if="stepAttrToShow == 'output' && step.loadingOp" class="fa fa-spinner fa-spin"></i></h4>
     </div>
     <div class="modal-body">
-        <pre>{{stepAttrToShow == 'cmd' ? step.exec_cmd : (step.loadingOp ? "Loading..." : !!(step.cmd_output)?step.cmd_output:'No Data Available')}}</pre>
+        <pre>{{stepAttrToShow == 'cmd' ? step.exec_cmd : (step.loadingOp ? "载入中..." : !!(step.cmd_output)?step.cmd_output:'没有可用数据')}}</pre>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-primary" ng-click="cancel()">Close</button>
+        <button class="btn btn-primary" ng-click="cancel()">关闭</button>
     </div>
 </script>

@@ -79,7 +79,7 @@ KylinApp.controller('HybridInstanceCtrl', function (
   $scope.editHybridInstance = function(hybridInstance){
     // check for empty project of header, break the operation.
     if (ProjectModel.selectedProject === null) {
-      SweetAlert.swal('Oops...', 'Please select your project first.', 'warning');
+      SweetAlert.swal('糟糕...', '请先选择您的项目。', 'warning');
       $location.path("/models");
       return;
     }
@@ -91,18 +91,18 @@ KylinApp.controller('HybridInstanceCtrl', function (
 
     // check for empty project of header, break the operation.
     if (ProjectModel.selectedProject === null) {
-      SweetAlert.swal('Oops...', 'Please select your project first.', 'warning');
+      SweetAlert.swal('糟糕...', '请先选择您的项目。', 'warning');
       $location.path("/models");
       return;
     }
 
     SweetAlert.swal({
       title: '',
-      text: 'Are you sure to drop this hybrid?',
+      text: '您确定要放弃这种混合动力吗?',
       type: '',
       showCancelButton: true,
       confirmButtonColor: '#DD6B55',
-      confirmButtonText: "Yes",
+      confirmButtonText: "是",
       closeOnConfirm: true
     }, function (isConfirm) {
       if (isConfirm) {
@@ -115,16 +115,16 @@ KylinApp.controller('HybridInstanceCtrl', function (
         loadingRequest.show();
         HybridInstanceService.drop(schema, {}, function (result) {
           loadingRequest.hide();
-          MessageBox.successNotify('Hybrid drop is done successfully');
+          MessageBox.successNotify('混合删除成功完成');
           location.reload();
         }, function (e) {
           loadingRequest.hide();
           if (e.data && e.data.exception) {
             var message = e.data.exception;
-            var msg = !!(message) ? message : 'Failed to take action.';
-            SweetAlert.swal('Oops...', msg, 'error');
+            var msg = !!(message) ? message : '无法采取行动。';
+            SweetAlert.swal('糟糕...', msg, 'error');
           } else {
-            SweetAlert.swal('Oops...', "Failed to take action.", 'error');
+            SweetAlert.swal('糟糕...', "无法采取行动。", 'error');
           }
         });
       }

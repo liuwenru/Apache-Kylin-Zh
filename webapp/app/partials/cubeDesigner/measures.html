@@ -23,18 +23,18 @@
               <div class="row">
                   <div class="col-xs-6" ng-if="state.mode=='edit'">
                       <button type="button" class="btn btn-default" ng-disabled="!metaModel.model.fact_table.length||instance.status=='READY'" ng-click="openBulkAddModal()" >
-                        <i class="fa fa-building-o"></i> Bulk Add Measures
+                        <i class="fa fa-building-o"></i> 批量添加度量
                       </button>
                   </div>
               </div>
               <table class="table table-striped table-hover">
                   <thead>
                       <tr>
-                          <th>Name</th>
-                          <th>Expression</th>
-                          <th>Parameters</th>
-                          <th>Return Type</th>
-                          <th ng-if="state.mode=='edit'">Actions</th>
+                          <th>名称</th>
+                          <th>表达</th>
+                          <th>参量</th>
+                          <th>返回类型</th>
+                          <th ng-if="state.mode=='edit'">操作</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -79,7 +79,7 @@
   <!--Add Measures Button-->
   <div class="form-group">
       <button class="btn btn-sm btn-info" ng-click="addNewMeasure()" ng-show="state.mode=='edit' && !newMeasure" ng-disabled="instance.status=='READY'">
-          <i class="fa fa-plus"></i> Measure
+          <i class="fa fa-plus"></i> 度量
       </button>
   </div>
 
@@ -87,7 +87,7 @@
   <ng-form name="edit_mes_form">
   <div class="box box-solid" ng-if="newMeasure">
       <div class="box-header">
-          <h4 class="box-title text-info">Edit Measure</h4>
+          <h4 class="box-title text-info">编辑度量</h4>
       </div>
       <div class="box-body">
           <div class="row">
@@ -97,8 +97,8 @@
                           <div class="row">
                               <label class="col-xs-12 col-sm-3 control-label no-padding-right font-color-default"><b>Name</b></label>
                               <div class="col-xs-12 col-sm-6">
-                                  <input type="text" placeholder="Name.." class="form-control"
-                                      tooltip="measure name.." tooltip-trigger="focus"
+                                  <input type="text" placeholder="名称.." class="form-control"
+                                      tooltip="度量名称.." tooltip-trigger="focus"
                                       ng-model="newMeasure.name" required />
                               </div>
                           </div>
@@ -106,7 +106,7 @@
                       <!--Expression-->
                       <div class="form-group middle-popover">
                           <div class="row">
-                              <label class="col-xs-12 col-sm-3 control-label no-padding-right font-color-default"><b>Expression</b>  <i class="fa fa-info-circle" kylinpopover placement="right" title="Expression" template="expressionTip.html"></i></label>
+                              <label class="col-xs-12 col-sm-3 control-label no-padding-right font-color-default"><b>表达</b>  <i class="fa fa-info-circle" kylinpopover placement="right" title="表达" template="expressionTip.html"></i></label>
                               <div class="col-xs-12 col-sm-6">
                                   <select class="form-control"
                                       ng-init="newMeasure.function.expression = (!!newMeasure.function.expression)?newMeasure.function.expression:cubeConfig.dftSelections.measureExpression" chosen ng-model="newMeasure.function.expression" required
@@ -121,7 +121,7 @@
                       <!--Param Type-->
                       <div class="form-group" ng-if="newMeasure.function.expression !== 'EXTENDED_COLUMN'">
                           <div class="row">
-                              <label class="col-xs-12 col-sm-3 control-label no-padding-right font-color-default"><b>Param Type</b></label>
+                              <label class="col-xs-12 col-sm-3 control-label no-padding-right font-color-default"><b>参数类型</b></label>
                               <div class="col-xs-12 col-sm-6">
                                   <select class="form-control" ng-if="newMeasure.function.expression != 'COUNT'&&newMeasure.function.expression != 'PERCENTILE'"
                                       ng-init="newMeasure.function.parameter.type=(!!newMeasure.function.parameter.type)?newMeasure.function.parameter.type: 'column' "
@@ -141,9 +141,9 @@
                       <div class="form-group middle-popover">
                           <div class="row">
                               <label class="col-xs-12 col-sm-3 control-label no-padding-right font-color-default">
-                                <b ng-if="newMeasure.function.expression == 'EXTENDED_COLUMN'">Host column On Fact Table</b>  <i ng-if="newMeasure.function.expression == 'EXTENDED_COLUMN'" title="Host Column" class="fa fa-info-circle" kylinpopover placement="right" template="hostTableTip.html"></i>
-                                <b ng-if="newMeasure.function.expression == 'TOP_N'">ORDER|SUM by Column</b>  <i ng-if="newMeasure.function.expression == 'TOP_N'" class="fa fa-info-circle" title="ORDER|SUM by Column" kylinpopover placement="right" template="topnTip.html"></i>
-                                <b ng-if="newMeasure.function.expression !== 'EXTENDED_COLUMN' && newMeasure.function.expression !== 'TOP_N' ">Param Value</b>  <i ng-if="newMeasure.function.expression !== 'EXTENDED_COLUMN' && newMeasure.function.expression !== 'TOP_N' " class="fa fa-info-circle" kylinpopover placement="right" title="Param Value" template="paramvalueTip.html"></i>
+                                <b ng-if="newMeasure.function.expression == 'EXTENDED_COLUMN'">Host column On Fact Table</b>  <i ng-if="newMeasure.function.expression == 'EXTENDED_COLUMN'" title="主机栏" class="fa fa-info-circle" kylinpopover placement="right" template="hostTableTip.html"></i>
+                                <b ng-if="newMeasure.function.expression == 'TOP_N'">ORDER|SUM by Column</b>  <i ng-if="newMeasure.function.expression == 'TOP_N'" class="fa fa-info-circle" title="按列排序或求和" kylinpopover placement="right" template="topnTip.html"></i>
+                                <b ng-if="newMeasure.function.expression !== 'EXTENDED_COLUMN' && newMeasure.function.expression !== 'TOP_N' ">参数值</b>  <i ng-if="newMeasure.function.expression !== 'EXTENDED_COLUMN' && newMeasure.function.expression !== 'TOP_N' " class="fa fa-info-circle" kylinpopover placement="right" title="参数值" template="paramvalueTip.html"></i>
                                 <!--tip for top_n-->
                                 <!--<small ng-if="newMeasure.function.expression == 'TOP_N'" class="help-block" style="color:#3a87ad">(SUM|ORDER BY Column for TOP_N)</small>-->
                               </label>
@@ -164,7 +164,7 @@
                                   on-remove="measureReturnTypeUpdate()"
                                   ng-model="newMeasure.function.parameter.value"
                                   >
-                                  <ui-select-match placeholder="Select Measure" style="overflow: auto;">{{$select.selected}}</ui-select-match>
+                                  <ui-select-match placeholder="选择测量" style="overflow: auto;">{{$select.selected}}</ui-select-match>
                                   <ui-select-choices repeat="column in measureParamValueColumn | filter:$select.search" style="word-break:break-all;">
                                     <span ng-bind-html="column | highlight: $select.search"></span>
                                   </ui-select-choices>
@@ -180,13 +180,13 @@
                       <div class="form-group middle-popover" ng-if="newMeasure.function.expression == 'EXTENDED_COLUMN'">
                         <div class="row">
                           <label class="col-xs-12 col-sm-3 control-label no-padding-right font-color-default">
-                            <b>Extended column on fact table</b>    <i ng-if="newMeasure.function.expression == 'EXTENDED_COLUMN'" title="Extended Column" class="fa fa-info-circle" kylinpopover placement="right" template="extendedColumnTip.html"></i>
+                            <b>事实表上的扩展列</b>    <i ng-if="newMeasure.function.expression == 'EXTENDED_COLUMN'" title="延伸柱" class="fa fa-info-circle" kylinpopover placement="right" template="extendedColumnTip.html"></i>
                           </label>
                           <div class="col-xs-12 col-sm-6">
                             <select class="form-control" chosen ng-if="nextPara.type !== 'constant'" required
                                     ng-model="nextPara.value"
                                     ng-options="column as column for column in getCommonMetricColumns()" >
-                              <option value="">-- Select a Column --</option>
+                              <option value="">--选择一列 --</option>
                             </select>
                           </div>
                         </div>
@@ -196,8 +196,8 @@
                       <div class="form-group middle-popover">
                         <div class="row">
                           <label class="col-xs-12 col-sm-3 control-label no-padding-right font-color-default">
-                            <b ng-if="newMeasure.function.expression !== 'EXTENDED_COLUMN'">Return Type</b>
-                            <b ng-if="newMeasure.function.expression == 'EXTENDED_COLUMN'">Maximum length of extended column</b>  <i ng-if="newMeasure.function.expression == 'EXTENDED_COLUMN'" title="Maximum Length" class="fa fa-info-circle" kylinpopover placement="right" template="extendedTypeTip.html"></i>
+                            <b ng-if="newMeasure.function.expression !== 'EXTENDED_COLUMN'">返回类型</b>
+                            <b ng-if="newMeasure.function.expression == 'EXTENDED_COLUMN'">延伸柱最大长度</b>  <i ng-if="newMeasure.function.expression == 'EXTENDED_COLUMN'" title="最大长度" class="fa fa-info-circle" kylinpopover placement="right" template="extendedTypeTip.html"></i>
                           </label>
                           <div class="col-xs-12 col-sm-6">
                             <select class="form-control"
@@ -217,7 +217,7 @@
 
                             <input extended-column-return
                                    ng-if="newMeasure.function.expression == 'EXTENDED_COLUMN'"
-                                   type="text" placeholder="Kylin won’t save more than this number of bytes" class="form-control"
+                                   type="text" placeholder="麒麟不会保存超过此字节数的内容" class="form-control"
                                    tooltip-trigger="focus"
                                    ng-init="newMeasure.function.returntype=newMeasure.function.returntype?newMeasure.function.returntype:'extendedcolumn(100)'"
                                    ng-model="newMeasure.function.returntype" required
@@ -235,8 +235,8 @@
                       <div class="form-group" ng-if="newMeasure.function.expression === 'TOP_N'||(newMeasure.function.expression === 'COUNT_DISTINCT' && newMeasure.function.returntype!=='bitmap')" >
                         <div class="row">
                           <label class="col-xs-12 col-sm-3 control-label no-padding-right font-color-default">
-                            <b ng-if="newMeasure.function.expression === 'TOP_N'">Group by Column:</b>
-                            <b ng-if="newMeasure.function.expression === 'COUNT_DISTINCT' && newMeasure.function.returntype!=='bitmap')">Additional distinct column in this measure:</b>
+                            <b ng-if="newMeasure.function.expression === 'TOP_N'">按列分组:</b>
+                            <b ng-if="newMeasure.function.expression === 'COUNT_DISTINCT' && newMeasure.function.returntype!=='bitmap')">此度量中的其他不同列:</b>
                           </label>
                           <div class="form-group large-popover" >
                               <div class="box-body">
@@ -245,9 +245,9 @@
                                   <thead>
                                   <tr>
                                     <th  style="width:40px;">ID</th>
-                                    <th  style="width:300px;">Column</th>
-                                    <th  style="width:140px;" ng-if="newMeasure.function.expression === 'TOP_N'">Encoding</th>
-                                    <th ng-if="newMeasure.function.expression === 'TOP_N'">Length</th>
+                                    <th  style="width:300px;">列</th>
+                                    <th  style="width:140px;" ng-if="newMeasure.function.expression === 'TOP_N'">编码方式</th>
+                                    <th ng-if="newMeasure.function.expression === 'TOP_N'">长度</th>
                                     <th style="width:50px;" ng-if="state.mode=='edit'"></th>
                                   </tr>
                                   </thead>
@@ -266,7 +266,7 @@
                                       <select style="width:270px"  chosen ng-if="nextPara.type !== 'constant'" required
                                               ng-model="groupby_column.name"
                                               ng-options="column as column for column in getAllModelDimColumns()" >
-                                        <option value="">--Select A Column--</option>
+                                        <option value="">--选择一列--</option>
                                       </select>
                                     </td>
                                     <!--Column Encoding -->
@@ -280,13 +280,13 @@
                                     </td>
                                     <td ng-if="newMeasure.function.expression === 'TOP_N'">
                                       <!--Column Length -->
-                                      <input type="text" class="form-control" placeholder="Column Length.." ng-if="state.mode=='edit'"
+                                      <input type="text" class="form-control" placeholder="列长.." ng-if="state.mode=='edit'"
                                              tooltip="group by column length.." tooltip-trigger="focus"
                                              ng-disabled="groupby_column.encoding.indexOf('dict')>=0||groupby_column.encoding.indexOf('date')>=0||groupby_column.encoding.indexOf('time')>=0"
                                              ng-change="refreshGroupBy(convertedColumns,$index,groupby_column);"
                                              ng-model="groupby_column.valueLength" class="form-control">
 
-                                      <small class="help-block red" ng-show="state.mode=='edit' && groupby_column.encoding.indexOf('integer')>=0 && (groupby_column.valueLength>8 || groupby_column.valueLength<1)">integer encoding column length should between 1 and 8</small>
+                                      <small class="help-block red" ng-show="state.mode=='edit' && groupby_column.encoding.indexOf('integer')>=0 && (groupby_column.valueLength>8 || groupby_column.valueLength<1)">整数编码列长度应在1到8之间</small>
                                     </td>
                                     <td ng-if="state.mode=='edit'">
                                       <button class="btn btn-xs btn-info"
@@ -299,7 +299,7 @@
                                 </table>
                               </div>
                             <button class="btn btn-sm btn-info" style="margin-left:10px"
-                                    ng-click="addNewGroupByColumn()" ng-show="state.mode=='edit'">New Column<i class="fa fa-plus"></i>
+                                    ng-click="addNewGroupByColumn()" ng-show="state.mode=='edit'">新建列<i class="fa fa-plus"></i>
                             </button>
                           </div>
 
@@ -313,8 +313,8 @@
                           <div class="col-xs-12 col-sm-6">
                             <table class="table table-hover table-bordered list" ng-if="nextParameters.length" ng-show="newMeasure.function.expression != 'TOP_N'">
                               <tr>
-                                <th>Type</th>
-                                <th>Value</th>
+                                <th>类型</th>
+                                <th>值</th>
                                 <th></td>
                               </tr>
                               <tr ng-repeat="n_parameter in nextParameters track by $index">
@@ -341,8 +341,8 @@
       </div>
       <div class="box-footer">
           <button class="btn btn-sm btn-info" ng-disabled="edit_mes_form.$invalid"
-                  ng-click="saveNewMeasure()" ng-show="state.mode=='edit'">OK</button>
-          <button class="btn btn-link" ng-click="clearNewMeasure()">Cancel</button>
+                  ng-click="saveNewMeasure()" ng-show="state.mode=='edit'">好的</button>
+          <button class="btn btn-link" ng-click="clearNewMeasure()">取消</button>
       </div>
   </div>
   </ng-form>
@@ -351,7 +351,7 @@
 <script type="text/ng-template" id="bulkAddMeasures.html">
   <ng-form name="bulk_add_mes_form">
     <div class="modal-header large-popover">
-      <h4 class="box-title lighter">Bulk Add Measures</h4>
+      <h4 class="box-title lighter">批量添加措施</h4>
       <div class="row">
         <div class="col-xs-12 col-sm-5 btn-group" >
           <button type="button" class="btn btn-primary" ng-repeat="expressionOpt in bulkMeasureOptions.expressionList" ng-model="bulkMeasureOptions.currentExpression" btn-radio="expressionOpt">{{expressionOpt.expression}}</button>
@@ -363,9 +363,9 @@
         <thead>
             <tr>
                 <th> <input type="checkbox" ng-model="bulkMeasureOptions.currentExpression.selectAll" ng-change="selectAll()" ng-disabled="bulkMeasureOptions.currentExpression.force" /></th>
-                <th>Name</th>
-                <th>Parameters</th>
-                <th>Return Type</th>
+                <th>名称</th>
+                <th>参量</th>
+                <th>返回类型</th>
             </tr>
         </thead>
         <tbody>
@@ -387,41 +387,41 @@
       </table>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-sm btn-info" ng-disabled="bulk_add_mes_form.$invalid" ng-click="saveBulkMeasures()">OK</button>
-      <button class="btn btn-link" ng-click="cancel()">Cancel</button>
+      <button class="btn btn-sm btn-info" ng-disabled="bulk_add_mes_form.$invalid" ng-click="saveBulkMeasures()">好的</button>
+      <button class="btn btn-link" ng-click="cancel()">取消</button>
     </div>
   </ng-form>
 </script>
 
 <script type="text/ng-template" id="expressionTip.html">
-  <p>All cubes have to contain one measure for Count(1), suggest use "_Count_" as name (Has been generated automatically)</p>
+  <p>所有多维数据集都必须包含一个用于Count（1）的度量，建议使用“ _Count_”作为名称（已自动生成）</p>
 </script>
 <script type="text/ng-template" id="paramvalueTip.html">
   <ol>
-    <li>Only accept single column in param value with "Column" type</li>
-    <li>Distinct Count is approximate, please indicate Error Rate, higher accuracy degree accompanied with larger storage size and longer build time</li>
+    <li>仅接受参数类型为“列”类型的单列</li>
+    <li>不重复计数是近似值，请指出错误率，更高的准确度以及更大的存储容量和更长的构建时间</li>
   </ol>
 </script>
 
 <script type="text/ng-template" id="extendedTypeTip.html">
   <p>
-    Kylin won’t save more than this number of bytes for each extended column. If exceeded it will be truncated.
+    麒麟为每个扩展列节省的字节数不超过此数目。 如果超过，它将被截断。
   </p>
 </script>
 
 <script type="text/ng-template" id="topnTip.html">
   <p>
-    Will use this column for SUM and Order by.<br/>
-    For constant value 1, will use SUM(1).
+    将此列用于SUM和“排序依据”。<br/>
+     对于常数1，将使用SUM（1）。
   </p>
 </script>
 
 <script type="text/ng-template" id="hostTableTip.html">
-  <p>Host column is the dimension to derive from, e.g. page_id</p>
+  <p>主机列是要从中得出的维度，例如 page_id</p>
 </script>
 <script type="text/ng-template" id="extendedColumnTip.html">
   <p>
-    Extended column is derived from host, e.g. page_url. No filters on extended column!
+    扩展列是从主机派生的，例如 page_url。 扩展列上没有过滤器！
   </p>
 </script>
 

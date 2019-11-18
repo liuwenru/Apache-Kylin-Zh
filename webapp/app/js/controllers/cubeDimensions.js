@@ -212,11 +212,11 @@ KylinApp.controller('CubeDimensionsCtrl', function ($scope, $modal,MetaModel,cub
 
             if($scope.dimType[0]=="derived"){
                 if(!$scope.newDimension.derived.length){
-                    errors.push("Please define your derived columns.");
+                    errors.push("请定义您的派生列。");
                 }
                 for(var i = 0;i<$scope.newDimension.derived.length;i++){
                     if($scope.newDimension.derived[i]===""){
-                        errors.push("Derived value can't be null.");
+                        errors.push("派生值不能为null。");
                         break;
                     }
                 }
@@ -224,7 +224,7 @@ KylinApp.controller('CubeDimensionsCtrl', function ($scope, $modal,MetaModel,cub
                     var _columns = angular.copy($scope.newDimension.derived).sort();
                     for(var i = 0;i<_columns.length-1;i++){
                         if(_columns[i]==_columns[i+1]&&_columns[i]!==""){
-                            errors.push("Duplicate column "+_columns[i]+".");
+                            errors.push("列重复 "+_columns[i]+".");
                         }
                     }
                 }
@@ -454,7 +454,7 @@ KylinApp.controller('CubeDimensionsCtrl', function ($scope, $modal,MetaModel,cub
              angular.forEach(value, function (status, colName) {
                   if (status.selected&&typeof status=="object") {
                       if(status.name==""){
-                           SweetAlert.swal('', "The name is requested.", 'warning');
+                           SweetAlert.swal('', "请求名称。", 'warning');
                            nameNull=true;
                        }
 

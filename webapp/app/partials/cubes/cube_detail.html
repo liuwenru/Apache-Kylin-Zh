@@ -19,7 +19,7 @@
 <div ng-controller="CubeCtrl" class="nav-tabs-custom" style="margin-top:40px;">
     <ul class="nav nav-tabs">
         <li class="{{(!cube.visiblePage || cube.visiblePage=='metadata')? 'active':''}}">
-            <a href="" ng-click="cube.visiblePage='metadata'">Grid</a>
+            <a href="" ng-click="cube.visiblePage='metadata'">网格</a>
         </li>
         <!--</li>-->
         <li class="{{cube.visiblePage=='sql'? 'active':''}}">
@@ -27,7 +27,7 @@
         </li>
         <li class="{{cube.visiblePage=='json'? 'active':''}}"
             ng-if="userService.hasRole('ROLE_ADMIN') || hasPermission('cube',cube, permissions.ADMINISTRATION.mask) && !newAccess">
-            <a href="" ng-click="cube.visiblePage='json';">JSON(Cube)</a>
+            <a href="" ng-click="cube.visiblePage='json';">JSON(多维数据集)</a>
         </li>
         <!--<li class="{{cube.visiblePage=='access'? 'active':''}}"-->
             <!--ng-if="!kylinConfig.isExternalAclEnabled()">-->
@@ -35,14 +35,14 @@
         <!--</li>-->
         <li class="{{cube.visiblePage=='notification'? 'active':''}}"
             ng-if="userService.hasRole('ROLE_ADMIN') || hasPermission('cube',cube, permissions.ADMINISTRATION.mask) && !newAccess">
-            <a href="" ng-click="cube.visiblePage='notification';getNotifyListString(cube);">Notification</a>
+            <a href="" ng-click="cube.visiblePage='notification';getNotifyListString(cube);">通知</a>
         </li>
         <li class="{{cube.visiblePage=='hbase'? 'active':''}}"
             ng-if="userService.hasRole('ROLE_ADMIN')">
-            <a href="" ng-click="cube.visiblePage='hbase';getHbaseInfo(cube)">Storage</a>
+            <a href="" ng-click="cube.visiblePage='hbase';getHbaseInfo(cube)">存储</a>
         </li>
         <li class="{{cube.visiblePage=='planner'? 'active':''}}" ng-if="(userService.hasRole('ROLE_ADMIN') || hasPermission('cube', cube, permissions.ADMINISTRATION.mask)) && isShowCubeplanner">
-            <a href="" ng-click="cube.visiblePage='planner';getCubePlanner(cube);">Planner</a>
+            <a href="" ng-click="cube.visiblePage='planner';getCubePlanner(cube);">策划人</a>
         </li>
     </ul>
 
@@ -56,7 +56,7 @@
             <pre style="background-color: white;border: 0px">{{cube.sql}}</pre>
         </div>
         <div ng-if="!cube.sql">
-            <span calss="text-info">No SQL GENERATED.</span>
+            <span calss="text-info">没有生成SQL。</span>
         </div>
     </div>
 
@@ -85,12 +85,12 @@
     <div class="cube-detail" ng-show="cube.visiblePage=='notification'">
         <div style="margin: 15px;">
             <form>
-                <h5>Notification List(Comma Separated)</h5>
+                <h5>通知列表（逗号分隔）</h5>
                 <div class="form-group">
-                    <input ng-model="cube.notifyListString" class="form-control" placeholder="Notification List..." />
+                    <input ng-model="cube.notifyListString" class="form-control" placeholder="通知清单..." />
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-primary btn-sm" ng-click="updateNotifyList(cube)">Save</button>
+                    <button class="btn btn-primary btn-sm" ng-click="updateNotifyList(cube)">保存</button>
                 </div>
                 <div class="space-4"></div>
             </form>
@@ -101,22 +101,22 @@
         <div style="margin: 15px;">
             <div ng-if="cube.hbase">
               <div class="hr hr8 hr-double hr-dotted"></div>
-              <h5><b>Segment Number:</b> <span class="red">{{cube.hbase.length}}</span> <b>Total Size:</b> <span class="red">{{cube.totalSize | bytes}}</span></h5>
+              <h5><b>段号:</b> <span class="red">{{cube.hbase.length}}</span> <b>总尺寸:</b> <span class="red">{{cube.totalSize | bytes}}</span></h5>
             </div>
             <div ng-repeat="table in cube.hbase">
-                <h5><b>Segment:</b> {{table.segmentName}}</h5>
+                <h5><b>分割：</b> {{table.segmentName}}</h5>
                 <ul>
                     <li ng-if="cube.streaming">Status: <span class="red">{{table.segmentStatus}}</span></li>
-                    <li ng-if="cube.model.partition_desc.partition_date_column">Start Time: <span class="red">{{table.dateRangeStart | reverseToGMT0}}</span></li>
-                    <li ng-if="cube.model.partition_desc.partition_date_column">End Time: <span class="red">{{table.dateRangeEnd | reverseToGMT0}}</span></li>
-                    <li>Source Count: <span class="red">{{table.sourceCount}}</span></li>
-                    <li>HBase Table: <span class="red">{{table.tableName}}</span></li>
-                    <li>Region Count: <span class="red">{{table.regionCount}}</span></li>
-                    <li>Size: <span class="red">{{table.tableSize | bytes}}</span></li>
+                    <li ng-if="cube.model.partition_desc.partition_date_column">开始时间: <span class="red">{{table.dateRangeStart | reverseToGMT0}}</span></li>
+                    <li ng-if="cube.model.partition_desc.partition_date_column">结束时间: <span class="red">{{table.dateRangeEnd | reverseToGMT0}}</span></li>
+                    <li>源计数: <span class="red">{{table.sourceCount}}</span></li>
+                    <li>HBase 表: <span class="red">{{table.tableName}}</span></li>
+                    <li>Region 数: <span class="red">{{table.regionCount}}</span></li>
+                    <li>尺寸: <span class="red">{{table.tableSize | bytes}}</span></li>
                 </ul>
             </div>
             <div ng-if="cube.hbase.length == 0">
-                <h5>No Storage Info.</h5>
+                <h5>没有存储信息。</h5>
             </div>
         </div>
     </div>
@@ -124,9 +124,9 @@
         <div style="padding: 15px;">
             <div class="row">
                 <div class="col-sm-12">
-                    <h4 style="display: inline;">Cuboid Distribution</h4>
+                    <h4 style="display: inline;">长方体分布</h4>
                     <button ng-if="enableRecommend" class="btn btn-success btn-sm pull-right" ng-click="getRecommendCuboids(cube)" ng-if="currentData">
-                        Recommend
+                        推荐
                     </button>
                     <div ng-if="cube.cuboid_last_optimized" class="pull-right" style="padding: 5px;">Last Optimized Time: {{cube.cuboid_last_optimized | utcToConfigTimeZone}}</div>
                 </div>
@@ -156,17 +156,17 @@
                 <div class="col-sm-12">
                     <div class="dropup pull-right" style="margin-left: 10px;" ng-if="recommendData">
                         <button class="btn btn-default dropdown-toggle" type="button" id="export" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Export
+                            导出
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="export">
-                            <li><a ng-href="{{config.service.url}}cubes/{{cube.name}}/cuboids/export?top=10" target="_blank" >Top 10</a></li>
-                            <li><a ng-href="{{config.service.url}}cubes/{{cube.name}}/cuboids/export?top=50" target="_blank" >Top 50</a></li>
-                            <li><a ng-href="{{config.service.url}}cubes/{{cube.name}}/cuboids/export?top=100" target="_blank" >Top 100</a></li>
+                            <li><a ng-href="{{config.service.url}}cubes/{{cube.name}}/cuboids/export?top=10" target="_blank" >前 10</a></li>
+                            <li><a ng-href="{{config.service.url}}cubes/{{cube.name}}/cuboids/export?top=50" target="_blank" >前 50</a></li>
+                            <li><a ng-href="{{config.service.url}}cubes/{{cube.name}}/cuboids/export?top=100" target="_blank" >前 100</a></li>
                         </ul>
                     </div>
                     <button class="btn btn-success btn-next pull-right" ng-click="optimizeCuboids(cube)" ng-if="recommendData">
-                        Optimize
+                       优化
                     </button>
                 </div>
             </div>

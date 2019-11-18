@@ -50,8 +50,8 @@ KylinApp.controller('DashboardCtrl', function ($scope, $location, storage, kylin
     DashboardService.getCubeMetrics({projectName: ProjectModel.getSelectedProject(), cubeName: $scope.selectedCube}, {}, function (data) {
       $scope.cubeMetrics = data;
     }, function(e) {
-        SweetAlert.swal('Oops...', 'Failed to load cube metrics', 'error');
-        console.error('cube metrics error', e.data);
+        SweetAlert.swal('糟糕...', '无法加载多维数据集指标', 'error');
+        console.error('多维数据集指标错误', e.data);
     });
   };
 
@@ -60,15 +60,15 @@ KylinApp.controller('DashboardCtrl', function ($scope, $location, storage, kylin
     DashboardService.getQueryMetrics({projectName: ProjectModel.getSelectedProject(), cubeName: $scope.selectedCube, startTime: $scope.formatDatetime($scope.dateRange.startDate), endTime: $scope.formatDatetime($scope.dateRange.endDate)}, {}, function (data) {
       $scope.queryMetrics = data;
     }, function(e) {
-        SweetAlert.swal('Oops...', 'Failed to load query metrics.', 'error');
-        console.error('query metrics error:', e.data);
+        SweetAlert.swal('糟糕...', '无法加载查询指标。', 'error');
+        console.error('查询指标错误:', e.data);
     });
 
     DashboardService.getJobMetrics({projectName: ProjectModel.getSelectedProject(), cubeName: $scope.selectedCube, startTime: $scope.formatDatetime($scope.dateRange.startDate), endTime: $scope.formatDatetime($scope.dateRange.endDate)}, {}, function (data) {
       $scope.jobMetrics = data;
     }, function(e) {
-        SweetAlert.swal('Oops...', 'Failed to load job metrics.', 'error');
-        console.error('job metrics error:', e.data);
+        SweetAlert.swal('糟糕...', '无法加载作业指标。', 'error');
+        console.error('工作指标错误:', e.data);
     });
 
     $scope.createCharts();
@@ -147,7 +147,7 @@ KylinApp.controller('DashboardCtrl', function ($scope, $location, storage, kylin
 
         $scope.lineChart.data = [{key: dataQuery.category, values: _.sortBy(data, 'label')}];
       }, function(e) {
-          SweetAlert.swal('Oops...', 'Failed to load line chart.', 'error');
+          SweetAlert.swal('糟糕...', '加载折线图失败。', 'error');
           console.error('line chart error:', e.data);
       });
     } else  if (chartType === 'bar'){
@@ -185,7 +185,7 @@ KylinApp.controller('DashboardCtrl', function ($scope, $location, storage, kylin
           });
         } 
       }, function(e) {
-          SweetAlert.swal('Oops...', 'Failed to load bar chart.', 'error');
+          SweetAlert.swal('糟糕...', '无法加载条形图。', 'error');
           console.error('bar chart error:', e.data);
       });
     }    

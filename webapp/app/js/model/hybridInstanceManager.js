@@ -52,7 +52,7 @@ KylinApp.service('hybridInstanceManager', function($q, HybridInstanceService, Pr
       _this.loading = false;
     },
     function() {
-      defer.reject('Failed to load models');
+      defer.reject('无法加载模型');
     });
 
     return defer.promise;

@@ -24,7 +24,7 @@
       <accordion>
         <accordion-group is-open="state.isKfkSettingOpen" ng-init="state.isKfkSettingOpen=true">
           <accordion-heading>
-            Kafka Setting
+            卡夫卡设置
             <i class="pull-right glyphicon"
                ng-class="{'glyphicon-chevron-down': state.isKfkSettingOpen, 'glyphicon-chevron-right': !state.isKfkSettingOpen}"></i>
           </accordion-heading>
@@ -32,18 +32,18 @@
           <div class="form-group middle-popover" ng-class="{'required':state.mode=='edit'}">
         <div class="row">
           <label class="col-xs-12 col-sm-3 control-label no-padding-right">
-            <b>Topic</b>
-            <i class="fa fa-info-circle" kylinpopover placement="right" title="Topic"  template="KafkaTopicTip.html"></i>
+            <b>主题</b>
+            <i class="fa fa-info-circle" kylinpopover placement="right" title="主题"  template="KafkaTopicTip.html"></i>
           </label>
           <div class="col-xs-12 col-sm-6"   ng-class="{'has-error':form.cube_streaming_form.topic.$invalid && (form.cube_streaming_form.topic.$dirty||form.cube_streaming_form.$submitted)}">
             <input  ng-if="state.mode=='edit'"  name="topic" required ng-model="kafkaMeta.topic" type="text"
-                    placeholder="Input kafkaConfig topic"
+                    placeholder="输入kafkaConfig主题"
                     class="form-control"/>
             <small class="help-block"
                    ng-show="!form.cube_streaming_form.topic.$error.required && form.cube_streaming_form.topic.$invalid && (form.cube_streaming_form.topic.$dirty||form.cube_streaming_form.$submitted)">
-              Kafka topic is invalid.
+             Kafka主题无效。
             </small>
-            <small class="help-block" ng-show="form.cube_streaming_form.topic.$error.required && (form.cube_streaming_form.topic.$dirty||form.cube_streaming_form.$submitted)">Kafka topic is required.</small>
+            <small class="help-block" ng-show="form.cube_streaming_form.topic.$error.required && (form.cube_streaming_form.topic.$dirty||form.cube_streaming_form.$submitted)">Kafka主题为必填项。</small>
             <span ng-if="state.mode=='view'">{{kafkaMeta.topic}}</span>
           </div>
         </div>
@@ -51,7 +51,7 @@
 
       <div ng-repeat="cluster in kafkaMeta.clusters | filter: state.measureFilter track by $index" class="box">
         <div class="box-header">
-          <h3 class="box-title">Cluster-{{$index+1}}</h3>
+          <h3 class="box-title">集群-{{$index+1}}</h3>
           <button ng-if="state.mode=='edit'" type="button" ng-click="removeCluster(cluster)" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
         </div>
         <div class="box-body no-padding">
@@ -59,9 +59,9 @@
             <thead>
             <tr>
               <th>ID</th>
-              <th>Host</th>
-              <th>Port</th>
-              <th ng-if="state.mode=='edit'">Actions</th>
+              <th>主机</th>
+              <th>端口</th>
+              <th ng-if="state.mode=='edit'">操作</th>
             </tr>
             </thead>
             <tbody>
@@ -70,13 +70,13 @@
               <td ng-if="cluster.edit_index!=$index">{{broker.host}}</td>
               <td ng-if="cluster.edit_index==$index">
                 <div class="input-group">
-                  <input class="form-control" type="text" ng-model="cluster.newBroker.host" name="broker_host" placeholder="Input broker host">
+                  <input class="form-control" type="text" ng-model="cluster.newBroker.host" name="broker_host" placeholder="输入经纪人主机">
                 </div>
               </td>
               <td ng-if="cluster.edit_index!=$index">{{broker.port}}</td>
               <td ng-if="cluster.edit_index==$index">
                 <div class="input-group">
-                  <input class="form-control" type="text" ng-model="cluster.newBroker.port" name="broker_port" placeholder="Input broker port" onInput="this.value=this.value.replace(/[^0-9]/g, '')">
+                  <input class="form-control" type="text" ng-model="cluster.newBroker.port" name="broker_port" placeholder="输入代理端口" onInput="this.value=this.value.replace(/[^0-9]/g, '')">
                 </div>
               </td>
               <td ng-if="state.mode=='edit'">
@@ -92,17 +92,17 @@
             <tr ng-if="cluster.newBroker&&cluster.edit_index===undefined">
               <td>
                 <div class="input-group">
-                  <input class="form-control" type="text" ng-model="cluster.newBroker.id" name="broker_id" placeholder="Input broker ID" onInput="this.value=this.value.replace(/[^0-9]/g, '')"/>
+                  <input class="form-control" type="text" ng-model="cluster.newBroker.id" name="broker_id" placeholder="输入经纪人编号" onInput="this.value=this.value.replace(/[^0-9]/g, '')"/>
                 </div>
               </td>
               <td>
                 <div class="input-group">
-                  <input class="form-control" type="text" ng-model="cluster.newBroker.host" name="broker_host" placeholder="Input broker host">
+                  <input class="form-control" type="text" ng-model="cluster.newBroker.host" name="broker_host" placeholder="输入经纪人主机">
                 </div>
               </td>
               <td>
                 <div class="input-group">
-                  <input class="form-control" type="text" ng-model="cluster.newBroker.port" name="broker_port" placeholder="Input broker port" onInput="this.value=this.value.replace(/[^0-9]/g, '')">
+                  <input class="form-control" type="text" ng-model="cluster.newBroker.port" name="broker_port" placeholder="输入代理端口" onInput="this.value=this.value.replace(/[^0-9]/g, '')">
                 </div>
               </td>
               <td>
@@ -116,10 +116,10 @@
         <div class="box-footer">
           <div>
             <button class="btn btn-sm btn-success" ng-click="addBroker(cluster)" ng-show="state.mode=='edit'&&!cluster.newBroker">
-              <i class="fa fa-plus"></i> Broker
+              <i class="fa fa-plus"></i> 经纪人
             </button>
             <button class="btn btn-sm btn-info" ng-click="saveNewBroker(cluster)" ng-show="state.mode=='edit'&&cluster.newBroker">
-              <i class="fa fa-saved"></i> Save
+              <i class="fa fa-saved"></i> 保存
             </button>
             <button class="btn btn-link" ng-click="clearNewBroker(cluster)"  ng-show="state.mode=='edit'&&cluster.newBroker">Cancel</button>
           </div>
@@ -128,7 +128,7 @@
       <!--Add Measures Button-->
       <div class="form-group">
         <button class="btn btn-sm btn-info" ng-click="addCluster()" ng-show="state.mode=='edit'">
-          <i class="fa fa-plus"></i> Cluster
+          <i class="fa fa-plus"></i> 集群
         </button>
       </div>
 
@@ -139,7 +139,7 @@
 
         <accordion-group is-open="state.isParserHeaderOpen=true">
           <accordion-heading>
-            Parser Setting
+            解析器设置
             <i class="pull-right glyphicon"
                ng-class="{'glyphicon-chevron-down': state.isParserHeaderOpen, 'glyphicon-chevron-right': !state.isParserHeaderOpen}"></i>
           </accordion-heading>
@@ -147,22 +147,22 @@
           <div class="form-group middle-popover" ng-class="{'required':state.mode=='edit'}">
             <div class="row">
               <label class="col-xs-12 col-sm-3 control-label no-padding-right">
-                <b>Parser Name</b>
-                <i class="fa fa-info-circle" kylinpopover placement="right" title="Parser Name" template="ParserName.html"></i>
+                <b>解析器名称</b>
+                <i class="fa fa-info-circle" kylinpopover placement="right" title="解析器名称" template="ParserName.html"></i>
               </label>
 
               <div class="col-xs-12 col-sm-6"
                    ng-class="{'has-error':form.cube_streaming_form.parserName.$invalid && (form.cube_streaming_form.parserName.$dirty||form.cube_streaming_form.$submitted)}">
                 <input ng-if="state.mode=='edit'" name="parserName" required ng-model="kafkaMeta.parserName" type="text"
-                       placeholder="Input kafkaConfig parserName"
+                       placeholder="输入kafkaConfig解析器名称"
                        class="form-control"/>
                 <small class="help-block"
                        ng-show="!form.cube_streaming_form.parserName.$error.required && form.cube_streaming_form.parserName.$invalid && (form.cube_streaming_form.parserName.$dirty||form.cube_streaming_form.$submitted)">
-                  Kafka parser name is invalid.
+                  Kafka解析器名称无效。
                 </small>
                 <small class="help-block"
                        ng-show="form.cube_streaming_form.parserName.$error.required && (form.cube_streaming_form.parserName.$dirty||form.cube_streaming_form.$submitted)">
-                  Kafka parser name is required.
+                  Kafka解析器名称为必填项。
                 </small>
                 <span ng-if="state.mode=='view'">{{kafkaMeta.parserName}}</span>
               </div>
@@ -171,8 +171,8 @@
           <div class="form-group middle-popover" ng-if="state.mode=='edit'&&state.target!=='kfkConfig'" ng-class="{'required':state.mode=='edit'}">
             <div class="row">
               <label class="col-xs-12 col-sm-3 control-label no-padding-right">
-                <b>Parser Timestamp Field</b>
-                <i class="fa fa-info-circle" kylinpopover placement="right" title="Parser Timestamp Field" template="ParserTimestampFieldsTip.html"></i>
+                <b>解析器时间戳字段</b>
+                <i class="fa fa-info-circle" kylinpopover placement="right" title="解析器时间戳字段" template="ParserTimestampFieldsTip.html"></i>
               </label>
 
               <div class="col-xs-12 col-sm-6 streamingParserCtr">
@@ -189,22 +189,22 @@
           <div class="form-group middle-popover" ng-class="{'required':state.mode=='edit'}">
             <div class="row">
               <label class="col-xs-12 col-sm-3 control-label no-padding-right">
-                <b>Parser Properties</b>
-                <i class="fa fa-info-circle" kylinpopover placement="right" title="Parser Properties" template="ParserPropertiesTip.html"></i>
+                <b>解析器属性</b>
+                <i class="fa fa-info-circle" kylinpopover placement="right" title="解析器属性" template="ParserPropertiesTip.html"></i>
               </label>
 
               <div class="col-xs-12 col-sm-6"
                    ng-class="{'has-error':form.cube_streaming_form.parserProperties.$invalid && (form.cube_streaming_form.parserProperties.$dirty||form.cube_streaming_form.$submitted)}">
                 <input ng-if="state.mode=='edit'" name="parserProperties" required ng-model="kafkaMeta.parserProperties" type="text"
-                       placeholder="configA=1;configB=2"
+                       placeholder="配置A=1;配置B=2"
                        class="form-control"/>
                 <small class="help-block"
                        ng-show="!form.cube_streaming_form.parserProperties.$error.required && form.cube_streaming_form.parserProperties.$invalid && (form.cube_streaming_form.parserProperties.$dirty||form.cube_streaming_form.$submitted)">
-                  Parser properties is invalid.
+                  解析器属性无效。
                 </small>
                 <small class="help-block"
                        ng-show="form.cube_streaming_form.parserProperties.$error.required && (form.cube_streaming_form.parserProperties.$dirty||form.cube_streaming_form.$submitted)">
-                  Parser properties is required.
+                  解析器属性是必需的。
                 </small>
                 <span ng-if="state.mode=='view'">{{kafkaMeta.parserProperties}}</span>
               </div>
@@ -217,7 +217,7 @@
       <accordion>
         <accordion-group is-open="state.isStreamingAdOpen" ng-init="state.isStreamingAdOpen">
           <accordion-heading>
-            Advanced Setting
+            高级设置
             <i class="pull-right glyphicon"
                ng-class="{'glyphicon-chevron-down': state.isStreamingAdOpen, 'glyphicon-chevron-right': !state.isStreamingAdOpen}"></i>
           </accordion-heading>
@@ -225,24 +225,24 @@
           <div class="form-group middle-popover" ng-class="{'required':state.mode=='edit'}">
             <div class="row">
               <label class="col-xs-12 col-sm-3 control-label no-padding-right">
-                <b>Timeout</b>
-                <i class="fa fa-info-circle" kylinpopover placement="right" title="Timeout" template="TimeoutTip.html"></i>
+                <b>超时</b>
+                <i class="fa fa-info-circle" kylinpopover placement="right" title="超时" template="TimeoutTip.html"></i>
               </label>
 
               <div class="col-xs-12 col-sm-6"
                    ng-class="{'has-error':form.cube_streaming_form.timeout.$invalid && (form.cube_streaming_form.timeout.$dirty||form.cube_streaming_form.$submitted)}">
                 <input ng-if="state.mode=='edit'" name="timeout" required ng-model="kafkaMeta.timeout" type="text"
-                       placeholder="Input kafkaConfig timeout"
+                       placeholder="输入kafkaConfig超时"
                        ng-pattern="/^\+?[1-9][0-9]*$/"
                        class="form-control"
                        onInput="this.value=this.value.replace(/[^0-9]/g, '')"/>
                 <small class="help-block"
                        ng-show="!form.cube_streaming_form.timeout.$error.required && form.cube_streaming_form.timeout.$invalid && (form.cube_streaming_form.timeout.$dirty||form.cube_streaming_form.$submitted)">
-                  Kafka timeout is invalid.
+                  Kafka超时无效。
                 </small>
                 <small class="help-block"
                        ng-show="form.cube_streaming_form.timeout.$error.required && (form.cube_streaming_form.timeout.$dirty||form.cube_streaming_form.$submitted)">
-                  Kafka timeout is required.
+                  Kafka超时设置是必需的。
                 </small>
                 <span ng-if="state.mode=='view'">{{kafkaMeta.timeout}}</span>
               </div>
@@ -257,20 +257,20 @@
 </div>
 
 <script type="text/ng-template" id="KafkaTopicTip.html">
-    <p>Input the kafka topic that contains source data.</p>
+    <p>输入包含源数据的kafka主题。</p>
   </script>
 <script type="text/ng-template" id="TimeoutTip.html">
-    <p>Set timeout for kafka client.</p>
+    <p>设置kafka客户端超时。</p>
   </script>
 <script type="text/ng-template" id="MarginTip.html">
-    <p>Deprecated. When the messages in kafka is not strictly sorted on timestamp, read more data (expressed in ts) before and after the specified interval to avoid data loss.</p>
+    <p>不推荐使用。 如果未严格按照时间戳对kafka中的消息进行排序，请在指定间隔之前和之后读取更多数据（以ts表示），以避免数据丢失。</p>
   </script>
 <script type="text/ng-template" id="ParserName.html">
-    <p>Set the parser to parse source data messages. The default parser works for json messages with a timestamp field.</p>
+    <p>设置解析器以解析源数据消息。 默认解析器适用于带有时间戳字段的json消息。</p>
   </script>
 <script type="text/ng-template" id="ParserTimestampFieldsTip.html">
-    <p>Provide the name of the timestamp field to the default parser.</p>
+    <p>将时间戳字段的名称提供给默认解析器。</p>
   </script>
 <script type="text/ng-template" id="ParserPropertiesTip.html">
-    <p>Provide a list of KV properties to the parser, delimited by semicolon.</p>
+    <p>提供解析器的KV属性列表，以分号分隔。</p>
 </script>

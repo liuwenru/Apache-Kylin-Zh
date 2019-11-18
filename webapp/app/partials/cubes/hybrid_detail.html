@@ -18,14 +18,14 @@
 
 <script type="text/ng-template" id="hybridDetail.html">
   <div class="modal-header">
-    <h4>Hybrid Detail</h4>
+    <h4>混合细节</h4>
   </div>
 
   <div class="modal-body">
     <div class="form-group row">
-      <label class="col-xs-4 control-label no-padding-right font-color-default">Hybrid Name</label>
+      <label class="col-xs-4 control-label no-padding-right font-color-default">混合名称</label>
       <div class="col-xs-8">
-        <input type="text" class="form-control" placeholder="Hybrid Name" ng-disabled="true" ng-model="hybrid.name">
+        <input type="text" class="form-control" placeholder="混合名称" ng-disabled="true" ng-model="hybrid.name">
       </div>
     </div>
 
@@ -35,7 +35,7 @@
       <div class="col-xs-12">
         <div class="dataTables_wrapper no-footer">
           <div class="row table-header">
-            <label class="col-xs-4 control-label no-padding-right font-color-default" for="modelName">Model</label>
+            <label class="col-xs-4 control-label no-padding-right font-color-default" for="modelName">模型</label>
             <div class="col-xs-8">
               <div>
                 <select width="'100%'" chosen ng-options="model.name as model.name for model in hybridModels" ng-model="hybrid.model" ng-disabled="true"></select>
@@ -46,7 +46,7 @@
             <table class="table table-striped table-bordered table-hover dataTable no-footer ng-scope" ng-if="hybrid.realizations.length">
               <thead>
                 <tr>
-                  <th>Name</th>
+                  <th>名称</th>
                 </tr>
               </thead>
               <tbody>
@@ -58,7 +58,7 @@
           </div>
 
           <div class="data-empty" ng-if="!hybrid.realizations.length">
-            Empty
+            空
           </div>
         </div>
       </div>
@@ -66,6 +66,6 @@
   </div>
 
   <div class="modal-footer">
-    <button class="btn btn-warning" ng-click="cancel()">Close</button>
+    <button class="btn btn-warning" ng-click="cancel()">关闭</button>
   </div>
 </script>

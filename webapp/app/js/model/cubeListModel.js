@@ -41,7 +41,7 @@ KylinApp.service('CubeList',function(CubeService,$q,AccessService){
             _this.cubes = _this.cubes.concat(_cubes);
             defer.resolve(_cubes.length);
         },function(){
-            defer.reject("Failed to load cubes");
+            defer.reject("无法加载多维数据集");
         });
         return defer.promise;
     };

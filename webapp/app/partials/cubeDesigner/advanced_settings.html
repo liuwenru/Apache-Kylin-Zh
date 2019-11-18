@@ -20,11 +20,11 @@
     <ng-form name="forms.cube_setting_form">
       <div>
         <div class="form-group">
-          <h3 style="margin-left:42px;">Aggregation Groups </h3>
+          <h3 style="margin-left:42px;">聚集组 </h3>
           <div style="margin-left:22px;">
             <div class="box-body">
               <div class="col-xs-12">
-                Visit <a href="http://kylin.apache.org/blog/2016/02/18/new-aggregation-group" target="_blank">aggregation group</a> for more about aggregation group.
+                访问 <a href="http://kylin.apache.org/blog/2016/02/18/new-aggregation-group" target="_blank">聚集群</a> 有关聚合组的更多信息。
               </div>
             </div>
           </div>
@@ -34,10 +34,10 @@
             <tr class="row">
               <th class="col-xs-1">ID</th>
               <th class="col-xs-3">
-                <span>Aggregation Groups</span>
+                <span>聚集组</span>
                 <span style="margin-left:42px">
-                  <i kylinpopover placement="left" title="Max Dimension Combination" template="dimCapTip.html" class="fa fa-info-circle"></i>
-                  Max Dimension Combination:
+                  <i kylinpopover placement="left" title="最大尺寸组合" template="dimCapTip.html" class="fa fa-info-circle"></i>
+                 最大尺寸组合：
                   <input onInput="this.value=this.value.replace(/[^0-9]/g, '')" type="text" ng-model="dim_cap" ng-change="changeDimCap(dim_cap)" ng-disabled="state.mode !== 'edit'" style="margin-left:5px; width:20px;">
                 </span>
               </th>
@@ -54,7 +54,7 @@
                 <table class="table">
                   <tr class="row">
                     <td class="col-xs-3" style="min-width:130px;">
-                      Includes
+                      包括
                     </td>
                     <td class="col-xs-8">
                       <!-- Dimensions -->
@@ -65,7 +65,7 @@
                         on-select="refreshAggregationGroup(cubeMetaFrame.aggregation_groups, rowIndex, aggregation_group)"
                         on-remove="refreshAggregationGroup(cubeMetaFrame.aggregation_groups, rowIndex, aggregation_group)"
                         ng-if="state.mode=='edit'" style="width: 100%" multiple ng-model="aggregation_group.includes">
-                        <ui-select-match placeholder="Select Column...">{{$item.column}}</ui-select-match>
+                        <ui-select-match placeholder="选择列...">{{$item.column}}</ui-select-match>
                         <ui-select-choices
                           repeat="rowkey_column.column as rowkey_column in cubeMetaFrame.rowkey.rowkey_columns | filter:$select.search">
                           {{rowkey_column.column}}
@@ -79,7 +79,7 @@
                   </tr>
                   <tr class="row">
                     <td class="col-xs-3">
-                      Mandatory Dimensions
+                      强制尺寸
                     </td>
                     <td class="col-xs-8">
                       <ui-select
@@ -88,7 +88,7 @@
                         on-select="refreshAggregationGroup(cubeMetaFrame.aggregation_groups, rowIndex, aggregation_group)"
                         on-remove="refreshAggregationGroup(cubeMetaFrame.aggregation_groups, rowIndex, aggregation_group)"
                         ng-if="state.mode=='edit'" style="width: 100%" multiple ng-model="aggregation_group.select_rule.mandatory_dims">
-                        <ui-select-match placeholder="Select Column...">{{$item}}</ui-select-match>
+                        <ui-select-match placeholder="选择列...">{{$item}}</ui-select-match>
                         <ui-select-choices
                           repeat="column in aggregation_group.includes | filter:$select.search">
                           {{column}}
@@ -103,7 +103,7 @@
                   </tr>
                   <tr class="row">
                     <td class="col-xs-3">
-                      Hierarchy Dimensions
+                      层次结构维度
                     </td>
                     <td class="col-xs-9">
                       <table class="table">
@@ -115,7 +115,7 @@
                               on-select="refreshAggregationHierarchy(cubeMetaFrame.aggregation_groups, rowIndex, aggregation_group,$index,hierarchyDims)"
                               on-remove="refreshAggregationHierarchy(cubeMetaFrame.aggregation_groups, rowIndex, aggregation_group,$index,hierarchyDims)"
                               ng-if="state.mode=='edit'" style="width: 100%" multiple ng-model="hierarchyDims">
-                              <ui-select-match placeholder="Select Column...">{{$item}}</ui-select-match>
+                              <ui-select-match placeholder="选择列...">{{$item}}</ui-select-match>
                               <ui-select-choices
                                 repeat="column in aggregation_group.includes | filter:$select.search">
                                 {{column}}
@@ -134,7 +134,7 @@
                         <tr class="row">
                           <td class="col-xs-12">
                             <button class="btn btn-sm btn-info"     ng-disabled="instance.status=='READY'"
-                                    ng-click="addNewHierarchy(aggregation_group)" ng-show="state.mode=='edit'">New Hierarchy<i class="fa fa-plus"></i>
+                                    ng-click="addNewHierarchy(aggregation_group)" ng-show="state.mode=='edit'">新建层次<i class="fa fa-plus"></i>
                             </button>
                           </td>
                         </tr>
@@ -143,7 +143,7 @@
                   </tr>
                   <tr class="row">
                     <td class="col-xs-3">
-                      Joint Dimensions
+                      接头尺寸
                     </td>
                     <td class="col-xs-9">
                       <table class="table">
@@ -156,7 +156,7 @@
                               on-select="refreshAggregationJoint(cubeMetaFrame.aggregation_groups, rowIndex, aggregation_group,$index,jointDims)"
                               on-remove="refreshAggregationJoint(cubeMetaFrame.aggregation_groups, rowIndex, aggregation_group,$index,jointDims)"
                               ng-if="state.mode=='edit'" style="width: 100%" multiple ng-model="jointDims">
-                              <ui-select-match placeholder="Select Column...">{{$item}}</ui-select-match>
+                              <ui-select-match placeholder="选择列...">{{$item}}</ui-select-match>
                               <ui-select-choices
                                 repeat="column in aggregation_group.includes | filter:$select.search">
                                 {{column}}
@@ -175,7 +175,7 @@
                         <tr class="row">
                           <td class="col-xs-12">
                             <button class="btn btn-sm btn-info"      ng-disabled="instance.status=='READY'"
-                                    ng-click="addNewJoint(aggregation_group)" ng-show="state.mode=='edit'">New Joint<i class="fa fa-plus"></i>
+                                    ng-click="addNewJoint(aggregation_group)" ng-show="state.mode=='edit'">新建联合<i class="fa fa-plus"></i>
                             </button>
                           </td>
                         </tr>
@@ -193,13 +193,13 @@
             </tr>
           </table>
           <button class="btn btn-sm btn-info" style="margin-left:42px" ng-click="addNewAggregationGroup()"  ng-disabled="instance.status=='READY'"
-                  ng-show="state.mode=='edit'">New Aggregation Group<i class="fa fa-plus"></i>
+                  ng-show="state.mode=='edit'">新建聚集组<i class="fa fa-plus"></i>
           </button>
         </div>
         <div class="form-group large-popover" >
-          <h3 style="margin-left:42px">Rowkeys  <i kylinpopover placement="right" title="Rowkey" template="rowkeyTip.html" class="fa fa-info-circle"></i></h3>
+          <h3 style="margin-left:42px">行键  <i kylinpopover placement="right" title="行键" template="rowkeyTip.html" class="fa fa-info-circle"></i></h3>
           <div style="padding: 0 42px; word-break: normal;">
-            <b>Important: </b>Dimension's positioin on HBase rowkey is critical for performance. You can drag and drop to adjust the sequence. In short, put filtering dimension before non-filtering dimension, and  put high cardinality dimension before low cardinality dimension.
+            <b>重要： </b>Dimension在HBase行键上的位置对于性能至关重要。 您可以拖放以调整顺序。 简而言之，将过滤维放在非过滤维之前，将高基数放在低基数之前。
           </div>
           <div style="margin-left:42px">
               <div class="box-body">
@@ -209,10 +209,10 @@
                   <thead>
                   <tr>
                     <th>ID</th>
-                    <th class="col-xs-5">Column</th>
-                    <th>Encoding</th>
-                    <th>Length</th>
-                    <th>Shard By</th>
+                    <th class="col-xs-5">列</th>
+                    <th>编码方式</th>
+                    <th>长度</th>
+                    <th>分片</th>
                   </tr>
                   </thead>
 
@@ -257,9 +257,9 @@
                     </td>
                     <td>
                       <!--Column Name -->
-                      <input type="text" class="form-control" placeholder="Column Name.."
+                      <input type="text" class="form-control" placeholder="列名.."
                              ng-change="refreshRowKey(convertedRowkeys,$index,rowkey_column)"  ng-disabled="true"
-                             tooltip="rowkey column name.." tooltip-trigger="focus"
+                             tooltip="行键列名.." tooltip-trigger="focus"
                              ng-model="rowkey_column.column" class="form-control">
                     </td>
 
@@ -274,24 +274,24 @@
                     <td>
                       <!--Column Length -->
                       <input type="text" class="form-control" placeholder="Column Length.."
-                             tooltip="rowkey column length.." tooltip-trigger="focus"
+                             tooltip="行键列的长度" tooltip-trigger="focus"
                              ng-disabled="rowkey_column.encoding.indexOf('dict')>=0||rowkey_column.encoding.indexOf('date')>=0||rowkey_column.encoding.indexOf('time')>=0||instance.status=='READY'"
                              ng-change="refreshRowKey(convertedRowkeys,$index,rowkey_column);"
                              ng-model="rowkey_column.valueLength" class="form-control">
 
-                      <small class="help-block red" ng-show="state.mode=='edit' && rowkey_column.encoding.indexOf('integer')>=0 && (rowkey_column.valueLength>8 || rowkey_column.valueLength<1)">integer encoding column length should between 1 and 8</small>
+                      <small class="help-block red" ng-show="state.mode=='edit' && rowkey_column.encoding.indexOf('integer')>=0 && (rowkey_column.valueLength>8 || rowkey_column.valueLength<1)">整数编码列长度应在1到8之间</small>
                     </td>
 
                     <td>
                       <select  style="width:180px;"
                               chosen ng-model="rowkey_column.isShardBy"
-                              tooltip="false by default"     ng-disabled="instance.status=='READY'"
-                              data-placeholder="false by default"
+                              tooltip="默认为假"     ng-disabled="instance.status=='READY'"
+                              data-placeholder="默认为假"
                               ng-change="refreshRowKey(convertedRowkeys,$index,rowkey_column,true)"
                               ng-options="dt as dt for dt in cubeConfig.rowKeyShardOptions">
                         <option value=""></option>
                       </select>
-                      <small class="help-block red" ng-show="state.mode=='edit' && rule.shardColumnAvailable==false && rowkey_column.isShardBy == true">at most one 'shard by' column is allowed.</small>
+                      <small class="help-block red" ng-show="state.mode=='edit' && rule.shardColumnAvailable==false && rowkey_column.isShardBy == true">最多允许一个“分片”列。</small>
                     </td>
                   </tr>
                   </tbody>
@@ -301,14 +301,14 @@
         </div>
         <!--Edit Mandatory Cuboids-->
         <div class="form-group large-popover" ng-if="state.mode=='edit' || (cubeMetaFrame.mandatory_dimension_set_list.length > 0 && state.mode!=='edit')">
-          <h3 style="margin-left:42px">Mandatory Cuboids</h3>
+          <h3 style="margin-left:42px">强制性长方体</h3>
           <div style="margin-left:42px;">
             <div class="box-body">
               <!-- view mode-->
               <table ng-if="cubeMetaFrame.mandatory_dimension_set_list.length > 0 && state.mode!=='edit'" class="table table-hover table-bordered list" style="table-layout: fixed;width:92%;">
                 <thead>
                   <tr>
-                    <th>Cuboids</th>
+                    <th>长方体</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -323,7 +323,7 @@
               <table ng-if="state.mode=='edit'" class="table table-hover table-bordered list" style="table-layout: fixed;width:92%;">
                 <thead>
                   <tr>
-                    <th>Cuboids</th>
+                    <th>长方体</th>
                     <th style="width:5%"></th>
                   </tr>
                 </thead>
@@ -331,7 +331,7 @@
                   <tr ng-repeat="dimensionSet in cubeMetaFrame.mandatory_dimension_set_list">
                     <td>
                       <ui-select multiple ng-model="dimensionSet" theme="bootstrap" sortable="true" close-on-select="false" class="form-control">
-                        <ui-select-match placeholder="Select Dimension...">{{$item.column}}</ui-select-match>
+                        <ui-select-match placeholder="选择尺寸...">{{$item.column}}</ui-select-match>
                         <ui-select-choices repeat="dimension.column as dimension in cubeMetaFrame.rowkey.rowkey_columns | filter:$select.search">
                           <div ng-bind-html="dimension.column | highlight: $select.search"></div>
                         </ui-select-choices>
@@ -345,7 +345,7 @@
                   <tr>
                     <td>
                       <ui-select multiple ng-model="mandatoryDimensionSet.select" theme="bootstrap" sortable="true" close-on-select="false" class="form-control">
-                        <ui-select-match placeholder="Select Dimension...">{{$item.column}}</ui-select-match>
+                        <ui-select-match placeholder="选择尺寸...">{{$item.column}}</ui-select-match>
                         <ui-select-choices repeat="dimension.column as dimension in cubeMetaFrame.rowkey.rowkey_columns | filter:$select.search">
                           <div ng-bind-html="dimension.column | highlight: $select.search"></div>
                         </ui-select-choices>
@@ -358,9 +358,9 @@
                   </tr>
                   <tr>
                     <td colspan="2">
-                      <label>Import cuboids from file:</label>
+                      <label>从文件导入长方体:</label>
                       <input type="file" name="cuboids" id="cuboids" style="display: inline;"/>
-                      <button class="btn btn-xs btn-info" ng-click="uploadMandatoryDimensionSetList()">Upload</button>
+                      <button class="btn btn-xs btn-info" ng-click="uploadMandatoryDimensionSetList()">上传</button>
                     </td>
                   </tr>
                 </tbody>
@@ -370,15 +370,15 @@
         </div>
         <!--Cube Engine-->
         <div class="form-group large-popover" style="margin-bottom:30px;">
-          <h3 style="margin-left:42px;margin-bottom:30px;">Cube Engine  <i kylinpopover placement="right" title="Cube Engine" template="CubeEngineTip.html" class="fa fa-info-circle"></i></h3>
+          <h3 style="margin-left:42px;margin-bottom:30px;">多维数据集引擎  <i kylinpopover placement="right" title="Cube Engine" template="CubeEngineTip.html" class="fa fa-info-circle"></i></h3>
           <div class="row" style="margin-left:42px">
-            <label class="control-label col-xs-12 col-sm-3 no-padding-right font-color-default"><b>Engine Type :</b></label>
+            <label class="control-label col-xs-12 col-sm-3 no-padding-right font-color-default"><b>引擎种类 :</b></label>
             <div class="col-xs-12 col-sm-6">
               <select style="width: 100%" chosen
                       ng-model="cubeMetaFrame.engine_type"
                       ng-if="state.mode=='edit'"
                       ng-options="et.value as et.name for et in cubeConfig.engineType">
-                <option value="">--Select Engine Type--</option>
+                <option value="">--选择引擎类型--</option>
               </select>
               <span ng-if="state.mode=='view'&&cubeMetaFrame.engine_type==2">MapReduce</span>
               <span ng-if="state.mode=='view'&&cubeMetaFrame.engine_type==4">Spark</span>
@@ -386,17 +386,17 @@
           </div>
         </div>
         <div class="form-group large-popover">
-          <h3 style="margin-left:42px">Advanced Dictionaries  <i kylinpopover placement="right" title="Advanced Dictionaries" template="AdvancedDictionariesTip.html" class="fa fa-info-circle"></i></h3>
+          <h3 style="margin-left:42px">高级词典  <i kylinpopover placement="right" title="Advanced Dictionaries" template="AdvancedDictionariesTip.html" class="fa fa-info-circle"></i></h3>
           <div style="margin-left:42px">
             <div class="box-body">
               <br/>
               <table class="table table-striped table-hover">
                 <thead>
                 <tr>
-                  <th>Column</th>
-                  <th>Builder Class</th>
-                  <th>Reuse</th>
-                  <th ng-if="state.mode=='edit'">Actions</th>
+                  <th>列</th>
+                  <th>构建类</th>
+                  <th>重用</th>
+                  <th ng-if="state.mode=='edit'">操作</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -432,14 +432,14 @@
         <!--Add Dictionaries Button-->
         <div class="form-group" style="margin-left:42px;">
           <button class="btn btn-sm btn-info" ng-click="addNewDictionaries()" ng-show="state.mode=='edit' && !addNew" ng-disabled="instance.status=='READY'">
-            <i class="fa fa-plus"></i> Dictionaries
+            <i class="fa fa-plus"></i> 字典
           </button>
        </div>
        <!--Edit Dictionary-->
        <ng-form name="edit_mes_form" style="margin-left:42px;">
          <div class="box box-solid"  ng-if="addNew" style="margin-left:42px;">
            <div class="box-header">
-             <h4 class="box-title text-info">Edit Dictionaries</h4>
+             <h4 class="box-title text-info">编辑字典</h4>
            </div>
            <div class="box-body">
              <div class="row">
@@ -453,7 +453,7 @@
                                ng-model="newDictionaries.column"
                                ng-change="measureReturnTypeUpdate();"
                                ng-options="column as column for column in getFactColumns()" required>
-                         <option value="">-- Select a Column --</option>
+                         <option value="">-- 选择一列 --</option>
                        </select>
                      </div>
                    </div>
@@ -461,23 +461,23 @@
                  <div class="form-group">
                    <div class="row" style="margin-left:5px;">
                      <label class="radio-inline ng-binding ng-scope">
-                       <input type="radio" name="reuse" ng-value=false ng-model="isReuse"  ng-change="change()"/><b>Builder Class</b>
+                       <input type="radio" name="reuse" ng-value=false ng-model="isReuse"  ng-change="change()"/><b>构建类</b>
                      </label>
                      <label class="radio-inline ng-binding ng-scope">
-                       <input type="radio" name="reuse"  ng-value=true ng-model="isReuse" ng-change="change()"/><b>Reuse</b>
+                       <input type="radio" name="reuse"  ng-value=true ng-model="isReuse" ng-change="change()"/><b>重用</b>
                      </label>
                    </div>
                  </div>
                  <!--Builder-->
                  <div class="form-group" ng-if="!isReuse" >
                    <div class="row">
-                     <label class="col-xs-12 col-sm-3 control-label no-padding-right font-color-default"><b>Builder Class</b></label>
+                     <label class="col-xs-12 col-sm-3 control-label no-padding-right font-color-default"><b>构建类</b></label>
                      <div class="col-xs-12 col-sm-6">
                        <select class="form-control" chosen
                                ng-model="newDictionaries.builder"
                                ng-options="item.value as item.name for item in cubeConfig.buildDictionaries"
                                required>
-                         <option value="">-- Select a builder class--</option>
+                         <option value="">-- 选择一个构建类别--</option>
                        </select>
                      </div>
                    </div>
@@ -491,7 +491,7 @@
                                ng-model="newDictionaries.reuse"
                                ng-change="measureReturnTypeUpdate();"
                                ng-options="column as column for column in getFactColumns()" required>
-                         <option value="">-- Select a Column --</option>
+                         <option value="">-- 选择一列 --</option>
                        </select>
                      </div>
                    </div>
@@ -501,23 +501,23 @@
            </div>
            <div class="box-footer">
              <button class="btn btn-sm btn-info" ng-disabled="edit_mes_form.$invalid"
-                     ng-click="saveNewDictionaries()" ng-show="state.mode=='edit'">OK</button>
-             <button class="btn btn-link" ng-click="clearNewDictionaries()">Cancel</button>
+                     ng-click="saveNewDictionaries()" ng-show="state.mode=='edit'">好的</button>
+             <button class="btn btn-link" ng-click="clearNewDictionaries()">取消</button>
            </div>
          </div>
          <!-- Advanced Lookup Table-->
          <div class="form-group large-popover" style="margin-bottom:30px;">
-           <h3 style="margin-left:42px;margin-bottom:30px;">Advanced Snapshot Table  <i kylinpopover placement="right" title="Advanced Snapshot Table" template="AdvanceSnapshotTableTip.html" class="fa fa-info-circle"></i></h3>
+           <h3 style="margin-left:42px;margin-bottom:30px;">高级快照表  <i kylinpopover placement="right" title="高级快照表" template="AdvanceSnapshotTableTip.html" class="fa fa-info-circle"></i></h3>
            <div style="margin-left:42px">
              <div class="box-body">
                <br/>
                <table class="table table-striped table-hover">
                  <thead>
                  <tr>
-                   <th>Snapshot Table</th>
-                   <th>Type</th>
-                   <th>Global</th>
-                   <th ng-if="state.mode=='edit'">Actions</th>
+                   <th>快照表</th>
+                   <th>类型</th>
+                   <th>全部</th>
+                   <th ng-if="state.mode=='edit'">操作</th>
                  </tr>
                  </thead>
                  <tbody>
@@ -547,13 +547,13 @@
            <!-- Add  Snapshot-->
            <div class="form-group" style="margin-left:42px;">
              <button class="btn btn-sm btn-info" ng-click="addNewSnapshot()" ng-show="state.mode=='edit' && !addNewSanpshot" ng-disabled="instance.status=='READY'">
-               <i class="fa fa-plus"></i> Snapshot Table
+               <i class="fa fa-plus"></i> 快照表
              </button>
            </div>
            <!--Edit Snapshot-->
            <div class="box box-solid"  ng-if="addNewSanpshot" style="margin-left:42px;">
              <div class="box-header">
-               <h4 class="box-title text-info">Edit Snapshot</h4>
+               <h4 class="box-title text-info">编辑快照</h4>
              </div>
              <div class="box-body">
                <div class="row">
@@ -585,7 +585,7 @@
                    <!--Builder-->
                    <div class="form-group" ng-if="!isReuse" >
                      <div class="row">
-                       <label class="col-xs-12 col-sm-3 control-label no-padding-right font-color-default"><b>Global</b></label>
+                       <label class="col-xs-12 col-sm-3 control-label no-padding-right font-color-default"><b>全部的</b></label>
                        <div class="col-xs-12 col-sm-6">
                          <input type="checkbox" ng-model="newSnapshot.select.global" ng-disabled="(newSnapshot.select.storage_type == 'hbase')">
                        </div>
@@ -596,14 +596,14 @@
              </div>
              <div class="box-footer">
                <button class="btn btn-sm btn-info"
-                     ng-click="addSnapshot(newSnapshot.select)" ng-show="state.mode=='edit'">OK</button>
-               <button class="btn btn-link" ng-click="cancelEditSnapshot()">Cancel</button>
+                     ng-click="addSnapshot(newSnapshot.select)" ng-show="state.mode=='edit'">好的</button>
+               <button class="btn btn-link" ng-click="cancelEditSnapshot()">取消</button>
              </div>
            </div>
          </div>
          <!--Edit ColumnFamily-->
          <div class="form-group large-popover" >
-           <h3 style="margin-left:42px">Advanced ColumnFamily  <i kylinpopover placement="right" title="Advanced ColumnFamily" template="AdvancedColumnFamilyTip.html" class="fa fa-info-circle"></i></h3>
+           <h3 style="margin-left:42px">高级列族  <i kylinpopover placement="right" title="高级列族" template="AdvancedColumnFamilyTip.html" class="fa fa-info-circle"></i></h3>
            <div style="margin-left:42px">
              <div class="box-body">
                <!-- VIEW MODE -->
@@ -611,8 +611,8 @@
                  <table class="table table-striped table-hover">
                    <thead>
                    <tr>
-                     <th class="col-xs-1">CF</th>
-                     <th class="col-xs-11">Measures</th>
+                     <th class="col-xs-1">列族</th>
+                     <th class="col-xs-11">度量</th>
                    </tr>
                    </thead>
                    <tbody class="cube-dimension">
@@ -636,9 +636,9 @@
                         class="table table-hover">
 
                    <tr class="row">
-                     <th class="col-xs-1">CF</th>
-                     <th class="col-xs-10">Measures</th>
-                     <th class="col-xs-1">Actions</th>
+                     <th class="col-xs-1">列族</th>
+                     <th class="col-xs-10">度量</th>
+                     <th class="col-xs-1">操作</th>
                    </tr>
 
                    <tr ng-repeat="colFamily in cubeMetaFrame.hbase_mapping.column_family" ng-init="rowIndex = $index" class="row">
@@ -654,7 +654,7 @@
                          on-remove="refreshColumnFamily(cubeMetaFrame.hbase_mapping.column_family, rowIndex, colFamily)"
                          ng-model="colFamily.columns[0].measure_refs"
                          multiple>
-                         <ui-select-match placeholder="Select Measure...">{{$item}}</ui-select-match>
+                         <ui-select-match placeholder="选择度量...">{{$item}}</ui-select-match>
                          <ui-select-choices repeat="measure in getAllMeasureNames() | filter:$select.search |assignedMeasureNames:getAssignedMeasureNames()">
                            {{measure}}
                          </ui-select-choices>
@@ -674,7 +674,7 @@
 
                <div class="form-group" >
                  <button class="btn btn-sm btn-info" ng-click="addColumnFamily()" ng-show="state.mode=='edit'">
-                   <i class="fa fa-plus"></i> ColumnFamily
+                   <i class="fa fa-plus"></i> 列族
                  </button>
                </div>
 
@@ -689,44 +689,44 @@
 <script type="text/ng-template" id="dimCapTip.html">
   <div>
     <ol style="font-size:12px;">
-      <li>Dimension limitations mean max dimensions may be contained within a group of SQL queries.</li>
-      <li>In a set of queries, if each query required the number of dimensions is not more than five, you can set 5 here.</li>
+      <li>维度限制意味着最大维度可能包含在一组SQL查询中。</li>
+      <li>在一组查询中，如果每个查询所需的维数不超过5个，则可以在此处设置5个。</li>
     </ol>
   </div>
 </script>
 <script type="text/ng-template" id="rowkeyTip.html">
   <div>
-    <h4>Shard By this column?</h4>
+    <h4>通过此列分片？</h4>
     <p>
-      If specified as "true", cube data will be sharded according to its value.
+      如果指定为“ true”，则多维数据集数据将根据其值进行分片。
     </p>
 
-    <h4>RowKey Encoding</h4>
+    <h4>行键编码</h4>
     <ol>
       <li>
-        "dict" encoding will try to build a dictionaries for the dimension
+       “ dict”编码将尝试为该维度建立字典
       </li>
       <li>
-        "fixed_length" encoding will encode the dimension vlaues by fixed length bytes with padding
+       “固定长度”编码将按固定长度字节对尺寸值进行填充编码
       </li>
       <li>
-        "int" encoding uses variable integer to encode integers
+        “ int”编码使用可变整数来编码整数
       </li>
     </ol>
   </div>
 </script>
 <script type="text/ng-template" id="AdvancedDictionariesTip.html">
   <div>
-    <h4>Special settings for dictionaries.</h4>
+    <h4>字典的特殊设置。</h4>
     <ol>
       <li>
-        "Global Dictionary" is the default dict for precise count distinct measure, which support rollup among all segments.
+        “全局字典”是精确计数非重复度量的默认字典，它支持所有段之间的汇总。
       </li>
       <li>
-        "Segment Dictionary" is the special dict for precise count distinct measure, which is based on one segment and could not
-        support rollup among segments.
-        Specifically, if your cube isn't partitioned or you can ensure all your SQLs will group by your partition_column,
-        you could use "Segment Dictionary" instead of "Global Dictionary".
+       “段字典”是用于精确计数不同度量的特殊命令，它基于一个段并且不能
+         支持细分之间的汇总。
+         具体来说，如果多维数据集未分区，或者可以确保所有SQL都按partition_column分组，
+         您可以使用“细分词典”代替“全局词典”。
       </li>
     </ol>
   </div>
@@ -734,20 +734,20 @@
 
 <script type="text/ng-template" id="AdvancedColumnFamilyTip.html">
   <div>
-    <h4>If there are more than one ultrahigh cardinality precise count distinct measures,
-        you could assign these measures to more column family.</h4>
+    <h4>如果有不止一种超高基数精确计数的不同量度，
+         您可以将这些指标分配给更多的列族。</h4>
   </div>
 </script>
 <script type="text/ng-template" id="CubeEngineTip.html" >
   <div>
     <h4>
-       Select cube engine for building cube.
+       选择用于构建多维数据集的多维数据集引擎。
     </h4>
   </div>
 </script>
 
 <script type="text/ng-template" id="AdvanceSnapshotTableTip.html">
   <div>
-    <h4>Advance snapshot design for global lookup table and provide different storage type.</h4>
+    <h4>提前为全局查找表设计快照，并提供不同的存储类型。</h4>
   </div>
 </script>

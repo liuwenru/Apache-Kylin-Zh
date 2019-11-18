@@ -30,8 +30,8 @@
               <div class="form-group">
                 <div class="row middle-popover">
                   <label class="control-label col-xs-12 col-sm-3 no-padding-right font-color-default">
-                    <b>Auto Merge Thresholds</b>
-                    <i class="fa fa-info-circle" kylinpopover title="Auto Merge Thresholds" template="autoMergeThresholdsTip.html" placement="right"></i>
+                    <b>自动合并阈值</b>
+                    <i class="fa fa-info-circle" kylinpopover title="自动合并阈值" template="autoMergeThresholdsTip.html" placement="right"></i>
                   </label>
 
                   <div class="col-xs-12 col-sm-6">
@@ -46,20 +46,20 @@
                                     ng-options="rangeTypes as rangeTypes for rangeTypes in [0.5,1,2,4,8] "
                                     ng-change="refreshAutoMergeTimeRanges(_auto_merge_time_ranges,$index,timeRange)"
                                     style="width: 100% !important;"
-                                    data-placeholder="hours range"
+                                    data-placeholder="小时范围"
                                     class="chosen-select">
                             </select>
                             <input type="text" ng-if="timeRange.type=='days'"
                                    onInput="this.value=this.value.replace(/[^0-9]/g, '')"
                                    ng-change="refreshAutoMergeTimeRanges(_auto_merge_time_ranges,$index,timeRange)"
-                                   class="form-control input-sm" placeholder="days range" ng-model="timeRange.range">
+                                   class="form-control input-sm" placeholder="天数范围" ng-model="timeRange.range">
                           </td>
                           <td class="col-xs-4">
                             <select chosen ng-model="timeRange.type"
                                     ng-options="rangeTypes as rangeTypes for rangeTypes in ['hours','days'] "
                                     ng-change="refreshAutoMergeTimeRanges(_auto_merge_time_ranges,$index,timeRange)"
                                     style="width: 200px !important;"
-                                    data-placeholder="select a project"
+                                    data-placeholder="选择一个项目"
                                     class="chosen-select">
                             </select>
                           </td>
@@ -74,7 +74,7 @@
                       </table>
                       <button class="btn btn-xs btn-info" ng-show="state.mode=='edit'"
                               ng-click="addNewMergeTimeRange()">
-                        New Thresholds <i class="fa fa-plus"></i>
+                        新建阈值 <i class="fa fa-plus"></i>
                       </button>
                     </div>
                     <div class="row" ng-if="state.mode=='view'">
@@ -101,13 +101,13 @@
               <div class="form-group">
                 <div class="row middle-popover">
                   <label class="control-label col-xs-12 col-sm-3 no-padding-right font-color-default">
-                    <b>Volatile Range</b> <i class="fa fa-info-circle" title="Volatile Range" kylinpopover template="volatileRangeTip.html" placement="right"></i>
+                    <b>改变范围</b> <i class="fa fa-info-circle" title="改变范围" kylinpopover template="volatileRangeTip.html" placement="right"></i>
                   </label>
 
                   <div class="col-xs-12 col-sm-6">
                     <!--volatile range is store in CubeInstance, will convert to cubeMetaFrame for front end-->
                     <input type="text" retention-format class="form-control ng-scope ng-pristine ng-valid"
-                           placeholder="how many days cube volatile" ng-model="cubeMetaFrame.volatile_range"
+                           placeholder="多少天立方体易变" ng-model="cubeMetaFrame.volatile_range"
                            ng-if="state.mode=='edit'">
                     <span ng-if="state.mode=='view'">{{cubeMetaFrame.volatile_range | millisecondsToDay}}</span>
                   </div>
@@ -122,13 +122,13 @@
               <div class="form-group">
                 <div class="row middle-popover">
                   <label class="control-label col-xs-12 col-sm-3 no-padding-right font-color-default">
-                    <b>Retention Threshold</b> <i class="fa fa-info-circle" title="Retention Threshold" kylinpopover template="retentionTip.html" placement="right"></i>
+                    <b>保留阈值</b> <i class="fa fa-info-circle" title="保留阈值" kylinpopover template="retentionTip.html" placement="right"></i>
                   </label>
 
                   <div class="col-xs-12 col-sm-6">
                     <!--retention range is store in CubeInstance, will convert to cubeMetaFrame for front end-->
                     <input type="text" retention-format class="form-control ng-scope ng-pristine ng-valid"
-                           placeholder="how many days cube retention" ng-model="cubeMetaFrame.retention_range"
+                           placeholder="多维数据集保留多少天" ng-model="cubeMetaFrame.retention_range"
                            ng-if="state.mode=='edit'">
                     <span ng-if="state.mode=='view'">{{cubeMetaFrame.retention_range | millisecondsToDay}}</span>
                   </div>
@@ -162,7 +162,7 @@
 
                     <small class="help-block"
                            ng-show="metaModel.model.partition_desc.partition_date_column!=null&& cubeMetaFrame.partition_date_start==null">
-                      Please input start date when partition date column is defined in model.
+                      当在模型中定义了分区日期列时，请输入开始日期。
                     </small>
                     <!--view model will convert use filter-->
                     <span ng-if="state.mode=='view' && metaModel.model.partition_desc.partition_date_column">{{(cubeMetaFrame.partition_date_start)|reverseToGMT0 }}</span>
@@ -180,13 +180,13 @@
 </div>
 
 <script type="text/ng-template" id="autoMergeThresholdsTip.html">
-    <p>The thresholds will be checked to see if any consecutive segments' time range has reached a threshold. For example the [7 days, 30 days] will result in daily incremental segments being merged every 7 days, and five 7-days segments will get merged as they exceed 30 days.</p>
+    <p>将检查阈值，以查看任何连续段的时间范围是否已达到阈值。 例如，[7天30天]将导致每7天合并每日增量细分，而超过30天则将合并5个7天细分。</p>
 </script>
 
 <script type="text/ng-template" id="volatileRangeTip.html">
-  <p>By default it is '0', which will auto merge all possible cube segments, or 'Auto Merge' will not merge latest [Volatile Range] days cube segments.</p>
+  <p>默认情况下，它是“ 0”，它将自动合并所有可能的多维数据集段，或者“自动合并”将不合并最新的[Volatile Range]天多维数据集段。</p>
 </script>
 
 <script type="text/ng-template" id="retentionTip.html">
-<p>By default it is '0', which will keep all segments, or will keep latest [Retention Threshold] days cube segments.</p>
+<p>默认情况下，它是'0'，它将保留所有细分，或保留最新的[Retention Threshold]天多维数据集细分。</p>
 </script>

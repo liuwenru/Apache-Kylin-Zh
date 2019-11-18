@@ -71,7 +71,7 @@ KylinApp.controller('PageCtrl', function ($scope, $q, AccessService, $modal, $lo
       $scope.username = $scope.password = null;
       $location.path('/login');
 
-      console.debug("Logout Completed.");
+      console.debug("注销已完成。");
     });
     ;
   };
@@ -246,7 +246,7 @@ var projCtrl = function ($scope, $location, $modalInstance, ProjectService, Mess
 	delete $scope.proj.override_kylin_properties[""];
     if ($scope.state.isEdit) {
       ProjectService.update({}, {formerProjectName: $scope.state.oldProjName, projectDescData: angular.toJson($scope.proj)}, function (newProj) {
-        MessageBox.successNotify('Project update successfully!');
+        MessageBox.successNotify('项目更新成功!');
 
         //update project in project model
         ProjectModel.updateProject($scope.proj.name, $scope.state.oldProjName);
@@ -256,10 +256,10 @@ var projCtrl = function ($scope, $location, $modalInstance, ProjectService, Mess
       }, function (e) {
         if (e.data && e.data.exception) {
           var message = e.data.exception;
-          var msg = !!(message) ? message : 'Failed to take action.';
-          SweetAlert.swal('Oops...', msg, 'error');
+          var msg = !!(message) ? message : '无法采取行动。';
+          SweetAlert.swal('糟糕...', msg, 'error');
         } else {
-          SweetAlert.swal('Oops...', "Failed to take action.", 'error');
+          SweetAlert.swal('糟糕...', "无法采取行动。", 'error');
         }
       });
     }
@@ -267,7 +267,7 @@ var projCtrl = function ($scope, $location, $modalInstance, ProjectService, Mess
       ProjectService.save({}, {projectDescData: angular.toJson($scope.proj)}, function (newProj) {
         $modalInstance.dismiss('cancel');
         $cookieStore.put("project", newProj.name);
-        MessageBox.successAlert("New project created successfully!", function(){
+        MessageBox.successAlert("新项目创建成功!", function(){
           location.reload();
         });
 
@@ -277,10 +277,10 @@ var projCtrl = function ($scope, $location, $modalInstance, ProjectService, Mess
       }, function (e) {
         if (e.data && e.data.exception) {
           var message = e.data.exception;
-          var msg = !!(message) ? message : 'Failed to take action.';
-          SweetAlert.swal('Oops...', msg, 'error');
+          var msg = !!(message) ? message : '无法采取行动。';
+          SweetAlert.swal('糟糕...', msg, 'error');
         } else {
-          SweetAlert.swal('Oops...', "Failed to take action.", 'error');
+          SweetAlert.swal('糟糕...', "无法采取行动。", 'error');
         }
       });
     }

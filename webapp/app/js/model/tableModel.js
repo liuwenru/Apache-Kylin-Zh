@@ -172,7 +172,7 @@ KylinApp.service('TableModel', function(ProjectModel,$q,TableService,$log,Encodi
             _this.loading = false;
             defer.resolve();
         },function(e){
-          defer.reject("Failed to load tables, please check system log for details.");
+          defer.reject("无法加载表，请检查系统日志以获取详细信息。");
         });
 
         return defer.promise;

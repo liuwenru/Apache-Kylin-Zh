@@ -64,11 +64,11 @@ KylinApp
         $scope.delete = function(project) {
             SweetAlert.swal({
                 title: '',
-                text: 'Are you sure to delete ?',
+                text: '您确定要删除吗 ?',
                 type: '',
                 showCancelButton: true,
                 confirmButtonColor: '#DD6B55',
-                confirmButtonText: "Yes",
+                confirmButtonText: "是",
                 closeOnConfirm: true
             }, function(isConfirm) {
                 if(isConfirm){
@@ -78,14 +78,14 @@ KylinApp
                             $scope.projects.splice(pIndex, 1);
                         }
                         ProjectModel.removeProject(project.name);
-                        MessageBox.successNotify("Project [" + project.name + "] has been deleted successfully!");
+                        MessageBox.successNotify("项目 [" + project.name + "] 已成功删除!");
                     },function(e){
                         if(e.data&& e.data.exception){
                             var message =e.data.exception;
-                            var msg = !!(message) ? message : 'Failed to take action.';
-                            SweetAlert.swal('Oops...', msg, 'error');
+                            var msg = !!(message) ? message : '无法采取行动。';
+                            SweetAlert.swal('糟糕...', msg, 'error');
                         }else{
-                            SweetAlert.swal('Oops...', "Failed to take action.", 'error');
+                            SweetAlert.swal('糟糕...', "无法采取行动。", 'error');
                         }
                     });
                 }

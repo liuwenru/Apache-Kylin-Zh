@@ -28,12 +28,13 @@
       </div>
     </div>
   </div>
+  </div>
   <!-- metric boxes-->
   <div class="row">
     <div class="col-sm-2">
-      <div class="square-big" tooltip-placement="bottom" tooltip="As of {{cubeMetricsRefreshTime}}">
+      <div class="square-big" tooltip-placement="bottom" tooltip="作为 {{cubeMetricsRefreshTime}}">
         <div class="title">
-          TOTAL CUBE COUNT
+          多维数据集总数
         </div>
         <div class="metric" ng-if="cubeMetrics.totalCubes || (cubeMetrics.totalCubes === 0)">
           {{cubeMetrics.totalCubes | number:0}}
@@ -42,12 +43,12 @@
           --
         </div>
         <a class="description" ng-href="model">
-          More Details
+          更多细节
         </a>
       </div>
       <div class="square-big" tooltip-placement="bottom" tooltip-html-unsafe="Max: {{cubeMetrics.expansionRate.max | number:2}} | Min: {{cubeMetrics.expansionRate.min | number:2}}</br> As of {{cubeMetricsRefreshTime}}">
         <div class="title">
-          AVG CUBE EXPANSION
+         AVG多维数据集扩展
         </div>
         <div class="metric" ng-if="cubeMetrics.expansionRate.avg || (cubeMetrics.expansionRate.avg === 0)">
           {{cubeMetrics.expansionRate.avg | number:2}}
@@ -56,7 +57,7 @@
           --
         </div>
         <a class="description" ng-href="model">
-          More Details
+         更多细节
         </a>
       </div>
     </div>
@@ -65,7 +66,7 @@
         <div class="col-sm-3">
           <div class="square" ng-class="{'square-active': currentSquare ==='queryCount'}"  ng-click="queryCountChart()">
             <div class="title">
-              QUERY<br/>COUNT
+              查询<br/>数
             </div>
             <div class="metric" ng-if="queryMetrics.queryCount || (queryMetrics.queryCount === 0)">
               {{queryMetrics.queryCount | number:0}}
@@ -74,14 +75,14 @@
               --
             </div>
             <a class="description" ng-href="query?queryPanel=cached" ng-click="$event.stopPropagation();">
-              More Details
+             更多细节
             </a>
           </div>
         </div>
         <div class="col-sm-3">
           <div class="square" ng-class="{'square-active': currentSquare ==='queryAvg'}"  tooltip-placement="bottom" tooltip="Max: {{queryMetrics.queryLatency.max ? (queryMetrics.queryLatency.max | number:2) : '--'}} sec | Min: {{queryMetrics.queryLatency.min ? (queryMetrics.queryLatency.min| number:2) : '--'}} sec" ng-click="queryAvgChart()">
             <div class="title">
-              AVG QUERY LATENCY
+              平均查询延迟
             </div>
             <div class="metric" ng-if="queryMetrics.queryLatency.avg || (queryMetrics.queryLatency.avg === 0)">
               {{queryMetrics.queryLatency.avg | number:2}}<span class="unit"> sec</span>
@@ -90,14 +91,14 @@
               --
             </div>
             <a class="description" ng-href="query?queryPanel=cached" ng-click="$event.stopPropagation();">
-              More Details
+              更多细节
             </a>
           </div>
         </div>
         <div class="col-sm-3">
           <div class="square" ng-class="{'square-active': currentSquare ==='jobCount'}"  ng-click="jobCountChart()">
             <div class="title">
-              JOB<br/>COUNT
+              任务<br/>数
             </div>
             <div class="metric" ng-if="jobMetrics.jobCount || (jobMetrics.jobCount === 0)">
               {{jobMetrics.jobCount | number:0}}
@@ -106,23 +107,23 @@
               --
             </div>
             <a class="description" ng-href="jobs" ng-click="$event.stopPropagation();">
-              More Details
+              更多细节
             </a>
           </div>
         </div>
         <div class="col-sm-3" >
           <div class="square" ng-class="{'square-active': currentSquare ==='jobBuildTime'}" tooltip-placement="bottom" tooltip="Max: {{jobMetrics.buildingTime.max ? (jobMetrics.buildingTime.max | number:2) : '--'}} sec | Min: {{jobMetrics.buildingTime.min ? ( jobMetrics.buildingTime.min | number:2) : '--'}} sec" ng-click="jobBuildTimeChart()">
             <div class="title">
-              AVG BUILD TIME PER MB
+             每MB平均构建时间
             </div>
             <div class="metric" ng-if="jobMetrics.buildingTime.avg || jobMetrics.buildingTime.avg === 0">
-              {{jobMetrics.buildingTime.avg | number:2}}<span class="unit"> sec</span>
+              {{jobMetrics.buildingTime.avg | number:2}}<span class="unit"> 秒</span>
             </div>
             <div class="metric" ng-if="!jobMetrics.buildingTime.avg && (jobMetrics.buildingTime.avg !== 0)">
                --
             </div>
             <a class="description" ng-href="jobs" ng-click="$event.stopPropagation();">
-              More Details
+              更多细节
             </a>
           </div>
         </div>
@@ -131,7 +132,7 @@
         <div class="col-sm-6" ng-if="barChart">
           <div style="border: 2px solid #ddd; margin-top:15px;">
             <div class="form-group" style="width: 96px; position: absolute; right: 15px; bottom: 265px;">
-              Show Value: <input type="checkbox" ng-model="barChart.options.chart.showValues">
+              显示值: <input type="checkbox" ng-model="barChart.options.chart.showValues">
             </div>
             <nvd3 options="barChart.options" data="barChart.data"></nvd3>
           </div>

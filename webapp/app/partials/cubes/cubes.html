@@ -23,12 +23,12 @@
 <div class="dataTables_wrapper no-footer">
     <div class="row">
       <div class="col-xs-9">
-        <label class="table-header-text">Cubes</label>
+        <label class="table-header-text">多维数据集</label>
       </div>
       <div class="col-xs-3">
       <form style="display: inline;float:right;" >
           <span class="input-icon input-icon-right nav-search">
-            <input type="text" placeholder="Search by name" class="nav-search-input" ng-model="listParams.cubeName" />
+            <input type="text" placeholder="依名称搜寻" class="nav-search-input" ng-model="listParams.cubeName" />
             <i class="ace-icon fa fa-search blue" ng-click="cubeList.removeAll();reload()"></i>
           </span>
       </form>
@@ -36,7 +36,7 @@
     </div>
 
     <div ng-if="!loading && cubeList.cubes.length == 0">
-        <div no-result text="No Cube."></div>
+        <div no-result text="没有多维数据集."></div>
     </div>
     <table ng-if="cubeList.cubes.length > 0" class="table table-striped table-bordered table-hover dataTable no-footer">
         <!--Header-->
@@ -52,8 +52,8 @@
                 <i ng-if="state.reverseColumn== theaditem.attr && state.filterReverse"
                    class="fa fa-sort-desc"></i>
             </th>
-            <th>Actions</th>
-            <th>Admins</th>
+            <th>操作</th>
+            <th>管理</th>
         </tr>
         </thead>
         <!--Body-->
@@ -85,23 +85,23 @@
                 <div ng-click="$event.stopPropagation();" class="btn-group">
                     <button type="button" class="btn btn-default btn-xs dropdown-toggle"
                             data-toggle="dropdown">
-                        Action <span class="ace-icon fa fa-caret-down icon-on-right"></span>
+                        操作 <span class="ace-icon fa fa-caret-down icon-on-right"></span>
                     </button>
                     <ul ng-if="userService.hasRole('ROLE_ADMIN') || hasPermission('cube',cube, permissions.ADMINISTRATION.mask, permissions.MANAGEMENT.mask,permissions.OPERATION.mask)" class="dropdown-menu" role="menu" style="right:0;left:auto;">
                         <li ng-if="cube.status!='READY' && (userService.hasRole('ROLE_ADMIN') || hasPermission('cube',cube, permissions.ADMINISTRATION.mask, permissions.MANAGEMENT.mask))">
-                            <a ng-click="dropCube(cube)" tooltip="Drop the cube, related jobs and data permanently.">Drop</a></li>
+                            <a ng-click="dropCube(cube)" tooltip="永久删除多维数据集，相关作业和数据.">删除</a></li>
                         <li ng-if="userService.hasRole('ROLE_ADMIN') || hasPermission('cube',cube, permissions.ADMINISTRATION.mask, permissions.MANAGEMENT.mask)">
-                            <a ng-click="cubeEdit(cube);">Edit</a></li>
-                        <li ng-if="cube.status!='DESCBROKEN'"><a ng-click="startJobSubmit(cube);">Build</a></li>
-                        <li ng-if="cube.status!='DESCBROKEN'"><a ng-click="startRefresh(cube)">Refresh</a></li>
-                        <li ng-if="cube.status!='DESCBROKEN'"><a ng-click="startMerge(cube)">Merge</a></li>
-                        <li ng-if="cube.status!='DESCBROKEN'"><a ng-click="startLookupRefresh(cube);">Lookup Refresh</a></li>
-                        <li ng-if="cube.status=='READY' && (userService.hasRole('ROLE_ADMIN') || hasPermission('cube',cube, permissions.ADMINISTRATION.mask, permissions.MANAGEMENT.mask))"><a ng-click="disable(cube)">Disable</a></li>
-                        <li ng-if="cube.status=='DISABLED' && (userService.hasRole('ROLE_ADMIN') || hasPermission('cube',cube, permissions.ADMINISTRATION.mask, permissions.MANAGEMENT.mask))"><a ng-click="enable(cube)">Enable</a></li>
-                        <li ng-if="cube.status=='DISABLED' && (userService.hasRole('ROLE_ADMIN') || hasPermission('cube',cube, permissions.ADMINISTRATION.mask, permissions.MANAGEMENT.mask))"><a ng-click="startDeleteSegment(cube)">Delete Segment</a></li>
-                        <li ng-if="cube.status=='DISABLED' && (userService.hasRole('ROLE_ADMIN') || hasPermission('cube',cube, permissions.ADMINISTRATION.mask, permissions.MANAGEMENT.mask))"><a ng-click="purge(cube)">Purge</a></li>
-                        <li ng-if="cube.status!='DESCBROKEN' && (userService.hasRole('ROLE_ADMIN') || hasPermission('cube',cube, permissions.ADMINISTRATION.mask, permissions.MANAGEMENT.mask))"><a ng-click="cloneCube(cube)">Clone</a></li>
-                        <li ng-if="cube.status=='READY' && isAutoMigrateCubeEnabled() && (userService.hasRole('ROLE_ADMIN') || hasPermission('cube',cube, permissions.ADMINISTRATION.mask, permissions.MANAGEMENT.mask)) "><a ng-click="migrateCube(cube)">Migrate</a></li>
+                            <a ng-click="cubeEdit(cube);">编辑</a></li>
+                        <li ng-if="cube.status!='DESCBROKEN'"><a ng-click="startJobSubmit(cube);">构建</a></li>
+                        <li ng-if="cube.status!='DESCBROKEN'"><a ng-click="startRefresh(cube)">刷新</a></li>
+                        <li ng-if="cube.status!='DESCBROKEN'"><a ng-click="startMerge(cube)">合并</a></li>
+                        <li ng-if="cube.status!='DESCBROKEN'"><a ng-click="startLookupRefresh(cube);">查找刷新</a></li>
+                        <li ng-if="cube.status=='READY' && (userService.hasRole('ROLE_ADMIN') || hasPermission('cube',cube, permissions.ADMINISTRATION.mask, permissions.MANAGEMENT.mask))"><a ng-click="disable(cube)">禁用</a></li>
+                        <li ng-if="cube.status=='DISABLED' && (userService.hasRole('ROLE_ADMIN') || hasPermission('cube',cube, permissions.ADMINISTRATION.mask, permissions.MANAGEMENT.mask))"><a ng-click="enable(cube)">启用</a></li>
+                        <li ng-if="cube.status=='DISABLED' && (userService.hasRole('ROLE_ADMIN') || hasPermission('cube',cube, permissions.ADMINISTRATION.mask, permissions.MANAGEMENT.mask))"><a ng-click="startDeleteSegment(cube)">删除区隔</a></li>
+                        <li ng-if="cube.status=='DISABLED' && (userService.hasRole('ROLE_ADMIN') || hasPermission('cube',cube, permissions.ADMINISTRATION.mask, permissions.MANAGEMENT.mask))"><a ng-click="purge(cube)">清除</a></li>
+                        <li ng-if="cube.status!='DESCBROKEN' && (userService.hasRole('ROLE_ADMIN') || hasPermission('cube',cube, permissions.ADMINISTRATION.mask, permissions.MANAGEMENT.mask))"><a ng-click="cloneCube(cube)">克隆</a></li>
+                        <li ng-if="cube.status=='READY' && isAutoMigrateCubeEnabled() && (userService.hasRole('ROLE_ADMIN') || hasPermission('cube',cube, permissions.ADMINISTRATION.mask, permissions.MANAGEMENT.mask)) "><a ng-click="migrateCube(cube)">迁移</a></li>
 
                     </ul>
                     <span ng-if="!(userService.hasRole('ROLE_ADMIN') || hasPermission('cube',cube, permissions.ADMINISTRATION.mask, permissions.MANAGEMENT.mask, permissions.OPERATION.mask))" class="dropdown-menu" role="menu">
@@ -112,11 +112,11 @@
             <td >
                 <div ng-click="$event.stopPropagation();" class="btn-group" ng-if="userService.hasRole('ROLE_ADMIN') || hasPermission('cube',cube, permissions.ADMINISTRATION.mask, permissions.MANAGEMENT.mask)">
                     <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                        Action <span class="ace-icon fa fa-caret-down icon-on-right"></span>
+                       操作 <span class="ace-icon fa fa-caret-down icon-on-right"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu" style="right:0;left:auto;">
-                        <li ng-if="cube.status!='READY'"><a href="cubes/edit/{{cube.name}}/descriptionjson">Edit CubeDesc</a></li>
-                        <li><a href="cubes/view/{{cube.name}}/instancejson">View Cube</a></li>
+                        <li ng-if="cube.status!='READY'"><a href="cubes/edit/{{cube.name}}/descriptionjson">编辑多维数据集描述</a></li>
+                        <li><a href="cubes/view/{{cube.name}}/instancejson">查看多维数据集</a></li>
                     </ul>
                 </div>
             </td>
@@ -136,7 +136,7 @@
     </div>
 </div>
 <div ng-if="cubeList.cubes.length" class="pull-left font-color-default" style="font-size: 15px" >
-    <strong>Storage: {{getTotalSize(cubeList.cubes)}}</strong>
+    <strong>存储: {{getTotalSize(cubeList.cubes)}}</strong>
 </div>
 
 <div ng-include="'partials/jobs/job_submit.html'"></div>

@@ -167,7 +167,7 @@ KylinApp.controller('ModelSchemaCtrl', function ($scope, QueryService, UserServi
     var models = $scope.modelsManager.modelNameList;
     if ($scope.modelMode=="addNewModel") {
       if(models.indexOf(modelName) != -1 || models.indexOf(modelName.toLowerCase()) !=-1){
-        SweetAlert.swal('', "Model named [" + modelName + "] already exist!", 'warning');
+        SweetAlert.swal('', "模型名 [" + modelName + "] 已存在!", 'warning');
         return false;
       }
     }
@@ -203,7 +203,7 @@ KylinApp.controller('ModelSchemaCtrl', function ($scope, QueryService, UserServi
 
     var errors = [];
     if (!modelsManager.selectedModel.dimensions.length) {
-      errors.push("No dimensions defined.");
+      errors.push("未定义尺寸。");
     }
     var isDimensionDefined = false;
     angular.forEach(modelsManager.selectedModel.dimensions, function (_dimension) {
@@ -212,14 +212,14 @@ KylinApp.controller('ModelSchemaCtrl', function ($scope, QueryService, UserServi
       }
     });
     if(!isDimensionDefined){
-      errors.push("No dimensions defined.");
+      errors.push("未定义尺寸。");
     }
     var errorInfo = "";
     angular.forEach(errors, function (item) {
       errorInfo += "\n" + item;
     });
     if (errors.length) {
-      SweetAlert.swal('Oops...', errorInfo, 'warning');
+      SweetAlert.swal('糟糕...', errorInfo, 'warning');
       return false;
     } else {
       return true;

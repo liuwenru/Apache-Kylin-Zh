@@ -18,7 +18,7 @@
 
 <script type="text/ng-template" id="modelClone.html">
   <div class="modal-header">
-    <h4 tooltip="submit">MODEL CLONE</h4>
+    <h4 tooltip="submit">模型克隆</h4>
   </div>
   <ng-form name="forms.model_clone_form" novalidate="novalidate" class="modal-body" style="background-color: white">
 
@@ -27,7 +27,7 @@
       <div class="col-md-8">
         <div class="row">
           <div class="form-group">
-            <b>Target Project is:</b>
+            <b>目标项目是：</b>
             <br/>
             {{targetObj.targetProject}}
           </div>
@@ -40,11 +40,11 @@
       <div class="col-md-8">
         <div class="row">
           <div class="form-group">
-            <b>New Model Name:</b>
+            <b>新模型名称：</b>
             <br/>
             <input type="text" name="model_name" class="form-control" ng-model="targetObj.modelName" ng-pattern="/^\w+$/"  required  />
-            <small class="help-block red" ng-show="forms.model_clone_form.model_name.$error.required && (forms.model_clone_form.model_name.$dirty)">Model name is required.</small>
-            <small class="help-block red" ng-show="!forms.model_clone_form.model_name.$error.required&&forms.model_clone_form.model_name.$invalid && (forms.model_clone_form.model_name.$dirty)">Model name is invalid.</small>
+            <small class="help-block red" ng-show="forms.model_clone_form.model_name.$error.required && (forms.model_clone_form.model_name.$dirty)">模型名称为必填项.</small>
+            <small class="help-block red" ng-show="!forms.model_clone_form.model_name.$error.required&&forms.model_clone_form.model_name.$invalid && (forms.model_clone_form.model_name.$dirty)">模型名称无效.</small>
           </div>
         </div>
       </div>
@@ -52,7 +52,7 @@
     </div>
   </ng-form>
   <div class="modal-footer">
-    <button class="btn btn-primary" ng-click="cancel()">Close</button>
-    <button class="btn btn-success" ng-click="cloneModel()" ng-disabled="forms.model_clone_form.$invalid">Submit</button>
+    <button class="btn btn-primary" ng-click="cancel()">关闭</button>
+    <button class="btn btn-success" ng-click="cloneModel()" ng-disabled="forms.model_clone_form.$invalid">提交</button>
   </div>
 </script>

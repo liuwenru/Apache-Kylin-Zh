@@ -176,11 +176,11 @@ KylinApp.controller('CubeMeasuresCtrl', function ($scope, $modal,MetaModel,cubes
   $scope.saveNewMeasure = function () {
     if ($scope.newMeasure.function.expression === 'TOP_N' ) {
       if($scope.newMeasure.function.parameter.value == ""){
-        SweetAlert.swal('', '[TOP_N] ORDER|SUM by Column  is required', 'warning');
+        SweetAlert.swal('', '[TOP_N] ORDER | SUM需要按列', 'warning');
         return false;
       }
       if($scope.convertedColumns.length<1){
-        SweetAlert.swal('', '[TOP_N] Group by Column is required', 'warning');
+        SweetAlert.swal('', '[TOP_N]必须按列分组', 'warning');
         return false;
       }
 
@@ -191,11 +191,11 @@ KylinApp.controller('CubeMeasuresCtrl', function ($scope, $modal,MetaModel,cubes
           hasExisted.push($scope.convertedColumns[column].name);
         }
         else{
-          SweetAlert.swal('', 'The column named ['+$scope.convertedColumns[column].name+'] already exits.', 'warning');
+          SweetAlert.swal('', '列名为 ['+$scope.convertedColumns[column].name+'] 已存在。', 'warning');
           return false;
         }
         if ($scope.convertedColumns[column].encoding == 'int' && ($scope.convertedColumns[column].valueLength < 1 || $scope.convertedColumns[column].valueLength > 8)) {
-          SweetAlert.swal('', 'int encoding column length should between 1 and 8.', 'warning');
+          SweetAlert.swal('', 'int编码列的长度应在1到8之间。', 'warning');
           return false;
         }
       }
@@ -226,7 +226,7 @@ KylinApp.controller('CubeMeasuresCtrl', function ($scope, $modal,MetaModel,cubes
           hasExisted.push($scope.convertedColumns[column].name);
         }
         else{
-          SweetAlert.swal('', 'The column named ['+$scope.convertedColumns[column].name+'] already exits.', 'warning');
+          SweetAlert.swal('', '列名为 ['+$scope.convertedColumns[column].name+'] 已存在。', 'warning');
           return false;
         }
       }
@@ -240,7 +240,7 @@ KylinApp.controller('CubeMeasuresCtrl', function ($scope, $modal,MetaModel,cubes
     }
 
     if ($scope.isNameDuplicated($scope.cubeMetaFrame.measures, $scope.newMeasure) == true) {
-      SweetAlert.swal('', 'The measure name: ' + $scope.newMeasure.name + ' is duplicated', 'warning');
+      SweetAlert.swal('', '度量名称: ' + $scope.newMeasure.name + ' 重复。', 'warning');
       return false;
     }
 
@@ -567,7 +567,7 @@ var cubeBulkAddMeasureModalCtrl = function($scope, $modalInstance, SweetAlert) {
               var measureExisted = _.find($scope.cubeMetaFrame.measures, function(measure){ return measure.function.parameter.value == measureView.parameter && measure.function.expression == measureView.expression});
               if (!!measureExisted) {
                 $scope.bulkMeasures = [];
-                var errMsg = 'Duplicate measure for ' + measureView.name + ' and ' + measureExisted.name + '.';
+                var errMsg = '重复测量 ' + measureView.name + ' 和 ' + measureExisted.name + '.';
                 break loopExp;
               }
               if (measureView.select) {

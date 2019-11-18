@@ -57,7 +57,7 @@ KylinApp.service('JobList',function(JobService,$q){
 
             defer.resolve(jobs.length);
           },function(){
-            defer.reject("failed to load jobs");
+            defer.reject("无法加载作业");
         });
         return defer.promise;
     };

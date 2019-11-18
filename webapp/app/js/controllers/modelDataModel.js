@@ -195,11 +195,11 @@ KylinApp.controller('ModelDataModelCtrl', function ($location,$scope, $modal,cub
         if(dimExist) {
             SweetAlert.swal({
                  title: '',
-                 text: "Once it's removed, all relative dimensions will be removed. Are you sure to remove the lookup table?",
+                 text: "移除后，所有相对尺寸都会被移除。 您确定要删除查找表吗?",
                  type: '',
                  showCancelButton: true,
                  confirmButtonColor: '#DD6B55',
-                 confirmButtonText: "Yes",
+                 confirmButtonText: "是",
                  closeOnConfirm: true
             }, function (isConfirm) {
                 if (isConfirm) {
@@ -263,22 +263,22 @@ KylinApp.controller('ModelDataModelCtrl', function ($location,$scope, $modal,cub
       var errors = [];
       for(var i = 0;i<$scope.newLookup.join.primary_key.length;i++){
         if($scope.newLookup.join.primary_key[i]==='null'){
-          errors.push("Primary Key can't be null.");
+          errors.push("主键不能为空。");
           break;
         }
       }
       for(var i = 0;i<$scope.newLookup.join.foreign_key.length;i++){
         if($scope.newLookup.join.foreign_key[i]==='null'){
-          errors.push("Foreign Key can't be null.");
+          errors.push("外键不能为空。");
           break;
         }
       }
       if($scope.aliasName.indexOf($scope.newLookup.alias)!=-1){
         if($scope.lookupState.editingIndex==-1){
-           errors.push("Table Alias ["+$scope.newLookup.alias+"] already exist!");
+           errors.push("表别名 ["+$scope.newLookup.alias+"] 已存在!");
         }else{
           if($scope.aliasName[$scope.lookupState.editingIndex+1] != $scope.newLookup.alias){
-            errors.push("Table Alias ["+$scope.newLookup.alias+"] already exist!");
+            errors.push("表别名 ["+$scope.newLookup.alias+"] 已存在!");
           }
         }
       }

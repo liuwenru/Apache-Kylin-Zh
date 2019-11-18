@@ -28,15 +28,15 @@ KylinApp.service('cubesManager', function (CubeDescService,SweetAlert) {
         if (detail.length > 0&&detail[0].hasOwnProperty("name")) {
           return detail[0];
         }else{
-          SweetAlert.swal('Oops...', "No cube detail info loaded.", 'error');
+          SweetAlert.swal('糟糕...', "没有加载多维数据集详细信息。", 'error');
         }
       }, function (e) {
         if(e.data&& e.data.exception){
           var message =e.data.exception;
-          var msg = !!(message) ? message : 'Failed to take action.';
-          SweetAlert.swal('Oops...', msg, 'error');
+          var msg = !!(message) ? message : '无法采取行动。';
+          SweetAlert.swal('糟糕...', msg, 'error');
         }else{
-          SweetAlert.swal('Oops...', "Failed to take action.", 'error');
+          SweetAlert.swal('糟糕...', "无法采取行动。", 'error');
         }
       });
 

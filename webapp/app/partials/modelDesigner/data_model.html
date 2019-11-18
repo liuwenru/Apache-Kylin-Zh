@@ -23,7 +23,7 @@
     <div class="form-group" ng-class="{'required':state.mode=='edit'}">
         <div class="row">
             <label class="col-xs-12 col-sm-2 control-label concube.detailtrol-label no-padding-right font-color-default">
-                <b>Fact Table</b>
+                <b>事实表</b>
             </label>
             <div class="col-xs-12 col-sm-6" ng-class="{'has-error':forms.data_model_form.table_name.$invalid && (forms.data_model_form.table_name.$dirty||forms.data_model_form.$submitted)}">
               <select chosen ng-model="FactTable.root" ng-if="state.mode=='edit'"
@@ -31,9 +31,9 @@
                       style="width:100%;" ng-change="changeFactTable()"
                       name="table_name"
                       ng-required="true"
-                      data-placeholder="Fact Table Name"
+                      data-placeholder="事实表名称"
                       class="chosen-select">
-                <option value=""> -- Select Fact Table -- </option>
+                <option value=""> -- 选择事实表 -- </option>
               </select>
               <span ng-if="state.mode=='view'">{{VdmUtil.removeNameSpace(modelsManager.selectedModel.fact_table)}}</span>
             </div>
@@ -46,7 +46,7 @@
             <div class="col-xs-6" ng-if="state.mode=='edit'">
                 <button type="button" class="btn btn-primary" ng-disabled="!modelsManager.selectedModel.fact_table.length"
                         ng-click="openLookupModal()">
-                    <i class="fa fa-plus"></i> Add Lookup Table
+                    <i class="fa fa-plus"></i> 添加查询表
                 </button>
             </div>
             <div class="col-xs-6" ng-if="state.mode!='edit'">
@@ -54,7 +54,7 @@
             </div>
             <div class="col-xs-6">
                 <span class="pull-right input-icon input-icon-right nav-search" style="margin-left: 22px;" ng-if="modelsManager.selectedModel.lookups.length">
-                    <input type="text" placeholder="Filter ..." class="nav-search-input" ng-model="lookupState.filter"/>
+                    <input type="text" placeholder="过滤 ..." class="nav-search-input" ng-model="lookupState.filter"/>
                     <i class="ace-icon fa fa-search nav-search-icon"></i>
                 </span>
             </div>
@@ -63,12 +63,12 @@
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Table Alias</th>
-                <th>Table Name</th>
-                <th>Table Kind</th>
-                <th>Join Type</th>
-                <th>Join Condition</th>
-                <th ng-if="state.mode=='edit'" class="col-xs-1">Actions</th>
+                <th>表别名</th>
+                <th>表名</th>
+                <th>表种类</th>
+                <th>联接类型</th>
+                <th>联接条件</th>
+                <th ng-if="state.mode=='edit'" class="col-xs-1">操作</th>
             </tr>
             </thead>
             <tbody>
@@ -86,8 +86,8 @@
                 </td>
                 <!-- Table Kind -->
                 <td>
-                    <span ng-if="lookup.kind=='FACT'">Limited</span>
-                    <span ng-if="lookup.kind=='LOOKUP'">Normal</span>
+                    <span ng-if="lookup.kind=='FACT'">有限</span>
+                    <span ng-if="lookup.kind=='LOOKUP'">正常</span>
                 </td>
                 <!-- Join Type -->
                 <td>
@@ -111,7 +111,7 @@
                     <button class="btn btn-xs btn-danger" ng-disabled="lookupState.editing||selectedAliasCubeMap[lookup.alias]"
                             ng-click="removeLookup(lookup)" ><i class="fa fa-trash-o"></i>
                     </button>
-                  <i class="fa fa-info-circle" ng-if="selectedAliasCubeMap[lookup.alias]" kylinpopover placement="left" title="Tip" template="tableInUse.html"></i>
+                  <i class="fa fa-info-circle" ng-if="selectedAliasCubeMap[lookup.alias]" kylinpopover placement="left" title="提示" template="tableInUse.html"></i>
                 </td>
             </tr>
             </tbody>
@@ -122,7 +122,7 @@
     <!-- Add Lookup Table Form -->
     <script type="text/ng-template" id="dataModelLookupTable.html">
         <div class="modal-header">
-            <h4 class="box-title lighter">{{lookupState.editing ? 'Edit' : 'Add'}} Lookup Table</h4>
+            <h4 class="box-title lighter">{{lookupState.editing ? '编辑' : '增加'}} 查找表</h4>
         </div>
         <div class="modal-body">
             <div class="row">
@@ -135,7 +135,7 @@
                                       style="width:100%;" ng-options="table as table for table in aliasName"
                                       name="table_name"  ng-disabled="lookupState.editing"
                                       ng-required="true">
-                                <option value=""> &#45;&#45; From Table &#45;&#45; </option>
+                                <option value=""> &#45;&#45; 从表 &#45;&#45; </option>
                               </select>
                           </div>
                         </div>
@@ -154,16 +154,16 @@
                                       ng-options="table.name as VdmUtil.removeNameSpace(table.name) for table in tableModel.selectProjectTables"
                                       name="table_name"  ng-disabled="lookupState.editing"
                                       ng-required="true"  ng-change="changeJoinTable()">
-                                <option value=""> &#45;&#45; Select Lookup Table &#45;&#45; </option>
+                                <option value=""> &#45;&#45; 选择查询表 &#45;&#45; </option>
                               </select>
                           </div>
                           <div class="col-sm-1 form-group" style="text-align:center">
-                            <span class=" font-color-default" style="font-size:large;line-height: 30px;"><b>AS</b></span>
+                            <span class=" font-color-default" style="font-size:large;line-height: 30px;"><b>作为</b></span>
                           </div>
                           <div class="col-sm-5 form-group" >
-                                <input type="text" class="form-control " name="joinTable_alias" placeholder="Input Table Alias" ng-required="true"
+                                <input type="text" class="form-control " name="joinTable_alias" placeholder="输入表别名" ng-required="true"
                                      ng-model="newLookup.alias"  ng-pattern="/^[A-Z_\d]+$/">
-                                <small class="help-block red" ng-show="!lookup_form.joinTable_alias.$error.required&&lookup_form.joinTable_alias.$invalid && (lookup_form.joinTable_alias.$dirty||lookup_form.$submitted)"><i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp; Table alias is invalid(A Combination of numbers, uppercase letters or underscores).</small>
+                                <small class="help-block red" ng-show="!lookup_form.joinTable_alias.$error.required&&lookup_form.joinTable_alias.$invalid && (lookup_form.joinTable_alias.$dirty||lookup_form.$submitted)"><i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp; 表格别名无效（数字，大写字母或下划线的组合）。</ small>
                           </div>
                         </div>
                       </div>
@@ -172,7 +172,7 @@
                         <div class="row">
                           <div class="col-sm-5" >
                             <label>
-                              <input type="checkbox" ng-model="newLookup.kind" ng-true-value="FACT" ng-false-value="LOOKUP" >&nbsp;Skip snapshot for this lookup table.
+                              <input type="checkbox" ng-model="newLookup.kind" ng-true-value="FACT" ng-false-value="LOOKUP" >&nbsp;跳过此查找表的快照。
                             </label>
                             <i class="fa fa-info-circle" kylinpopover="" placement="right" title="" template="isLimited.html"></i>
                           </div>
@@ -183,24 +183,24 @@
                             <div class="col-xs-12">
                                 <div ng-repeat="joinIndex in [] | range: newLookup.join.primary_key.length">
                                     <div>
-                                        <select style="width: 45%" chosen data-placeholder="JoinTable Column"
+                                        <select style="width: 45%" chosen data-placeholder="JoinTable列"
                                                 ng-model="newLookup.join.foreign_key[$index]"  ng-change="changeKey($index)"
                                                 ng-options="newLookup.joinTable+'.'+columns.name as columns.name for columns in getColumnsByAlias(newLookup.joinTable)" >
                                             <option value=""></option>
                                         </select>
                                         <b>=</b>
-                                        <select style="width: 45%" chosen data-placeholder=" JoinTable Column"
+                                        <select style="width: 45%" chosen data-placeholder=" JoinTable列"
                                                 ng-model="newLookup.join.primary_key[$index]"  ng-change="changeKey($index)"
                                                 ng-options="newLookup.alias+'.'+columns.name as columns.name for columns in getColumnsByTable(newLookup.table)" >
                                             <option value=""></option>
                                         </select>
-                                        <button class="pull-right btn btn-xs btn-danger" style="cursor: pointer" tooltip="Delete"
+                                        <button class="pull-right btn btn-xs btn-danger" style="cursor: pointer" tooltip="删除"
                                                 ng-click="removeJoin($index);">
                                             <i class="fa fa-trash-o pointer"></i>
                                         </button>
                                     </div>
                                     <div class="space-4"></div>
-                                    <small class="help-block red" ng-show="newLookup.join.isCompatible[$index]==false"><i class="fa fa-exclamation-triangle"></i> <b>Column Type incompatible {{newLookup.join.foreign_key[$index]}}[{{newLookup.join.fk_type[$index]}}], {{newLookup.join.primary_key[$index]}} [{{newLookup.join.pk_type[$index]}}]</b></small>
+                                    <small class="help-block red" ng-show="newLookup.join.isCompatible[$index]==false"><i class="fa fa-exclamation-triangle"></i> <b>列类型不兼容 {{newLookup.join.foreign_key[$index]}}[{{newLookup.join.fk_type[$index]}}], {{newLookup.join.primary_key[$index]}} [{{newLookup.join.pk_type[$index]}}]</b></small>
                                 </div>
                             </div>
                         </div>
@@ -211,7 +211,7 @@
                                 <button class="btn btn-xs btn-info"
                                         ng-if="newLookup.join.type"
                                         ng-click="addNewJoin();">
-                                    <i class="fa fa-plus"></i> New Join Condition</button>
+                                    <i class="fa fa-plus"></i> 新加入条件</button>
                             </div>
                         </div>
                     </div>
@@ -223,15 +223,15 @@
                 <div class="col-xs-4">
                     <div class="box box-solid">
                         <div class="box-header">
-                            <h4 class="box-title">Tips</h4>
+                            <h4 class="box-title">提示</h4>
                         </div>
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-xs-12">
                                     <ol class="text-info">
-                                      <li>Pick up a table joins another table that already exist.</li>
-                                      <li>Specify join relationship between two tables.</li>
-                                      <li>Join Type have to be same as will be used in query</li>
+                                      <li>选择一个表将联接另一个已经存在的表。</li>
+                                      <li>指定两个表之间的联接关系。</li>
+                                      <li>连接类型必须与查询中使用的类型相同</li>
                                     </ol>
                                 </div>
                             </div>
@@ -241,14 +241,14 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button class="btn" ng-click="cancel()">Cancel</button>
-            <button class="btn btn-primary" ng-disabled="lookup_form.$invalid || !newLookup.join.primary_key.length" ng-click="checkLookupForm()?ok():''">OK</button>
+            <button class="btn" ng-click="cancel()">取消</button>
+            <button class="btn btn-primary" ng-disabled="lookup_form.$invalid || !newLookup.join.primary_key.length" ng-click="checkLookupForm()?ok():''">好的</button>
         </div>
     </script>
 </div>
 <script type="text/ng-template" id="tableInUse.html">
-  <p>This table is in use in Cube.</p>
+  <p>该表在多维数据集中正在使用。</p>
 </script>
 <script type="text/ng-template" id="isLimited.html">
-  <p>Some lookup table is too big (e.g. >300 MB) for snapshot, thus must be marked as limited. Limited lookup table cannot be queried directly and does not support derived dimensions.</p>
+  <p>某些查询表太大（例如> 300 MB），无法快照，因此必须将其标记为受限。 受限的查询表无法直接查询，并且不支持派生的维度。</p>
 </script>

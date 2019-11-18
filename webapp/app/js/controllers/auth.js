@@ -37,8 +37,8 @@ KylinApp.controller('LoginCtrl', function ($scope, $rootScope, $location, $base6
     }, function (error) {
       $scope.loading = false;
       $scope.error = error.status < 500
-        ? "Unable to login, please check your username/password."
-        : "System error, please contact your administrator.";
+        ? "无法登录，请检查您的用户名/密码。"
+        : "系统错误，请与管理员联系。";
     });
   };
 });

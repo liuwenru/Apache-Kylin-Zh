@@ -18,25 +18,25 @@
 
 <div ng-controller="SourceMetaCtrl" class="nav-tabs-custom">
   <div class="col-xs-12" ng-show="tableModel.selectedSrcDb&&tableModel.selectedSrcTable.name">
-    <h3 class="text-info">Table Schema:{{ tableModel.selectedSrcTable.name}}</h3>
-    <a class="btn btn-primary pull-right" ng-if="userService.hasRole('ROLE_ADMIN') || hasPermission('project',projectModel, permissions.ADMINISTRATION.mask)" ng-click="unloadTable(tableModel.selectedSrcTable.database+'.'+tableModel.selectedSrcTable.name)" style="margin-left:10px;" ><span class="fa fa-remove"></span>&nbsp;Unload Table</a>
-    <a class="btn btn-success pull-right" ng-if="tableModel.selectedSrcTable.source_type==0&&(userService.hasRole('ROLE_ADMIN') || hasPermission('project',projectModel, permissions.ADMINISTRATION.mask))"  ng-click="openReloadModal(tableModel.selectedSrcTable.database+'.'+tableModel.selectedSrcTable.name)" style="margin-left:10px;" ><span class="fa fa-download"></span>&nbsp;Reload Table</a>
+    <h3 class="text-info">表架构:{{ tableModel.selectedSrcTable.name}}</h3>
+    <a class="btn btn-primary pull-right" ng-if="userService.hasRole('ROLE_ADMIN') || hasPermission('project',projectModel, permissions.ADMINISTRATION.mask)" ng-click="unloadTable(tableModel.selectedSrcTable.database+'.'+tableModel.selectedSrcTable.name)" style="margin-left:10px;" ><span class="fa fa-remove"></span>&nbsp;卸载表</a>
+    <a class="btn btn-success pull-right" ng-if="tableModel.selectedSrcTable.source_type==0&&(userService.hasRole('ROLE_ADMIN') || hasPermission('project',projectModel, permissions.ADMINISTRATION.mask))"  ng-click="openReloadModal(tableModel.selectedSrcTable.database+'.'+tableModel.selectedSrcTable.name)" style="margin-left:10px;" ><span class="fa fa-download"></span>&nbsp;重新加载表</a>
     <div class="tabbable nav-tabs-custom">
       <ul class="nav nav-tabs">
         <li class="active">
-          <a data-toggle="tab" href="#column">Columns</a>
+          <a data-toggle="tab" href="#column">列</a>
         </li>
         <li>
-          <a data-toggle="tab" href="#schema">Extend Information</a>
+          <a data-toggle="tab" href="#schema">扩展信息</a>
         </li>
         <li>
-          <a data-toggle="tab" ng-if="tableModel.selectedSrcTable.source_type==1" href="#streaming">Streaming Cluster</a>
+          <a data-toggle="tab" ng-if="tableModel.selectedSrcTable.source_type==1" href="#streaming">流式集群</a>
         </li>
         <li>
-          <a data-toggle="tab"  href="#access">Access</a>
+          <a data-toggle="tab"  href="#access">访问</a>
         </li>
         <li>
-          <a data-toggle="tab" href="#snapshot">Snapshot</a>
+          <a data-toggle="tab" href="#snapshot">快照</a>
         </li>
       </ul>
       <div class="tab-content">
@@ -46,53 +46,53 @@
             <table class="table">
               <tbody>
               <tr>
-                <th style="width:20%">TABLE NAME</th>
+                <th style="width:20%">表名</th>
                 <td>{{ tableModel.selectedSrcTable.name}}</td>
               </tr>
               <tr>
-                <th>DATABASE</th>
+                <th>数据库</th>
                 <td>{{tableModel.selectedSrcTable.database}}</td>
               </tr>
               <tr>
-                <th>TABLE TYPE</th>
+                <th>表类型</th>
                 <td>{{tableModel.selectedSrcTable.table_type}}</td>
               </tr>
               <tr>
-                <th>SNAPSHOT TIME</th>
+                <th>快照时间</th>
                 <td>{{tableModel.selectedSrcTable.exd.lastUpdateTime | utcToConfigTimeZone}}</td>
               </tr>
               <tr>
-                <th>LOCATION</th>
+                <th>位置</th>
                 <td>{{tableModel.selectedSrcTable.exd.location}}</td>
               </tr>
               <tr>
-                <th>INPUT FORMAT</th>
+                <th>输入格式</th>
                 <td>{{tableModel.selectedSrcTable.exd.hive_inputFormat}}</td>
               </tr>
               <tr>
-                <th>OUTPUT FORMAT</th>
+                <th>输出格式</th>
                 <td>{{tableModel.selectedSrcTable.exd.hive_outputFormat}}</td>
               </tr>
               <tr>
-                <th>OWNER</th>
+                <th>所有者</th>
                 <td><a
                   href="mailto:{{tableModel.selectedSrcTable.exd.owner}}">{{tableModel.selectedSrcTable.exd.owner}}</a>
                 </td>
               </tr>
               <tr>
-                <th>TOTAL FILE NUMBER</th>
+                <th>文件总数</th>
                 <td>{{tableModel.selectedSrcTable.exd.total_file_number}}</td>
               </tr>
               <tr>
-                <th>TOTAL FILE SIZE</th>
+                <th>文件总大小</th>
                 <td>{{tableModel.selectedSrcTable.exd.total_file_size}}</td>
               </tr>
               <tr>
-                <th>PARTITIONED</th>
+                <th>分区的</th>
                 <td>{{tableModel.selectedSrcTable.exd.partitioned}}</td>
               </tr>
               <tr>
-                <th>PARTITION COLUMNS</th>
+                <th>分区列</th>
                 <td>{{tableModel.selectedSrcTable.exd.partition_column}}</td>
               </tr>
               </tbody>
@@ -103,9 +103,9 @@
         <div id="column" class="tab-pane active">
           <div class="profile-user-info">
             <div>
-              <label class="table-header-text">Columns</label>
+              <label class="table-header-text">列</label>
                             <span class="input-icon form-search nav-search pull-right">
-                                <input type="text" placeholder="Filter ..." class="nav-search-input"
+                                <input type="text" placeholder="过滤 ..." class="nav-search-input"
                                        ng-model="columnName"/>
                                 <i class="ace-icon fa fa-search nav-search-icon"></i>
                             </span>
@@ -155,9 +155,9 @@
               </table>
             </div>
             <div ng-if="(tableModel.selectedSrcTable.columns | filter: columnName).length == 0" no-result
-                 text="No Matched Table Column."></div>
+                 text="没有匹配的表列。"></div>
             <div ng-if="!!!tableModel.selectedSrcTable.uuid">
-              <div no-result text="No Table Selected."></div>
+              <div no-result text="未选择表."></div>
             </div>
           </div>
         </div>
@@ -166,7 +166,7 @@
         <div id="streaming" ng-show="tableModel.selectedSrcTable.source_type==1" class="tab-pane">
             <div class="col-xs-12 pdb-12 pdt-12" ng-if="userService.hasRole('ROLE_ADMIN')">
               <div class="ofh">
-                <a class="btn btn-info floatR" ng-click="editStreamingConfig(tableModel.selectedSrcTable.database+'.'+tableModel.selectedSrcTable.name)"><i class="fa fa-edit"></i>Edit</a>
+                <a class="btn btn-info floatR" ng-click="editStreamingConfig(tableModel.selectedSrcTable.database+'.'+tableModel.selectedSrcTable.name)"><i class="fa fa-edit"></i>编辑</a>
               </div>
             </div>
 
@@ -178,7 +178,7 @@
           <div class="tabbable nav-tabs">
             <ul class="nav nav-tabs">
               <li class="active">
-                <a data-toggle="tab" href="#accesstable">Table</a>
+                <a data-toggle="tab" href="#accesstable">表</a>
               </li>
             </ul>
             <div class="tab-content">
@@ -232,7 +232,7 @@
             </table>
           </div>
           <div ng-if="tableSnapshots.length == 0">
-            <div no-result text="No Snapshot Info."></div>
+            <div no-result text="没有快照信息."></div>
           </div>
         </div>
       </div>
@@ -249,12 +249,12 @@
       <div class="box-header with-border">
         <i class="fa fa-bullhorn"></i>
 
-        <h3 class="box-title">No tables</h3>
+        <h3 class="box-title">没有表</h3>
       </div>
       <div class="box-body">
         <div>
           <a tooltip="Load Table" href="javascript:void(0);" ng-if="userService.hasRole('ROLE_ADMIN') || hasPermission('project',projectModel, permissions.ADMINISTRATION.mask)"
-             ng-click="openModal()">Click here to load your table</a>
+             ng-click="openModal()">点击这里加载您的表格</a>
         </div>
       </div>
       <!-- /.box-body -->
@@ -264,12 +264,12 @@
       <div class="box-header with-border">
         <i class="icon fa fa-warning"></i>
 
-        <h3 class="box-title">No project selected</h3>
+        <h3 class="box-title">未选择项目</h3>
       </div>
       <div class="box-body">
         <div class="callout callout-danger">
           <p class="text-danger">
-            Please select your project first
+            请先选择您的项目
           </p>
         </div>
       </div>
@@ -283,10 +283,10 @@
       <div class="box-header with-border">
         <i class="fa fa-bullhorn"></i>
 
-        <h3 class="box-title">No table selected</h3>
+        <h3 class="box-title">未选择表</h3>
       </div>
       <div class="box-body">
-        Select your table
+        选择你的表
       </div>
       <!-- /.box-body -->
     </div>

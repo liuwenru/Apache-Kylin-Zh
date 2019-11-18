@@ -20,8 +20,8 @@
     <!--Project-->
     <form class="navbar-form navbar-left" style="margin-top: 0px !important;" ng-if="userService.isAuthorized()">
         <div class="form-group" >
-            <a class="btn btn-xs btn-info" href="projects" tooltip="Manage Project"><i class="fa fa-gears"></i></a>
-          <a class="btn btn-xs btn-primary" ng-if="userService.hasRole('ROLE_ADMIN')" style="width: 29px" tooltip="Add Project" ng-click="toCreateProj()">
+            <a class="btn btn-xs btn-info" href="projects" tooltip="管理项目"><i class="fa fa-gears"></i></a>
+          <a class="btn btn-xs btn-primary" ng-if="userService.hasRole('ROLE_ADMIN')" style="width: 29px" tooltip="新增项目" ng-click="toCreateProj()">
                 <i class="fa fa-plus"></i>
             </a>
         </div>
@@ -35,13 +35,13 @@
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
                 <li class="{{mainPanel=='query'?'active':''}}">
-                    <a ng-click="mainPanel='query'" style="cursor: pointer">New Query</a>
+                    <a ng-click="mainPanel='query'" style="cursor: pointer">新建查询</a>
                 </li>
                 <li class="{{mainPanel=='saved'?'active':''}}">
-                    <a ng-click="mainPanel='saved';listSavedQueries()" style="cursor: pointer">Saved Queries</a>
+                    <a ng-click="mainPanel='saved';listSavedQueries()" style="cursor: pointer">保存的查询</a>
                 </li>
                 <li class="{{mainPanel=='cached'?'active':''}}">
-                    <a ng-click="mainPanel='cached';listCachedQueries()" style="cursor: pointer">Query History</a>
+                    <a ng-click="mainPanel='cached';listCachedQueries()" style="cursor: pointer">查询历史</a>
                 </li>
             </ul>
 
@@ -59,19 +59,19 @@
                     </section>
 
                     <p class="blue">
-                        Tips: Ctrl+Shift+Space or Alt+Space(Windows), Command+Option+Space(Mac) to list keywords in query box.
+                       提示：Ctrl + Shift +空格键或Alt +空格键（Windows），Command + Option +空格键（Mac）在查询框中列出关键字。
                     </p>
                     <div class="pull-left">
                         <h4>
-                            Project: <span class="label label-info">{{projectModel.getSelectedProject()}}</span>
+                            项目：<span class="label label-info">{{projectModel.getSelectedProject()}}</span>
                         </h4>
                     </div>
                     <div class="pull-right">
                         <input type="checkbox" ng-model="hasLimit" ng-change="changeLimit()">
-                        <label>LIMIT</label>
+                        <label>限制</label>
                         <input type="text" style="width:100px;" class="inline form-control" ng-model="rowsPerPage" ng-pattern="/^\d+$/" ng-blur="checkLimit()" ng-disabled="!hasLimit" />
                         <button class="btn btn-sm btn-primary" ng-click="submitQuery()" ng-disabled="query_panel.$invalid">
-                            Submit
+                            提交
                         </button>
                     </div>
                 </form>
@@ -87,15 +87,15 @@
                         class="query-content">
                         <td>
                             <div>
-                                <label>SQL Name:</label>&nbsp;&nbsp;&nbsp;<b style="font-size: 14px">{{query.name}}</b>
+                                <label>SQL名称:</label>&nbsp;&nbsp;&nbsp;<b style="font-size: 14px">{{query.name}}</b>
                                 <!--<span style="color: #808080;line-height: 25px" class="pull-right">Saved At: {{query.createdDate}}</span>-->
                             </div>
                             <div ng-if="query.project">
-                                <label>Project: </label>
+                                <label>项目: </label>
                                 <span style="color: gray">{{query.project}}</span>
                             </div>
                             <div ng-if="query.description">
-                                <label>Description</label>
+                                <label>描述</label>
                                 <blockquote style="font-size: 12px;margin-bottom: 0px;padding: 6px 10px;">
                                     {{query.description}}
                                 </blockquote>
@@ -103,11 +103,11 @@
 
                             <div class="pull-right">
                                 <button class="btn btn-default btn-xs" ng-click="submitQuery(query.sql, query.project)"><i class="fa fa-refresh"></i>
-                                    Resubmit
+                                    重新提交
                                 </button>
                                 <button class="btn btn-default btn-xs" ng-click="removeSavedQuery(query.id)"><i
                                         class="fa fa-times">
-                                    Remove</i>
+                                    移除</i>
                                 </button>
                             </div>
                             <div class="form-group" style="margin: 0px">
@@ -145,14 +145,14 @@
                     <tr ng-repeat="query in cachedFilterQueries | reverse track by $index"
                         ng-if="$index >= (cachedFilterQueries.curPage-1)*cachedFilterQueries.perPage && $index < cachedFilterQueries.curPage*cachedFilterQueries.perPage">
                         <td>
-                            <span style="color: #808080;line-height: 25px">Queried At: {{query.savedAt | utcToConfigTimeZone}} </span><span ng-if="query.project">in Project: {{query.project}}</span>
+                            <span style="color: #808080;line-height: 25px">被查询: {{query.savedAt | utcToConfigTimeZone}} </span><span ng-if="query.project">in 在项目: {{query.project}}</span>
 
                             <div class="pull-right">
                                 <button class="btn btn-default btn-xs" ng-click="submitQuery(query.sql, query.project)"><i class="fa fa-refresh"></i>
-                                    Resubmit
+                                    重新提交
                                 </button>
                                 <button class="btn btn-default btn-xs" ng-click="removeQuery()"><i class="fa fa-times">
-                                    Remove</i>
+                                    移除</i>
                                 </button>
                             </div>
                             <div class="form-group" style="margin: 0px">
@@ -186,7 +186,7 @@
         <div class="hr hr24 hr-dotted"></div>
 
         <h3 class="kylin_title">
-            Results
+            结果
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs" style="font-size: 13px;padding: 5px 0px 5px 0px"
                     ng-if="queries.length > 0">
@@ -212,7 +212,7 @@
                     </li>
 
                     <div class="pull-right" style="font-size: 13px">
-                        Status:
+                        状态:
                         <select ng-init="statusFilter=statusList[0].value" ng-model="statusFilter"
                                 ng-options="status.value as status.name for status in statusList"></select>
                     </div>
@@ -221,7 +221,7 @@
         </h3>
 
         <div ng-if="!curQuery">
-            <div no-result text="No Query Result."></div>
+            <div no-result text="没有查询结果."></div>
         </div>
 
         <div ng-include="'partials/query/query_detail.html'"></div>

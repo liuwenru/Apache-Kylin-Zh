@@ -55,11 +55,11 @@ KylinApp.controller('AclCtrl', function ($scope, AclService, TableModel,loadingR
   $scope.delTableAcl = function (type, name) {
     SweetAlert.swal({
       title: '',
-      text: "Are you sure to drop this table acl?",
+      text: "您确定要删除此表吗？",
       type: '',
       showCancelButton: true,
       confirmButtonColor: '#DD6B55',
-      confirmButtonText: "Yes",
+      confirmButtonText: "是",
       closeOnConfirm: true
     }, function (isConfirm) {
       if (isConfirm) {
@@ -72,14 +72,14 @@ KylinApp.controller('AclCtrl', function ($scope, AclService, TableModel,loadingR
         },function () {
           loadingRequest.hide();
           loadTableAclList(type);
-          MessageBox.successNotify('Table acl drop is done successfully');
+          MessageBox.successNotify('表ACL删除成功完成');
         },function (e) {
           if (e.data && e.data.exception) {
             var message = e.data.exception;
-            var msg = !!(message) ? message : 'Failed to take action.';
-            SweetAlert.swal('Oops...', msg, 'error');
+            var msg = !!(message) ? message : '无法采取行动。';
+            SweetAlert.swal('糟糕...', msg, 'error');
           } else {
-            SweetAlert.swal('Oops...', "Failed to take action.", 'error');
+            SweetAlert.swal('糟糕...', "无法采取行动。", 'error');
           }
           loadingRequest.hide();
         })
@@ -136,16 +136,16 @@ KylinApp.controller('AclCtrl', function ($scope, AclService, TableModel,loadingR
         username: $scope.newTableAcl.name
       },{},function () {
         loadingRequest.hide();
-        MessageBox.successNotify('Table acl add successfully');
+        MessageBox.successNotify('表ACL添加成功');
         loadTableAclList()
         $scope.cancel()
       },function (e) {
         if (e.data && e.data.exception) {
           var message = e.data.exception;
-          var msg = !!(message) ? message : 'Failed to take action.';
-          SweetAlert.swal('Oops...', msg, 'error');
+          var msg = !!(message) ? message : '无法采取行动。';
+          SweetAlert.swal('糟糕...', msg, 'error');
         } else {
-          SweetAlert.swal('Oops...', "Failed to take action.", 'error');
+          SweetAlert.swal('糟糕...', "无法采取行动。", 'error');
         }
         loadingRequest.hide();
       })

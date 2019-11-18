@@ -25,7 +25,7 @@ KylinApp.controller('HybridInstanceSchema', function (
 
   // check for empty project of header, break the operation.
   if (!$scope.isEdit && ProjectModel.selectedProject === null) {
-    SweetAlert.swal('Oops...', 'Please select your project first.', 'warning');
+    SweetAlert.swal('糟糕...', '请先选择您的项目。', 'warning');
     $location.path("/models");
     return;
   }
@@ -201,14 +201,14 @@ KylinApp.controller('HybridInstanceSchema', function (
     function successHandler(request) {
       if(request.successful === false) {
         var message = request.message;
-        var msg = !!message ? message : 'Failed to take action.';
+        var msg = !!message ? message : '无法采取行动。';
         var template = hybridInstanceResultTmpl({ text: msg, schema: schema });
         MessageService.sendMsg(template, 'error', {}, true, 'top_center');
       } else {
         if($scope.isEdit) {
-          MessageBox.successNotify('Update hybrid cube successfully.');
+          MessageBox.successNotify('成功更新混合多维数据集。');
         } else {
-          MessageBox.successNotify('Create hybrid cube successfully.');
+          MessageBox.successNotify('成功创建混合多维数据集。');
         }
         $location.path('/models');
       }
@@ -219,11 +219,11 @@ KylinApp.controller('HybridInstanceSchema', function (
     function failedHandler(e) {
       if (e.data && e.data.exception) {
         var message = e.data.exception;
-        var msg = !!(message) ? message : 'Failed to take action.';
+        var msg = !!(message) ? message : '无法采取行动。';
         var template = hybridInstanceResultTmpl({ text: msg, schema: schema });
         MessageService.sendMsg(template, 'error', {}, true, 'top_center');
       } else {
-        var template = hybridInstanceResultTmpl({ text: 'Failed to take action.', schema: schema });
+        var template = hybridInstanceResultTmpl({ text: '无法采取行动。', schema: schema });
         MessageService.sendMsg(template, 'error', {}, true, 'top_center');
       }
       // hide global loading
@@ -340,15 +340,15 @@ KylinApp.controller('HybridInstanceSchema', function (
   function saveWarning(callback) {
     SweetAlert.swal({
       title: $scope.isEdit
-        ? 'Are you sure to update the Hybrid Cube?'
-        : 'Are you sure to save the Hybrid Cube?',
+        ? '您确定要更新混合多维数据集?'
+        : '您确定要保存混合多维数据集?',
       text: $scope.isEdit
         ? ''
         : '',
       type: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#DD6B55',
-      confirmButtonText: "Yes",
+      confirmButtonText: "是",
       closeOnConfirm: true
   }, function(isConfirm) {
     if(isConfirm) {

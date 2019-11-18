@@ -18,24 +18,24 @@
 
 <script type="text/ng-template" id="jobRefresh.html">
     <div class="modal-header">
-        <h4 tooltip="refresh">CUBE REFRESH CONFIRM</h4>
+        <h4 tooltip="refresh">多维数据集刷新确认</h4>
     </div>
     <div class="modal-body" style="background-color: white">
         <div ng-if="metaModel.model.partition_desc.partition_date_column" class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8">
                 <div ng-if="!!!(cube.segments) || cube.segments.length == 0">
-                    <span class="text-info">No Segment to refresh.</span>
+                    <span class="text-info">没有细分可刷新.</span>
                 </div>
                 <div ng-if="cube.segments.length > 0" class="row">
                     <table class="table table-striped list" >
                         <tbody>
                         <tr>
-                            <td>PARTITION DATE COLUMN</td>
+                            <td>分区日期列</td>
                             <td>{{metaModel.model.partition_desc.partition_date_column}}</td>
                         </tr>
                         <tr>
-                            <td>REFRESH SEGMENT</td>
+                            <td>刷新段</td>
                             <td>
                                 <select ng-model="selectedSegment"
                                         ng-init="selectedSegment=cube.segments[0];segmentSelected(selectedSegment);"
@@ -45,23 +45,23 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>SEGMENT DETAIL</td>
+                            <td>分部详细信息</td>
                             <td>
                                 <table class="table table-condensed">
                                     <tr>
-                                        <td>Start Date (Include)</td>
+                                        <td>开始日期（包括在内）</td>
                                         <td>{{selectedSegment.date_range_start |  reverseToGMT0}}</td>
                                     </tr>
                                     <tr>
-                                        <td>End Date (Exclude)</td>
+                                        <td>结束日期（排除）</td>
                                         <td>{{selectedSegment.date_range_end |  reverseToGMT0}}</td>
                                     </tr>
                                     <tr>
-                                        <td>Last build Time</td>
+                                        <td>上次建立时间</td>
                                         <td>{{selectedSegment.last_build_time | utcToConfigTimeZone}}</td>
                                     </tr>
                                     <tr>
-                                        <td>Last build ID</td>
+                                        <td>上次版本编号</td>
                                         <td>{{selectedSegment.last_build_job_id}}</td>
                                     </tr>
                                 </table>
@@ -80,15 +80,15 @@
         <div ng-if="!metaModel.model.partition_desc.partition_date_column" class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8">
-                <span>No partition date column defined. If you want to rebuild the cube, please click "Build".</span>
+                <span>未定义分区日期列。 如果要重建多维数据集，请单击“生成”.</span>
             </div>
             <div class="col-md-2"></div>
         </div>
     </div>
 
     <div class="modal-footer">
-        <button class="btn btn-primary" ng-click="cancel()">Close</button>
-        <button class="btn btn-success" ng-click="rebuild()" ng-disabled="!(jobBuildRequest.startTime >= 0 && jobBuildRequest.endTime > 0 && jobBuildRequest.startTime < jobBuildRequest.endTime)">Submit
+        <button class="btn btn-primary" ng-click="cancel()">关闭</button>
+        <button class="btn btn-success" ng-click="rebuild()" ng-disabled="!(jobBuildRequest.startTime >= 0 && jobBuildRequest.endTime > 0 && jobBuildRequest.startTime < jobBuildRequest.endTime)">提交
         </button>
     </div>
 </script>
