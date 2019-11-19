@@ -95,7 +95,7 @@
                       <!--Name-->
                       <div class="form-group">
                           <div class="row">
-                              <label class="col-xs-12 col-sm-3 control-label no-padding-right font-color-default"><b>Name</b></label>
+                              <label class="col-xs-12 col-sm-3 control-label no-padding-right font-color-default"><b>名称</b></label>
                               <div class="col-xs-12 col-sm-6">
                                   <input type="text" placeholder="名称.." class="form-control"
                                       tooltip="度量名称.." tooltip-trigger="focus"
@@ -141,8 +141,8 @@
                       <div class="form-group middle-popover">
                           <div class="row">
                               <label class="col-xs-12 col-sm-3 control-label no-padding-right font-color-default">
-                                <b ng-if="newMeasure.function.expression == 'EXTENDED_COLUMN'">Host column On Fact Table</b>  <i ng-if="newMeasure.function.expression == 'EXTENDED_COLUMN'" title="主机栏" class="fa fa-info-circle" kylinpopover placement="right" template="hostTableTip.html"></i>
-                                <b ng-if="newMeasure.function.expression == 'TOP_N'">ORDER|SUM by Column</b>  <i ng-if="newMeasure.function.expression == 'TOP_N'" class="fa fa-info-circle" title="按列排序或求和" kylinpopover placement="right" template="topnTip.html"></i>
+                                <b ng-if="newMeasure.function.expression == 'EXTENDED_COLUMN'">事实表上的主机列</b>  <i ng-if="newMeasure.function.expression == 'EXTENDED_COLUMN'" title="主机栏" class="fa fa-info-circle" kylinpopover placement="right" template="hostTableTip.html"></i>
+                                <b ng-if="newMeasure.function.expression == 'TOP_N'">按列排序或求和</b>  <i ng-if="newMeasure.function.expression == 'TOP_N'" class="fa fa-info-circle" title="按列排序或求和" kylinpopover placement="right" template="topnTip.html"></i>
                                 <b ng-if="newMeasure.function.expression !== 'EXTENDED_COLUMN' && newMeasure.function.expression !== 'TOP_N' ">参数值</b>  <i ng-if="newMeasure.function.expression !== 'EXTENDED_COLUMN' && newMeasure.function.expression !== 'TOP_N' " class="fa fa-info-circle" kylinpopover placement="right" title="参数值" template="paramvalueTip.html"></i>
                                 <!--tip for top_n-->
                                 <!--<small ng-if="newMeasure.function.expression == 'TOP_N'" class="help-block" style="color:#3a87ad">(SUM|ORDER BY Column for TOP_N)</small>-->

@@ -28,13 +28,13 @@ KylinApp.constant('cubeConfig', {
     {name:'Spark',value: 4}
   ],
   joinTypes: [
-    {name: 'Left', value: 'left'},
-    {name: 'Inner', value: 'inner'}
+    {name: '左', value: 'left'},
+    {name: '内部', value: 'inner'}
   ],
   queryPriorities: [
-    {name: 'NORMAL', value: 50},
-    {name: 'LOW', value: 70},
-    {name: 'HIGH', value: 30}
+    {name: '正常', value: 50},
+    {name: '低', value: 70},
+    {name: '高', value: 30}
   ],
   measureDataTypes: [
     {name: 'INT', value: 'int'},
@@ -45,55 +45,55 @@ KylinApp.constant('cubeConfig', {
     {name: 'STRING', value: 'string'}
   ],
   distinctDataTypes: [
-    {name: 'Error Rate < 9.75%', value: 'hllc(10)'},
-    {name: 'Error Rate < 4.88%', value: 'hllc(12)'},
-    {name: 'Error Rate < 2.44%', value: 'hllc(14)'},
-    {name: 'Error Rate < 1.72%', value: 'hllc(15)'},
-    {name: 'Error Rate < 1.22%', value: 'hllc(16)'},
-    {name: 'Precisely (More Memory And Storage Needed)', value: 'bitmap'}
+    {name: '错误率 < 9.75%', value: 'hllc(10)'},
+    {name: '错误率 < 4.88%', value: 'hllc(12)'},
+    {name: '错误率 < 2.44%', value: 'hllc(14)'},
+    {name: '错误率 < 1.72%', value: 'hllc(15)'},
+    {name: '错误率 < 1.22%', value: 'hllc(16)'},
+    {name: '精确地（需要更多的内存和存储空间）', value: 'bitmap'}
   ],
   topNTypes: [
-    {name: 'Top 10', value: "topn(10)"},
-    {name: 'Top 100', value: "topn(100)"},
-    {name: 'Top 500', value: "topn(500)"},
-    {name: 'Top 1000', value: "topn(1000)"},
-    {name: 'Top 5000', value: "topn(5000)"},
-    {name: 'Top 10000', value: "topn(10000)"}
+    {name: '前 10', value: "topn(10)"},
+    {name: '前 100', value: "topn(100)"},
+    {name: '前 500', value: "topn(500)"},
+    {name: '前 1000', value: "topn(1000)"},
+    {name: '前 5000', value: "topn(5000)"},
+    {name: '前 10000', value: "topn(10000)"}
   ],
   dftSelections: {
     measureExpression: 'SUM',
     measureParamType: 'column',
     measureDataType: {name: 'BIGINT', value: 'bigint'},
-    distinctDataType: {name: 'Error Rate < 4.88%', value: 'hllc12'},
-    queryPriority: {name: 'NORMAL', value: 50},
+    distinctDataType: {name: '错误率 < 4.88%', value: 'hllc12'},
+    queryPriority: {name: '正常', value: 50},
     cubePartitionType: 'APPEND',
-    topN:{name: 'Top 100', value: "topn(100)"}
+    topN:{name: '前 100', value: "topn(100)"}
   },
     dictionaries: ["true", "false"],
     encodings:[
-      {name:"dict",value:"value"},
-      {name:"fixed_length",value:"fixed_length"},
-      {name:"int (deprecated)",value:"int"}
+      {name:"字典",value:"value"},
+      {name:"定长",value:"fixed_length"},
+      {name:"int（已弃用）",value:"int"}
     ],
     intEncodingOptions: [1,2,3,4,5,6,7,8],
 //    cubes config
   theaditems: [
-    {attr: 'name', name: 'Name'},
-    {attr: 'status', name: 'Status'},
-    {attr: 'size_kb', name: 'Cube Size'},
-    {attr: 'input_records_count', name: 'Source Records'},
-    {attr: 'last_build_time', name: 'Last Build Time'},
-    {attr: 'owner', name: 'Owner'},
-    {attr: 'create_time_utc', name: 'Create Time'}
+    {attr: '名称', name: 'Name'},
+    {attr: '状态', name: 'Status'},
+    {attr: '尺寸', name: 'Cube Size'},
+    {attr: '输入记录数', name: 'Source Records'},
+    {attr: '上次构建时间', name: 'Last Build Time'},
+    {attr: '所有者', name: 'Owner'},
+    {attr: '创建时间UTC', name: 'Create Time'}
   ],
   streamingAutoGenerateMeasure:[
-    {name:"year_start",type:"date"},
-    {name:"quarter_start",type:"date"},
-    {name:"month_start",type:"date"},
-    {name:"week_start",type:"date"},
-    {name:"day_start",type:"date"},
-    {name:"hour_start",type:"timestamp"},
-    {name:"minute_start",type:"timestamp"}
+    {name:"开始的年份",type:"date"},
+    {name:"开始的季度",type:"date"},
+    {name:"开始的月份",type:"date"},
+    {name:"开始的星期",type:"date"},
+    {name:"开始的天数",type:"date"},
+    {name:"开始的小时",type:"timestamp"},
+    {name:"开始的分钟",type:"timestamp"}
   ],
   partitionDateFormatOpt:[
     'yyyy-MM-dd HH:mm:ss',
@@ -118,12 +118,12 @@ KylinApp.constant('cubeConfig', {
   ],
   statusNeedNofity:['ERROR', 'DISCARDED', 'SUCCEED'],
   buildDictionaries:[
-    {name:"Global Dictionary", value:"org.apache.kylin.dict.GlobalDictionaryBuilder"},
-    {name:"Segment Dictionary", value:"org.apache.kylin.dict.global.SegmentAppendTrieDictBuilder"}
+    {name:"全局词典", value:"org.apache.kylin.dict.GlobalDictionaryBuilder"},
+    {name:"段字典", value:"org.apache.kylin.dict.global.SegmentAppendTrieDictBuilder"}
   ],
   needSetLengthEncodingList:['fixed_length','fixed_length_hex','int','integer'],
   snapshotStorageTypes: [
-    {name: 'Meta Store', value: 'metaStore'},
+    {name: '元存储', value: 'metaStore'},
     {name: 'HBase', value: 'hbase'}
   ],
   baseChartOptions: {

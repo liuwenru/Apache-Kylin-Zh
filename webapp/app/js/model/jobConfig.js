@@ -18,42 +18,42 @@
 
 KylinApp.constant('jobConfig', {
   allStatus: [
-    {name: 'NEW', value: 0},
-    {name: 'PENDING', value: 1},
-    {name: 'RUNNING', value: 2},
-    {name: 'STOPPED', value: 32},
-    {name: 'FINISHED', value: 4},
-    {name: 'ERROR', value: 8},
-    {name: 'DISCARDED', value: 16}
+    {name: '新建', value: 0},
+    {name: '待处理', value: 1},
+    {name: '正在运行', value: 2},
+    {name: '已停止', value: 32},
+    {name: '已完成', value: 4},
+    {name: '错误', value: 8},
+    {name: '废弃', value: 16}
   ],
   timeFilter: [
-    {name: 'LAST ONE DAY', value: 0},
-    {name: 'LAST ONE WEEK', value: 1},
-    {name: 'LAST ONE MONTH', value: 2},
-    {name: 'LAST ONE YEAR', value: 3},
-    {name: 'ALL', value: 4},
+    {name: '最后一天', value: 0},
+    {name: '过去一周', value: 1},
+    {name: '过去一个月', value: 2},
+    {name: '过去一年', value: 3},
+    {name: '所有', value: 4},
   ],
   theaditems: [
-    {attr: 'name', name: 'Job Name'},
-    {attr: 'related_cube', name: 'Cube'},
-    {attr: 'progress', name: 'Progress'},
-    {attr: 'last_modified', name: 'Last Modified Time'},
-    {attr: 'duration', name: 'Duration'}
+    {attr: 'name', name: '任务名称'},
+    {attr: 'related_cube', name: '多维数据集'},
+    {attr: 'progress', name: '进展'},
+    {attr: 'last_modified', name: '上次修改时间'},
+    {attr: 'duration', name: '持续时间'}
   ],
   searchMode: [
-    {name: 'CUBING', value: 'CUBING_ONLY'},
-    {name: 'CHECK POINT', value: 'CHECKPOINT_ONLY'},
-    {name: 'ALL', value: 'ALL'}
+    {name: 'cubing运算', value: 'CUBING_ONLY'},
+    {name: '检查点', value: 'CHECKPOINT_ONLY'},
+    {name: '所有', value: 'ALL'}
   ],
   queryitems: [
-  {attr: 'server', name: 'Server'},
-  {attr: 'user', name: 'User'},
+  {attr: 'server', name: '服务'},
+  {attr: 'user', name: '用户'},
   {attr: 'sql', name: 'Sql'},
-  {attr: 'adj', name: 'Description'},
-  {attr: 'running_seconds', name: 'Running Seconds'},
-  {attr: 'start_time', name: 'Start Time'},
-  {attr: 'last_modified', name: 'Last Modified'},
-  {attr: 'thread', name: 'Thread'}
+  {attr: 'adj', name: '描述'},
+  {attr: 'running_seconds', name: '运行秒数'},
+  {attr: 'start_time', name: '开始时间'},
+  {attr: 'last_modified', name: '上一次更改'},
+  {attr: 'thread', name: '线程'}
 ]
 
 });

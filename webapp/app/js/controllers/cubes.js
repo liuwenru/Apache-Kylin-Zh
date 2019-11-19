@@ -155,6 +155,7 @@ KylinApp.controller('CubesCtrl', function ($scope, $q, $routeParams, $location, 
         showCancelButton: true,
         confirmButtonColor: '#DD6B55',
 //                confirmButtonText: "Yes",
+        cancelButtonText: "取消",
         closeOnConfirm: true
       }, function(isConfirm) {
         if(isConfirm){
@@ -192,6 +193,7 @@ KylinApp.controller('CubesCtrl', function ($scope, $q, $routeParams, $location, 
         showCancelButton: true,
         confirmButtonColor: '#DD6B55',
         confirmButtonText: "是",
+		cancelButtonText: "取消",
         closeOnConfirm: true
       }, function(isConfirm) {
         if(isConfirm){
@@ -229,6 +231,7 @@ KylinApp.controller('CubesCtrl', function ($scope, $q, $routeParams, $location, 
         showCancelButton: true,
         confirmButtonColor: '#DD6B55',
         confirmButtonText: "是",
+		cancelButtonText: "取消",
         closeOnConfirm: true
       }, function(isConfirm) {
         if(isConfirm){
@@ -268,6 +271,7 @@ KylinApp.controller('CubesCtrl', function ($scope, $q, $routeParams, $location, 
         showCancelButton: true,
         confirmButtonColor: '#DD6B55',
         confirmButtonText: "是",
+		cancelButtonText: "取消",
         closeOnConfirm: true
       }, function(isConfirm) {
         if(isConfirm){
@@ -307,6 +311,7 @@ KylinApp.controller('CubesCtrl', function ($scope, $q, $routeParams, $location, 
         showCancelButton: true,
         confirmButtonColor: '#DD6B55',
         confirmButtonText: "是",
+		cancelButtonText: "取消",
         closeOnConfirm: true
       }, function(isConfirm) {
         if(isConfirm){
@@ -342,6 +347,7 @@ KylinApp.controller('CubesCtrl', function ($scope, $q, $routeParams, $location, 
               showCancelButton: true,
               confirmButtonColor: '#DD6B55',
               confirmButtonText: "是",
+			  cancelButtonText: "取消",
               closeOnConfirm: true
             }, function(isConfirm) {
               if(isConfirm){
@@ -407,6 +413,7 @@ KylinApp.controller('CubesCtrl', function ($scope, $q, $routeParams, $location, 
                 showCancelButton: true,
                 confirmButtonColor: '#DD6B55',
                 confirmButtonText: "是",
+				cancelButtonText: "取消",
                 closeOnConfirm: true
               }, function(isConfirm) {
                 if(isConfirm){
@@ -597,6 +604,7 @@ var cubeCloneCtrl = function ($scope, $modalInstance, CubeService, MessageServic
       showCancelButton: true,
       confirmButtonColor: '#DD6B55',
       confirmButtonText: "是",
+	  cancelButtonText: "取消",
       closeOnConfirm: true
     }, function (isConfirm) {
       if (isConfirm) {
@@ -668,6 +676,7 @@ var jobSubmitCtrl = function ($scope, $modalInstance, CubeService, MessageServic
             text: '找到空的多维数据集段'+':'+_segment+', 您是否要强制合并细分 ?',
             showCancelButton: true,
             confirmButtonColor: '#DD6B55',
+			cancelButtonText: "取消",
             closeOnConfirm: true
           }, function (isConfirm) {
             if (isConfirm) {
@@ -683,6 +692,7 @@ var jobSubmitCtrl = function ($scope, $modalInstance, CubeService, MessageServic
             text: '段之间存在间隙，您是否要强制合并段 ?',
             showCancelButton: true,
             confirmButtonColor: '#DD6B55',
+			cancelButtonText: "取消",
             closeOnConfirm: true
           }, function (isConfirm) {
             if (isConfirm) {
@@ -763,6 +773,7 @@ var deleteSegmentCtrl = function($scope, $modalInstance, CubeService, SweetAlert
       showCancelButton: true,
       confirmButtonColor: '#DD6B55',
       confirmButtonText: "是",
+	  cancelButtonText: "取消",
       closeOnConfirm: true
     }, function(isConfirm) {
       if(isConfirm){

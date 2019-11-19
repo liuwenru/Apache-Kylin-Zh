@@ -128,7 +128,7 @@
                     <button ng-if="enableRecommend" class="btn btn-success btn-sm pull-right" ng-click="getRecommendCuboids(cube)" ng-if="currentData">
                         推荐
                     </button>
-                    <div ng-if="cube.cuboid_last_optimized" class="pull-right" style="padding: 5px;">Last Optimized Time: {{cube.cuboid_last_optimized | utcToConfigTimeZone}}</div>
+                    <div ng-if="cube.cuboid_last_optimized" class="pull-right" style="padding: 5px;">上次优化时间: {{cube.cuboid_last_optimized | utcToConfigTimeZone}}</div>
                 </div>
             </div>
             <div class="row">

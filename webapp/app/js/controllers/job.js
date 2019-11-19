@@ -55,11 +55,11 @@ KylinApp
 
         $scope.tabs=[
           {
-            "title":"Jobs",
+            "title":"任务",
             "active":true
           },
           {
-            "title": "Slow Queries",
+            "title": "慢查询",
             "active": false
           }
         ]
@@ -134,6 +134,7 @@ KylinApp
                 showCancelButton: true,
                 confirmButtonColor: '#DD6B55',
                 confirmButtonText: "是",
+				cancelButtonText: "取消",
                 closeOnConfirm: true
             }, function(isConfirm) {
               if(isConfirm) {
@@ -168,6 +169,7 @@ KylinApp
                 showCancelButton: true,
                 confirmButtonColor: '#DD6B55',
                 confirmButtonText: "是",
+				cancelButtonText: "取消",
                 closeOnConfirm: true
             }, function(isConfirm) {
               if(isConfirm) {
@@ -204,6 +206,7 @@ KylinApp
           showCancelButton: true,
           confirmButtonColor: '#DD6B55',
           confirmButtonText: "是",
+		  cancelButtonText: "取消", 
           closeOnConfirm: true
         }, function(isConfirm) {
           if(isConfirm) {
@@ -240,6 +243,7 @@ KylinApp
           showCancelButton: true,
           confirmButtonColor: '#DD6B55',
           confirmButtonText: "是",
+		  cancelButtonText: "取消",
           closeOnConfirm: true
         }, function(isConfirm) {
           if(isConfirm) {

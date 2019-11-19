@@ -18,16 +18,16 @@
 
 KylinApp.run(function ($rootScope, $http, $location, UserService, AuthenticationService, MessageService, $cookieStore, ProjectService, ProjectModel, AccessService, SweetAlert, loadingRequest) {
   $rootScope.permissions = {
-    READ: {name: 'QUERY', value: 'READ', mask: 1},
-    MANAGEMENT: {name: 'MANAGEMENT', value: 'MANAGEMENT', mask: 32},
-    OPERATION: {name: 'OPERATION', value: 'OPERATION', mask: 64},
-    ADMINISTRATION: {name: 'ADMIN', value: 'ADMINISTRATION', mask: 16}
+    READ: {name: '查询', value: 'READ', mask: 1},
+    MANAGEMENT: {name: '管理', value: 'MANAGEMENT', mask: 32},
+    OPERATION: {name: '操作方式', value: 'OPERATION', mask: 64},
+    ADMINISTRATION: {name: '管理员', value: 'ADMINISTRATION', mask: 16}
   };
   $rootScope.permissionsSorted = [
-    {name: 'QUERY', value: 'READ', mask: 1},
-    {name: 'OPERATION', value: 'OPERATION', mask: 64},
-    {name: 'MANAGEMENT', value: 'MANAGEMENT', mask: 32},
-    {name: 'ADMIN', value: 'ADMINISTRATION', mask: 16}
+    {name: '查询', value: 'READ', mask: 1},
+    {name: '操作方式', value: 'OPERATION', mask: 64},
+    {name: '管理', value: 'MANAGEMENT', mask: 32},
+    {name: '管理员', value: 'ADMINISTRATION', mask: 16}
   ];
   $rootScope.$on("$routeChangeStart", function () {
     AuthenticationService.ping(function (data) {
@@ -140,8 +140,8 @@ KylinApp.run(function ($rootScope, $http, $location, UserService, Authentication
    * On 'event:forbidden', resend all the 403 requests.
    */
   $rootScope.$on('event:forbidden', function (event, message) {
-    var msg = !!(message) ? message : 'You don\' have right to take the action.';
-    SweetAlert.swal('Oops...', 'Permission Denied: ' + msg, 'error');
+    var msg = !!(message) ? message : '您无权进行这个操作。';
+    SweetAlert.swal('糟糕...', '没有权限： ' + msg, 'error');
 
   });
 

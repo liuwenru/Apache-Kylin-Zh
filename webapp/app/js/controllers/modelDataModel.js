@@ -200,6 +200,7 @@ KylinApp.controller('ModelDataModelCtrl', function ($location,$scope, $modal,cub
                  showCancelButton: true,
                  confirmButtonColor: '#DD6B55',
                  confirmButtonText: "是",
+				 cancelButtonText: "取消",
                  closeOnConfirm: true
             }, function (isConfirm) {
                 if (isConfirm) {

@@ -103,7 +103,8 @@ KylinApp.controller('HybridInstanceCtrl', function (
       showCancelButton: true,
       confirmButtonColor: '#DD6B55',
       confirmButtonText: "是",
-      closeOnConfirm: true
+      cancelButtonText: "取消",
+	  closeOnConfirm: true
     }, function (isConfirm) {
       if (isConfirm) {
         var schema = {
